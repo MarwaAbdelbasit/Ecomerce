@@ -1,12 +1,4 @@
 const mongoose = require("mongoose")
-// products:_
-// name
-// description
-// category
-// amount
-// status:  خلص ولا لسة
-// price
-// discount
 const productSchema = new mongoose.Schema({
     name:{
         type:String,
