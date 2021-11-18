@@ -12,7 +12,7 @@ class User{
         }
         catch(err){
             res.status(500).send({
-                status:'error',
+                status:'error registering user',
                 data:null,
                 message:err.message
             })
