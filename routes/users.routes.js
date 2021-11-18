@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
-router.get('/', (req, res) => res.send('Hello World!'))
+const userController = require("../controller/user.controller")
+router.get('/test',userController.test )
 
 module.exports=router
