@@ -3,7 +3,7 @@ const productModel = require("../db/models/product.model")
 class Product {
     static addProduct = async (req, res) => {
         try{
-            const product = new productModel(req.body)
+            const product =await new productModel(req.body)
             await product.save()
             res.status(200).send({
                 apiStatus:true,
@@ -55,19 +55,8 @@ class Product {
 
     static editProduct = async (req, res) => {
         try{
-            let product = await productModel.findOne({_id:req.params.id})
+            let product = await productModel.findByIdAndUpdate(req.params.id,{$set:req.body})
             if(!product) throw new Error("product not found")
-            // product = req.body
-            // product = {...req.body}
-            // for(attr in req.body) {product.attr = req.body.attr}
-            product.name = req.body.name
-            product.description = req.body.description
-            product.category = req.body.category
-            product.amount = req.body.amount
-            product.price = req.body.price
-            product.discount = req.body.discount
-            product.status = req.body.status
-
             await product.save()
             res.status(200).send({
                 apiStatus:true,
@@ -85,11 +74,10 @@ class Product {
 
     static delProduct = async (req, res) => {
         try{
-            let product = await productModel.findByIdAndDelete({_id:req.params.id})
+            let product = await productModel.findByIdAndDelete(req.params.id)
             if(!product) throw new Error("product not found")
             res.status(200).send({
                 apiStatus:true,
-                data:product,
                 message:"data deleted successfully"
             })
         }
