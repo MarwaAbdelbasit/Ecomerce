@@ -10,6 +10,7 @@ const userSchema=new Schema({
         type:String,
         required:[true,'email is required'],
         trim:true,
+        unique:true,
         lowercase:true,
         validate(value){
             if(!isEmail(value)) throw new Error('this email is used before')
@@ -25,6 +26,13 @@ const userSchema=new Schema({
         }
     }
 },{timestamps:true})
-
+userSchema.pre('save',async function(){
+    if(this.isModified('password')) this.password=await bcrypt.hash(this.password,10)
+})
+userSchema.methods.toJson=function(){
+    const user=this.toObject()
+    const {password,__v,...others}=user
+    return others
+}
 const User=model('User',userSchema)
 module.exports=User
