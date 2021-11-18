@@ -50,6 +50,12 @@ const userSchema=new Schema({
                 if(!isCreditCard(value)) throw new Error('invalid credit card')
             }
         }
+    },
+    orders:{
+        type:Array
+    },
+    wishList:{
+        type:Array
     }
 },{timestamps:true})
 userSchema.pre('save',async function(){
