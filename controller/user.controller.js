@@ -84,16 +84,18 @@ class User{
 
     static placeOrder = async (req, res) => {
         try {
-            req.user.orders.push({
-                userID: req.params.userId,
+            let order={
+                userID: req.params.id,
                 productName: req.body.productName,
                 amount: req.body.amount,
                 paid: req.body.paid,
-                delieverd: req.body.delieverd
+            }
+            let user = await userModel.findByIdAndUpdate(req.params.id,{
+                $push:{orders:order}
             })
-            // user.oreders.push({...req.body})
-            await req.user.save()
-            successHandler(req.user,res,'order placed successfully')
+            if(!user) throw new Error("user not found")
+            await user.save()
+            successHandler(user,res,' order is placed  successfully')
         }
         catch(e) {
             errorHandler(e,res)
