@@ -11,7 +11,8 @@ router.patch('/editUser/:id',auth,userController.editUser)
 router.delete('/deleteUser/:id',auth,userController.delUser)
 router.delete('/deleteAll',adminAuth,userController.delAll)
 
-router.patch('/placeOrder/:id', auth, userController.placeOrder);
+router.post('/placeOrder', auth, userController.placeOrder);
+router.patch('/editOrder/:orderId', auth, userController.editOrder);
 router.get('/allOrders', auth, userController.allOrders)
 router.get('/singleOrder/:orderId', auth, userController.singleOrder)
 router.delete('/delOrders', auth, userController.delOrders)
