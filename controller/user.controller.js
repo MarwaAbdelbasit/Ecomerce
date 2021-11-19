@@ -5,8 +5,18 @@ class User{
     static register=async(req,res)=>{
         try{
             const user=await new userModel(req.body)
-            await user.save()
-            successHandler(user,'User registered successfully')
+            await user.generateToken()
+            successHandler(user,res,'User registered successfully')
+        }
+        catch(err){
+            errorHandler(err,res)
+        }
+    }
+    static login=async(req,res)=>{
+        try{
+            const user=await userModel.loginUser(req.body.email,req.body.password)
+            await user.generateToken()
+            successHandler(user,res,'User logged in successfully')
         }
         catch(err){
             errorHandler(err,res)
@@ -15,7 +25,7 @@ class User{
     static showUser = async (req, res) => {
         try{
             const user = await userModel.findOne({_id:req.params.id})
-            successHandler(user,'User shown successfully')
+            successHandler(user,res,'User shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -24,7 +34,7 @@ class User{
     static showAllUsers = async (req, res) => {
         try{
             const allUsers = await userModel.find()
-            successHandler(allUsers,'all Users shown successfully')
+            successHandler(allUsers,res,'all Users shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -35,7 +45,7 @@ class User{
             let user = await userModel.findByIdAndUpdate(req.params.id,{$set:req.body})
             if(!user) throw new Error("user not found")
             await user.save()
-            successHandler(user,' User is edited successfully')
+            successHandler(user,res,' User is edited successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -46,7 +56,7 @@ class User{
         try{
             let user = await userModel.findByIdAndDelete(req.params.id)
             if(!user) throw new Error("user not found")
-            successHandler(null,' User is deleted successfully')
+            successHandler(null,res,' User is deleted successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -56,7 +66,7 @@ class User{
     static delAll = async (req, res) => {
         try{
             await userModel.deleteMany()
-            successHandler(null,'all Users are deleted successfully')
+            successHandler(null,res,'all Users are deleted successfully')
         }
         catch(err) {
             errorHandler(err,res)

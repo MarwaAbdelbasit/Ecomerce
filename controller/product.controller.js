@@ -6,7 +6,7 @@ class Product {
         try{
             const product =await new productModel(req.body)
             await product.save()
-            successHandler(user,'Product added successfully')
+            successHandler(product,res,'Product added successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -16,7 +16,7 @@ class Product {
     static allProducts = async (req, res) => {
         try{
             const allProducts = await productModel.find()
-            successHandler(allProducts,'all Products shown successfully')
+            successHandler(allProducts,res,'all Products shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -26,7 +26,7 @@ class Product {
     static singleProduct = async (req, res) => {
         try{
             const product = await productModel.findOne({_id:req.params.id})
-            successHandler(product,'product shown successfully')
+            successHandler(product,res,'product shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -38,7 +38,7 @@ class Product {
             let product = await productModel.findByIdAndUpdate(req.params.id,{$set:req.body})
             if(!product) throw new Error("product not found")
             await product.save()
-            successHandler(product,' product is edited successfully')
+            successHandler(product,res,' product is edited successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -49,7 +49,7 @@ class Product {
         try{
             let product = await productModel.findByIdAndDelete(req.params.id)
             if(!product) throw new Error("product not found")
-            successHandler(null,' product is deleted successfully')
+            successHandler(null,res,' product is deleted successfully')
         }
         catch(err) {
             errorHandler(err,res)
@@ -59,7 +59,7 @@ class Product {
     static delAll = async (req, res) => {
         try{
             await productModel.deleteMany()
-            successHandler(null,'all products are deleted successfully')
+            successHandler(null,res,'all products are deleted successfully')
         }
         catch(err) {
             errorHandler(err,res)

@@ -1,4 +1,4 @@
-const successHandler=(data,message)=>{
+const successHandler=(data,res,message)=>{
     res.status(200).send({
         status:'success',
         data,
