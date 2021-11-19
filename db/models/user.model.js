@@ -1,6 +1,7 @@
 const {model,Schema}=require('mongoose')
 const {isEmail,isStrongPassword,isCreditCard} =require('validator')
-const {hash}=require('bcryptjs')
+const bcrypt=require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const userSchema=new Schema({
     userName:{
         type:String,
@@ -56,15 +57,40 @@ const userSchema=new Schema({
     },
     wishList:{
         type:Array
-    }
+    },
+    tokens:[
+        {
+            token:{
+                type:String
+            },
+        }
+    ]
+
 },{timestamps:true})
 userSchema.pre('save',async function(){
-    if(this.isModified('password')) this.password=await hash(this.password,10)
+    if(this.isModified('password')) this.password=await bcrypt.hash(this.password,10)
 })
 userSchema.methods.toJSON=function(){
     const user=this.toObject()
     const {password,__v,...others}=user
     return others
+}
+userSchema.statics.loginUser=async function(email,password){
+    let user = await this.findOne({ email }) 
+    if (user) {
+        const exist = await bcrypt.compare(password, user.password);
+        if (exist) {  
+            return user
+        }
+        throw Error('Incorrect Password')
+    }
+    throw Error('Incorrect E-mail')
+}
+userSchema.methods.generateToken=function(){
+    let token=jwt.sign({_id:this._id},process.env.TOKEN)
+    this.tokens=this.tokens.concat({token})
+    this.save()
+    return token
 }
 const User=model('User',userSchema)
 module.exports=User

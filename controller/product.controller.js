@@ -1,119 +1,68 @@
 const productModel = require("../db/models/product.model")
-
+const successHandler = require("../helpers/successHandler")
+const errorHandler = require("../helpers/errorHandler")
 class Product {
     static addProduct = async (req, res) => {
         try{
-            const product = new productModel(req.body)
+            const product =await new productModel(req.body)
             await product.save()
-            res.status(200).send({
-                apiStatus:true,
-                data:product,
-                message:"product added successfully"
-            })
+            successHandler(product,res,'Product added successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 
     static allProducts = async (req, res) => {
         try{
             const allProducts = await productModel.find()
-            res.status(200).send({
-                apiStatus:true,
-                data:allProducts,
-                message:"data fetched successfully"
-            })
+            successHandler(allProducts,res,'all Products shown successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 
     static singleProduct = async (req, res) => {
         try{
             const product = await productModel.findOne({_id:req.params.id})
-            res.status(200).send({
-                apiStatus:true,
-                data:product,
-                message:"data fetched successfully"
-            })
+            successHandler(product,res,'product shown successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 
     static editProduct = async (req, res) => {
         try{
-            let product = await productModel.findOne({_id:req.params.id})
+            let product = await productModel.findByIdAndUpdate(req.params.id,{$set:req.body})
             if(!product) throw new Error("product not found")
-            // product = req.body
-            // product = {...req.body}
-            // for(attr in req.body) {product.attr = req.body.attr}
-            product.name = req.body.name
-            product.description = req.body.description
-            product.category = req.body.category
-            product.amount = req.body.amount
-            product.price = req.body.price
-            product.discount = req.body.discount
-            product.status = req.body.status
-
             await product.save()
-            res.status(200).send({
-                apiStatus:true,
-                data:product,
-                message:"data edited successfully"
-            })
+            successHandler(product,res,' product is edited successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 
     static delProduct = async (req, res) => {
         try{
-            let product = await productModel.findByIdAndDelete({_id:req.params.id})
+            let product = await productModel.findByIdAndDelete(req.params.id)
             if(!product) throw new Error("product not found")
-            res.status(200).send({
-                apiStatus:true,
-                data:product,
-                message:"data deleted successfully"
-            })
+            successHandler(null,res,' product is deleted successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 
     static delAll = async (req, res) => {
         try{
             await productModel.deleteMany()
-            res.status(200).send({
-                apiStatus:true,
-                message:"all data deleted successfully"
-            })
+            successHandler(null,res,'all products are deleted successfully')
         }
-        catch(e) {
-            res.status(500).send({
-                apiStatus:false,
-                message:e.message
-            })
+        catch(err) {
+            errorHandler(err,res)
         }
     }
 }

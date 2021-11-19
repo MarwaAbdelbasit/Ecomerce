@@ -35,6 +35,11 @@ const productSchema = new mongoose.Schema({
         max:90
     }
 })
+productSchema.methods.toJSON=function(){
+    const product=this.toObject()
+    const {__v,...others}=product
+    return others
+}
 
 const Product = mongoose.model("Product", productSchema)
 
