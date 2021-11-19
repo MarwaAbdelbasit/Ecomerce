@@ -52,9 +52,29 @@ const userSchema=new Schema({
             }
         }
     },
-    orders:{
-        type:Array
-    },
+    orders:[
+        {
+            userID: {
+                type:String
+            },
+            productName: {
+                type:String
+            },
+            amount: {
+                type:Number,
+                default:1,
+                min:1
+            },
+            paid: {
+                type:Boolean,
+                default:false
+            },
+            delieverd: {
+                type:Boolean,
+                default: false
+            }
+        }
+    ],
     wishList:{
         type:Array
     },
@@ -89,8 +109,6 @@ userSchema.statics.loginUser=async function(email,password){
 userSchema.methods.generateToken=function(){
     let token=jwt.sign({_id:this._id},process.env.TOKEN)
     this.tokens=this.tokens.concat({token})
-    this.save()
-    return token
 }
 const User=model('User',userSchema)
 module.exports=User
