@@ -7,16 +7,16 @@ const auth=async(req,res,next) => {
         const userToken = req.body.token || req.query.token || req.header('Authorization');
         const adminToken=req.body.isAdmin || req.query.isAdmin || req.header('Admin')
         if(!adminToken){
-            if(!userToken) throw new Error("not authorized")
+            if(!userToken) throw new Error("Access Denied");
             const decodedToken=jwt.verify(userToken,process.env.TOKEN)
             const user=await userModel.findOne({_id:decodedToken._id,'tokens.token':token})
-            if(!user) throw new Error("not authorized")
+            if(!user) throw new Error("Access Denied")
             req.user=user;
             req.token=token;
         }else{
             const decodedToken=jwt.verify(adminToken,process.env.ADMIN_TOKEN)
             const admin=await adminModel.findOne({_id:decodedToken._id,'tokens.token':adminToken})
-            if(!admin) throw new Error("not authorized")
+            if(!admin) throw new Error("Access Denied")
         }
         next()    
     }

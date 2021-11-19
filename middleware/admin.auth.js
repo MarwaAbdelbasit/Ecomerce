@@ -4,10 +4,10 @@ const errorHandler = require('../helpers/errorHandler');
 const auth=async(req,res,next) => {
     try{
         const token = req.body.token || req.query.token || req.header('Authorization');
-        if(!token) throw new Error("not authorized")
+        if(!token) throw new Error("Access Denied")
         const decodedToken=jwt.verify(token,process.env.ADMIN_TOKEN)
         const admin=await adminModel.findOne({_id:decodedToken._id,'tokens.token':token})
-        if(!admin) throw new Error("not authorized")
+        if(!admin) throw new Error("Access Denied")
         req.admin=admin;
         req.token=token;
         next()    
