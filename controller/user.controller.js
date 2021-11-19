@@ -84,18 +84,16 @@ class User{
 
     static placeOrder = async (req, res) => {
         try {
-            let order={
-                userID: req.params.id,
+            req.user.orders.push({
+                userID: req.user._id,
                 productName: req.body.productName,
                 amount: req.body.amount,
                 paid: req.body.paid,
-            }
-            let user = await userModel.findByIdAndUpdate(req.params.id,{
-                $push:{orders:order}
+                delieverd: req.body.delieverd
             })
-            if(!user) throw new Error("user not found")
-            await user.save()
-            successHandler(user,res,' order is placed  successfully')
+            // user.oreders.push({...req.body})
+            await req.user.save()
+            successHandler(req.user,res,'order placed successfully')
         }
         catch(e) {
             errorHandler(e,res)
@@ -116,7 +114,7 @@ class User{
     static singleOrder = async (req, res) => {
         try{
             let allOrders = req.user.orders
-            let order = allOrders.filter(o=>o._id==req.params.orderId)
+            let order = allOrders.find(o=>o._id==req.params.orderId)
             if(!order) throw new Error("order not found")
             successHandler(order,res,'order fetched successfully')
         }
@@ -151,6 +149,21 @@ class User{
             errorHandler(e,res)
         }
     }
-
+    static editOrder = async (req, res) => {
+        try{
+            let orderIndex = req.user.orders.findIndex(o=>o._id==req.params.orderId)
+            if(orderIndex==-1) throw new Error("order not found")
+            req.user.orders[orderIndex]={
+                userID: req.user._id,
+                _id:req.user.orders[orderIndex]._id,
+                ...req.body
+            }
+            await req.user.save()
+            successHandler(req.user.orders[orderIndex],res,'order deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
 }
 module.exports=User

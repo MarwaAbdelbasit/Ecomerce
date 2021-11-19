@@ -56,7 +56,6 @@ const userSchema=new Schema({
         {
             userID: {
                 type:String,
-                required:true
             },
             productName: {
                 type:String,
