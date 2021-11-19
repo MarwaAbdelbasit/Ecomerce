@@ -6,9 +6,14 @@ class User{
         try{
             const user=await new userModel(req.body)
             await user.generateToken()
+            await user.save()
             successHandler(user,res,'User registered successfully')
         }
         catch(err){
+            if(err.code===11000) {
+                err.message='Email is already registered'
+                errorHandler(err,res)
+            }
             errorHandler(err,res)
         }
     }
@@ -16,6 +21,7 @@ class User{
         try{
             const user=await userModel.loginUser(req.body.email,req.body.password)
             await user.generateToken()
+            await user.save()
             successHandler(user,res,'User logged in successfully')
         }
         catch(err){
