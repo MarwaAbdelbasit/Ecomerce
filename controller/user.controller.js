@@ -73,6 +73,9 @@ class User{
         }
     }
 
+    static profile =async(req,res)=>{
+        res.send(req.user)
+    }
 
 }
 module.exports=User
