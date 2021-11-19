@@ -3,7 +3,7 @@ const userController = require("../controller/user.controller")
 const userAuth = require("../middleware/user.auth")
 const adminAuth = require("../middleware/admin.auth")
 router.post('/register',userController.register);
-router.post('/login',userController.login); 
+router.post('/login',userAuth,userController.login); 
 router.get('/showUser/:id',userController.showUser)
 router.get('/showAll',adminAuth,userController.showAllUsers)
 router.patch('/editUser/:id',userAuth,userController.editUser)
