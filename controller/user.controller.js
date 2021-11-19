@@ -12,7 +12,6 @@ class User{
         catch(err){
             if(err.code===11000) {
                 err.message='Email is already registered'
-                errorHandler(err,res)
             }
             errorHandler(err,res)
         }
