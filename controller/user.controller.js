@@ -117,7 +117,6 @@ class User{
             let order = allOrders.find(o=>o._id==req.params.orderId)
             if(!order) throw new Error("order not found")
             successHandler(order,res,'order fetched successfully')
-            
         }
         catch(e) {
             errorHandler(e,res)
