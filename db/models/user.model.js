@@ -64,7 +64,11 @@ const userSchema=new Schema({
                 type:String
             },
         }
-    ]
+    ],
+    isAdmin:{
+        type:Boolean,
+        default:false
+    }
 
 },{timestamps:true})
 userSchema.pre('save',async function(){
