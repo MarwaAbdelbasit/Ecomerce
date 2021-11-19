@@ -91,7 +91,7 @@ userSchema.statics.loginUser=async function(email,password){
     throw Error('Incorrect E-mail')
 }
 userSchema.methods.generateToken=function(){
-    let token=jwt.sign({_id:this._id},process.env.TOKEN)
+    let token=jwt.sign({_id:this._id},process.env.USER_TOKEN)
     this.tokens=this.tokens.concat({token})
 }
 const User=model('User',userSchema)

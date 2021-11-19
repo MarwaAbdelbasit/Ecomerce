@@ -8,7 +8,7 @@ const auth=async(req,res,next) => {
         const adminToken=req.body.isAdmin || req.query.isAdmin || req.header('Admin')
         if(!adminToken){
             if(!userToken) throw new Error("Access Denied");
-            const decodedToken=jwt.verify(userToken,process.env.TOKEN)
+            const decodedToken=jwt.verify(userToken,process.env.USER_TOKEN)
             const user=await userModel.findOne({_id:decodedToken._id,'tokens.token':token})
             if(!user) throw new Error("Access Denied")
             req.user=user;
