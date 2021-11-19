@@ -9,3 +9,4 @@ router.delete("/delProduct/:id", productController.delProduct)
 router.delete("/delAll", productController.delAll)
 
 module.exports=router
+ 
