@@ -4,11 +4,11 @@ const adminModel = require('../db/models/admin.model');
 const errorHandler = require('../helpers/errorHandler');
 const auth=async(req,res,next) => {
     try{
-        const token = req.body.token || req.query.token || req.header('Authorization');
+        const userToken = req.body.token || req.query.token || req.header('Authorization');
         const adminToken=req.body.isAdmin || req.query.isAdmin || req.header('Admin')
         if(!adminToken){
-            if(!token) throw new Error("not authorized")
-            const decodedToken=jwt.verify(token,process.env.TOKEN)
+            if(!userToken) throw new Error("not authorized")
+            const decodedToken=jwt.verify(userToken,process.env.TOKEN)
             const user=await userModel.findOne({_id:decodedToken._id,'tokens.token':token})
             if(!user) throw new Error("not authorized")
             req.user=user;
