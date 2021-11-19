@@ -10,7 +10,7 @@ router.get('/profile', auth, userController.profile)
 router.patch('/editUser/:id',auth,userController.editUser)
 router.delete('/deleteUser/:id',auth,userController.delUser)
 router.delete('/deleteAll',adminAuth,userController.delAll)
-
+ 
 router.post('/placeOrder', auth, userController.placeOrder);
 router.patch('/editOrder/:orderId', auth, userController.editOrder);
 router.get('/allOrders', auth, userController.allOrders)

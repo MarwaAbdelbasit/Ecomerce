@@ -6,7 +6,7 @@ const adminSchema=new Schema({
     adminName:{
         type:String,
         required:[true,'adminName is required'],
-        
+         
     },
     email:{
         type:String,
