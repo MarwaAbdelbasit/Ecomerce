@@ -12,7 +12,5 @@ router.delete('/deleteAdmin/:id',adminAuth,adminController.delAdmin)
 router.post('/logout', adminAuth, adminController.logout)
 router.post('/logoutall', adminAuth, adminController.logoutAll)
 
-//-----------------admin control for orders ---------------------
-router.get('/allOrders',adminController.getAllOrders)
 
 module.exports=router 
