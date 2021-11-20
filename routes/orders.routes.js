@@ -7,9 +7,12 @@ const adminAuth= require("../middleware/admin.auth")
 router.post('/placeOrder', auth, orderController.placeOrder);
 router.patch('/editOrder/:orderId', auth, orderController.editOrder);
 router.get('/allOrders', auth, orderController.allOrders)
-router.get('/allOrdersAdmin', adminAuth, orderController.allOrdersAdmin)
 router.get('/singleOrder/:orderId', auth, orderController.singleOrder)
 router.delete('/delOrders', auth, orderController.delOrders)
 router.delete('/delOrder/:orderId', auth, orderController.delOrder)
+
+//----------------admin options to control orders ----------------
+router.get('/allOrdersAdmin', adminAuth, orderController.allOrdersAdmin)
+router.delete('/delOrdersAdmin/:userId', adminAuth, orderController.delOrdersAdmin)
 
 module.exports=router
