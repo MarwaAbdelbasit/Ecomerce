@@ -7,6 +7,8 @@ const usersRoutes = require('../routes/users.routes')
 const productRoutes = require("../routes/product.routes")
 const ordersRoutes = require("../routes/orders.routes")
 const wishListRoutes = require("../routes/wishList.routes")
+=======
+const adminRoutes = require("../routes/admin.routes")
 const express = require("express")
 const app = express()
 
@@ -17,6 +19,8 @@ app.use('/users', usersRoutes)
 app.use('/products', productRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/wishList', wishListRoutes)
+=======
+app.use('/admin', adminRoutes)
 
 const staticDir=path.join(__dirname, '../public')
 const viewsDir=path.join(__dirname, '../frontend/views')

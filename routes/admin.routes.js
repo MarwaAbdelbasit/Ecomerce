@@ -9,8 +9,8 @@ router.post('/login',adminAuth,adminController.login);
 //----------------admin options to show/edit/delete/logout(1/many devices) his account---------
 router.patch('/editAdmin/:id',adminAuth,adminController.editAdmin)
 router.delete('/deleteAdmin/:id',adminAuth,adminController.delAdmin)
-router.post('/logout', auth, adminController.logout)
-router.post('/logoutall', auth, adminController.logoutAll)
+router.post('/logout', adminAuth, adminController.logout)
+router.post('/logoutall', adminAuth, adminController.logoutAll)
 
 //-----------------admin control for orders ---------------------
 router.get('/allOrders',adminController.getAllOrders)
