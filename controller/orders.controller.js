@@ -49,6 +49,17 @@ class Order {
         }
     }
 
+    static allOrdersAdmin = async (req, res) => {
+        try{
+            let allOrders = await ordersModel.find()
+            if(allOrders.length==0) throw new Error("user have no orders")
+            successHandler(allOrders,res,'orders fetched successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
     static singleOrder = async (req, res) => {
         try{
             let order = await ordersModel.findById(req.params.orderId)
@@ -62,11 +73,12 @@ class Order {
 
     static delOrders = async (req, res) => {
         try{
-            let allOrders = await ordersModel.find({userId:req.user._id})
-            if(allOrders.length==0) throw new Error("user have no orders")
-            allOrders = []
-            await allOrders.save()
-            successHandler(null,res,'orders deleted successfully')
+            let ordersIds = req.user.orders
+            // let allOrders = await ordersModel.find({userId:req.user._id})
+            // if(allOrders.length==0) throw new Error("user have no orders")
+            // allOrders = []
+            // await allOrders.save()
+            successHandler(ordersIds,res,'orders deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
