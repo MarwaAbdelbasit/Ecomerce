@@ -15,5 +15,5 @@ user has access to like edit /delete is there a better way ?!</p>
 without auth (then everone can register) or we can limit it?!</p>
 
 <h4>3-Cart control<h4>
-<p>--do we have to make (add/remove/clear) cart or it will be enough to in front end and it will be add
+<p>--do we have to make (add/remove/clear) cart or it will be enough to be in frontEnd and it will be add
 when user make checkout as order</p>
