@@ -27,6 +27,27 @@ class Admin{
             errorHandler(err,res)
         }
     }
+    static logout=async(req,res)=>{
+        try{
+            req.admin.tokens=req.admin.tokens.filter(t=>t.token!=req.token)
+            await req.admin.save()
+            successHandler(null,res,'Admin logged out successfully')
+        }
+        catch(err){
+            errorHandler(err,res)
+        }
+    }
+    static logoutAll=async(req,res)=>{
+        try{
+            req.admin.tokens=[]
+            await req.admin.save()
+            successHandler(null,res,'Admin logged out from all devices successfully')
+        }
+        catch(err){
+            errorHandler(err,res)
+        }
+    }
+
     static editAdmin = async (req, res) => {
         try{
             let admin = await adminModel.findByIdAndUpdate(req.params.id,{$set:req.body})
@@ -44,6 +65,14 @@ class Admin{
             let admin = await adminModel.findByIdAndDelete(req.params.id)
             if(!admin) throw new Error("admin not found")
             successHandler(null,res,' admin is deleted successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
+    static getAllOrders=async(req,res)=>{
+        try{
+            
         }
         catch(err) {
             errorHandler(err,res)

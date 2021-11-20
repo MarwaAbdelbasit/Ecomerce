@@ -52,30 +52,9 @@ const userSchema=new Schema({
             }
         }
     },
-    orders:[
-        { 
-            userID: {
-                type:String,
-            },
-            productName: {
-                type:String,
-                required:true
-            },
-            amount: {
-                type:Number,
-                default:1,
-                min:1
-            },
-            paid: {
-                type:Boolean,
-                default:false
-            },
-            delieverd: {
-                type:Boolean,
-                default: false
-            }
-        }
-    ],
+    orders:{
+        type:Array
+    },
     wishList:{
         type:Array
     },

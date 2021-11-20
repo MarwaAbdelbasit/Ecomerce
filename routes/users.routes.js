@@ -2,9 +2,11 @@ const router = require("express").Router();
 const userController = require("../controller/user.controller")
 const auth = require("../middleware/auth")
 const adminAuth = require("../middleware/admin.auth")
+
 //-----------------register/login for users -----------
 router.post('/register',userController.register);
 router.post('/login',userController.login); 
+
 //----------------user options to show/edit/delete/logout(1/many devices) his account---------
 router.get('/profile', auth, userController.profile)
 router.patch('/editUser/:id',auth,userController.editUser)

@@ -27,6 +27,26 @@ class User{
             errorHandler(err,res)
         }
     }
+    static logout=async(req,res)=>{
+        try{
+            req.user.tokens=req.user.tokens.filter(t=>t.token!=req.token)
+            await req.user.save()
+            successHandler(null,res,'User logged out successfully')
+        }
+        catch(err){
+            errorHandler(err,res)
+        }
+    }
+    static logoutAll=async(req,res)=>{
+        try{
+            req.user.tokens=[]
+            await req.user.save()
+            successHandler(null,res,'User logged out from all devices successfully')
+        }
+        catch(err){
+            errorHandler(err,res)
+        }
+    }
     static showUser = async (req, res) => {
         try{
             const user = await userModel.findOne({_id:req.params.id})

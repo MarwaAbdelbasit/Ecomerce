@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    status:{
+    inStock:{
         type:Boolean,
         dafault:false
     },
@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema({
         type:Number,
         max:90
     }
-})
+},{timestamps:true})
 productSchema.methods.toJSON=function(){
     const product=this.toObject()
     const {__v,...others}=product
