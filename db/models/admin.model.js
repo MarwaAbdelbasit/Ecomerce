@@ -27,9 +27,6 @@ const adminSchema=new Schema({
                 )
         }
     },
-    orders:{
-        type:Array
-    },
     tokens:[
         {
             token:{

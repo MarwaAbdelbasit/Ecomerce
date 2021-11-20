@@ -51,17 +51,6 @@ class Order {
             errorHandler(e,res)
         }
     }
-    static delOrders = async (req, res) => {
-        try{
-            req.user.orders=[]
-            await req.user.save()
-            successHandler(req.user,res,'orders deleted successfully')
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
-
     static delOrder = async (req, res) => {
         try{
             let order = await ordersModel.findByIdAndDelete(req.params.orderId)
@@ -74,7 +63,20 @@ class Order {
             errorHandler(e,res)
         }
     }
+
+    static delOrders = async (req, res) => {
+        try{
+            req.user.orders=[]
+            await req.user.save()
+            successHandler(req.user,res,'orders deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
 /////---------------------admin control --------------------//////////
+//show all orders
     static allOrdersAdmin = async (req, res) => {
         try{
             let allOrders = await ordersModel.find()
@@ -85,7 +87,7 @@ class Order {
             errorHandler(e,res)
         }
     }
-
+//delete orders for specific user
     static delOrdersAdmin = async (req, res) => {
         try{
             let user = await userModel.findById(req.params.userId)
@@ -98,7 +100,7 @@ class Order {
             errorHandler(e,res)
         }
     }
-
+//delete single order for specific user
     static delSingleOrderAdmin = async (req, res) => {
         try{
             let user = await userModel.findById(req.params.userId)
@@ -111,7 +113,6 @@ class Order {
             errorHandler(e,res)
         }
     }
-
 }
 
 module.exports = Order
