@@ -1,8 +1,10 @@
 const ordersModel = require("../db/models/orders.model")
+const userModel=require('../db/models/user.model')
 const successHandler = require("../helpers/successHandler")
 const errorHandler = require("../helpers/errorHandler")
 
 class Order {
+    /////---------------------user control --------------------//////////
     static placeOrder = async (req, res) => {
         try {
             const order = await new ordersModel(req.body)
@@ -19,47 +21,15 @@ class Order {
 
     static editOrder = async (req, res) => {
         try{
-            let allOrders = await ordersModel.find()
-            let orderIndex = allOrders.findIndex(o=>o._id==req.params.orderId)
-            if(orderIndex==-1) throw new Error("order not found")
-            allOrders[orderIndex]={
-                userId: req.user._id,
-                _id:req.params.orderId,
-                orderName:req.body.orderName,
-                amount:req.body.amount,
-                paid:req.body.paid,
-                delivered:req.body.delivered,
-            }
-            await allOrders.save()
-            successHandler(allOrders,res,'order edited successfully')
+            let order = await ordersModel.findByIdAndUpdate(req.params.orderId,{
+                $set:req.body
+            })
+            successHandler(order,res,'order edited successfully')
         }
         catch(e) {
             errorHandler(e,res)
         }
     }
-
-    static allOrders = async (req, res) => {
-        try{
-            let allOrders = await ordersModel.find({userId:req.user._id})
-            if(allOrders.length==0) throw new Error("user have no orders")
-            successHandler(allOrders,res,'orders fetched successfully')
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
-
-    static allOrdersAdmin = async (req, res) => {
-        try{
-            let allOrders = await ordersModel.find()
-            if(allOrders.length==0) throw new Error("user have no orders")
-            successHandler(allOrders,res,'orders fetched successfully')
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
-
     static singleOrder = async (req, res) => {
         try{
             let order = await ordersModel.findById(req.params.orderId)
@@ -71,14 +41,21 @@ class Order {
         }
     }
 
+    static showAllOrders = async (req, res) => {
+        try{
+            let allOrders = await ordersModel.find({userId:req.user._id})
+            if(allOrders.length==0) throw new Error("user have no orders")
+            successHandler(allOrders,res,'orders fetched successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
     static delOrders = async (req, res) => {
         try{
-            let ordersIds = req.user.orders
-            // let allOrders = await ordersModel.find({userId:req.user._id})
-            // if(allOrders.length==0) throw new Error("user have no orders")
-            // allOrders = []
-            // await allOrders.save()
-            successHandler(ordersIds,res,'orders deleted successfully')
+            req.user.orders=[]
+            await req.user.save()
+            successHandler(req.user,res,'orders deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
@@ -89,14 +66,52 @@ class Order {
         try{
             let order = await ordersModel.findByIdAndDelete(req.params.orderId)
             req.user.orders = req.user.orders.filter(o=>o._id!=req.params.orderId)
-            await req.user.save()
             if(!order) throw new Error("no order to delete")
+            await req.user.save()
             successHandler(order,res,'order deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
         }
     }
+/////---------------------admin control --------------------//////////
+    static allOrdersAdmin = async (req, res) => {
+        try{
+            let allOrders = await ordersModel.find()
+            if(allOrders.length==0) throw new Error("no orders")
+            successHandler(allOrders,res,'orders fetched successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static delOrdersAdmin = async (req, res) => {
+        try{
+            let user = await userModel.findById(req.params.userId)
+            user.orders = []
+            await user.save()
+            await ordersModel.deleteMany({userId:req.params.userId})
+            successHandler(user,res,'orders deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static delSingleOrderAdmin = async (req, res) => {
+        try{
+            let user = await userModel.findById(req.params.userId)
+            user.orders =user.orders.filter(o => o.id !== req.params.orderId)
+            await user.save()
+            await ordersModel.findByIdAndDelete(req.params.orderId)
+            successHandler(user,res,'orders deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
 }
 
 module.exports = Order

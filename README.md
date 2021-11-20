@@ -1,10 +1,7 @@
 h<h1 align="center">Notes </h1>
 
-<h4>1-edit order >>controller>> user.controller > line 158 :</h4>
-<p>--id is changing for every edit</p>
-
 <h4>2-orders -->db>>model>>user.model line 55 </h4>
-<p>--model vs array in user model</p>
+<p>--model vs array in user model</p>......Solved(model)
 
 <h4>3-a-Bearer in Auth -->middleware>>auth <h4>
 <p>--we removed Bearer because it is
