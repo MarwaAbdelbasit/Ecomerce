@@ -16,4 +16,4 @@ without auth (then everone can register) or we can limit it?!</p>
 
 <h4>3-Cart control<h4>
 <p>--do we have to make (add/remove/clear) cart or it will be enough to be in frontEnd and it will be add
-when user make checkout as order</p>
+when user make checkout as order as we see in many sites if you add to cart then leave nothing saved</p>
