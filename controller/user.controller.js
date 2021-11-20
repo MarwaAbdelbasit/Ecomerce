@@ -185,5 +185,48 @@ class User{
             errorHandler(e,res)
         }
     }
+    static toggleWishList= async (req, res) => {
+        try {
+            if(!req.user.wishList.includes(req.params.productId)){
+                await req.user.updateOne({
+                    $push: {
+                        wishList:req.params.productId
+                    }
+                })
+                successHandler(req.user,res,'product added to wishlist successfully')
+            }else{
+                await req.user.updateOne({
+                    $pull: {
+                        wishList: req.params.productId
+                    }
+                })
+                successHandler(req.user,res,'product removed from wishlist successfully')
+            }
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static getAllWishList= async (req, res) => {
+        try{
+            let allWishList=req.user.wishList
+            successHandler(allWishList,res,'data fetched successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static deleteAllWishList= async (req, res)=>{
+        try{
+            let allWishList = req.user.wishList
+            if(allWishList.length==0) throw new Error("no wish list to delete")
+            req.user.wishList = []
+            await req.user.save()
+            successHandler(allWishList,res,'wishList deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
 }
 module.exports=User
