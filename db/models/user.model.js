@@ -82,8 +82,8 @@ userSchema.methods.toJSON=function(){
 userSchema.statics.loginUser=async function(email,password){
     let user = await this.findOne({ email }) 
     if (user) {
-        const exist = await bcrypt.compare(password, user.password);
-        if (exist) {  
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (validPassword) {  
             return user
         }
         throw Error('Incorrect Password')
