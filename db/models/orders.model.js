@@ -11,7 +11,8 @@ const orderSchema = new Schema({
     },
     amount:{
         type:Number,
-        required:true
+        default:1,
+        minlength:1
     },
     paid:{
         type:Boolean,
@@ -19,7 +20,7 @@ const orderSchema = new Schema({
     },
     delivered:{
         type:Number,
-        required:true
+        dafault:false
     }
 },{timestamps:true})
 orderSchema.methods.toJSON=function(){
