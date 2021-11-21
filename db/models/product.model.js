@@ -12,28 +12,37 @@ const productSchema = new mongoose.Schema({
         required:true,
         minlength:30
     },
-    category:{
-        type:String,
-        required:true,
-        maxlength:20,
-        trim:true
-    },
-    amount:{
-        type:Number,
-        required:true
-    },
-    inStock:{
-        type:Boolean,
-        dafault:false
-    },
     price:{
         type:Number,
         required:true
     },
-    discount:{
-        type:Number,
-        max:90
+    category:[
+        {name:{
+            type:String,
+            trim:true,
+            required:true,
+            maxlength:30
+        },
+        description:{
+            type:String,
+            trim:true,
+            // minlength:20
+        },}
+    ],
+    image: {
+        type: String,
+        trim: true
     }
+    // inventory_id:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Inventory",
+    //     required: true
+    // },
+    // discount_id:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Discount",
+    //     required: true
+    // }
 },{timestamps:true})
 productSchema.methods.toJSON=function(){
     const product=this.toObject()

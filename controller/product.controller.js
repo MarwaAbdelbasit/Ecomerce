@@ -15,7 +15,7 @@ class Product {
 
     static singleProduct = async (req, res) => {
         try{
-            const product = await productModel.findOne({_id:req.params.id})
+            const product = await productModel.findOne({_id:req.params.productId})
             successHandler(product,res,'product shown successfully')
         }
         catch(err) {
@@ -36,7 +36,7 @@ class Product {
 
     static editProduct = async (req, res) => {
         try{
-            let product = await productModel.findByIdAndUpdate(req.params.id,{$set:req.body})
+            let product = await productModel.findByIdAndUpdate(req.params.productId,{$set:req.body})
             if(!product) throw new Error("product not found")
             await product.save()
             successHandler(product,res,' product is edited successfully')
@@ -48,7 +48,7 @@ class Product {
 
     static delProduct = async (req, res) => {
         try{
-            let product = await productModel.findByIdAndDelete(req.params.id)
+            let product = await productModel.findByIdAndDelete(req.params.productId)
             if(!product) throw new Error("product not found")
             successHandler(null,res,' product is deleted successfully')
         }
@@ -63,6 +63,32 @@ class Product {
             successHandler(null,res,'all products are deleted successfully')
         }
         catch(err) {
+            errorHandler(err,res)
+        }
+    }
+
+    static uploadImage = async (req, res) => {
+        try{
+            let product = await productModel.findByIdAndUpdate(req.params.productId, {
+                $set:{image: "uploads/" + req.params.productId + "/" + req.file.filename}
+            })
+            if(!product) throw new Error("product not found")
+            successHandler(product,res,'image uploaded successfully')
+        }
+        catch(e) {
+            errorHandler(err,res)
+        }
+    }
+
+    static addCategory = async (req, res) => {
+        try {
+            const product = await productModel.findByIdAndUpdate(
+                req.params.productId,
+                {$push:{category:req.body}}
+            )
+            successHandler(product,res,'category added successfully')
+        }
+        catch(e) {
             errorHandler(err,res)
         }
     }
