@@ -21,9 +21,7 @@ class Order {
 
     static editOrder = async (req, res) => {
         try{
-            let order = await ordersModel.findByIdAndUpdate(req.params.orderId,{
-                $set:req.body
-            })
+            let order = await ordersModel.findByIdAndUpdate(req.params.orderId,{$set:req.body})
             successHandler(order,res,'order edited successfully')
         }
         catch(e) {
@@ -41,7 +39,7 @@ class Order {
         }
     }
 
-    static showAllOrders = async (req, res) => {
+    static allOrders = async (req, res) => {
         try{
             let allOrders = await ordersModel.find({userId:req.user._id})
             if(allOrders.length==0) throw new Error("user have no orders")
