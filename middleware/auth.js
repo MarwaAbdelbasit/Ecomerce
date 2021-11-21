@@ -1,27 +1,19 @@
 const jwt=require('jsonwebtoken')
 const userModel = require('../db/models/user.model');
-const adminModel = require('../db/models/admin.model');
 const errorHandler = require('../helpers/errorHandler');
-const auth=async(req,res,next) => {
+const auth=(type)=>async(req,res,next) => {
     try{
-        const userToken = req.body.token || req.query.token || req.header('Authorization');
-        const adminToken=req.body.isAdmin || req.query.isAdmin || req.header('Admin')
-        if(!adminToken){
-            if(!userToken) throw new Error("Access Denied");
-            const decodedToken=jwt.verify(userToken,process.env.USER_TOKEN)
-            const user=await userModel.findOne({_id:decodedToken._id,'tokens.token':userToken})
+        const token = req.body.token || req.query.token || req.header('Authorization').replace("Bearer ", "");
+            if(!token) throw new Error("Access Denied");
+            const decodedToken=jwt.verify(token,process.env.TOKEN)
+            const user=await userModel.findOne({_id:decodedToken._id,'tokens.token':token})
             if(!user) throw new Error("Access Denied")
+            if(user.role!=type && type!='') throw new Error(`you are not ${type}`)
             req.user=user;
-            req.token=userToken;
-        }else{
-            const decodedToken=jwt.verify(adminToken,process.env.ADMIN_TOKEN)
-            const admin=await adminModel.findOne({_id:decodedToken._id,'tokens.token':adminToken})
-            if(!admin) throw new Error("Access Denied")
-        }
+            req.token=token;
         next()    
     }
     catch(err){
-        console.log(err)
         errorHandler(err,res)
     }
 }

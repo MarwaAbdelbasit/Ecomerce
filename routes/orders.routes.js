@@ -1,19 +1,18 @@
 const router = require("express").Router();
 const orderController = require("../controller/orders.controller")
 const auth = require("../middleware/auth")
-const adminAuth= require("../middleware/admin.auth")
 
 //----------------user options to control his order ----------------
-router.post('/placeOrder', auth, orderController.placeOrder);
-router.patch('/editOrder/:orderId', auth, orderController.editOrder);
-router.get('/allOrders', auth, orderController.allOrders)
-router.get('/singleOrder/:orderId', auth, orderController.singleOrder)
-router.delete('/delOrders', auth, orderController.delOrders)
-router.delete('/delOrder/:orderId', auth, orderController.delOrder)
+router.post('/placeOrder', auth('User'), orderController.placeOrder);
+router.patch('/editOrder/:orderId', auth('User'), orderController.editOrder);
+router.get('/showAllOrders', auth('User'), orderController.showAllOrders)
+router.get('/singleOrder/:orderId', auth('User'), orderController.singleOrder)
+router.delete('/delOrders', auth('User'), orderController.delOrders)
+router.delete('/delOrder/:orderId', auth('User'), orderController.delOrder)
 
 //----------------admin options to control orders ----------------
-router.get('/allOrdersAdmin', adminAuth, orderController.allOrdersAdmin)
-router.delete('/delOrdersAdmin/:userId', adminAuth, orderController.delOrdersAdmin)
-router.delete('/delSingleOrderAdmin/:userId/:orderId', adminAuth, orderController.delSingleOrderAdmin)
+router.get('/allOrdersAdmin', auth("Admin"), orderController.allOrdersAdmin)
+router.delete('/delOrdersAdmin/:userId', auth("Admin"), orderController.delOrdersAdmin)
+router.delete('/delSingleOrderAdmin/:userId/:orderId', auth("Admin"), orderController.delSingleOrderAdmin)
 
 module.exports=router
