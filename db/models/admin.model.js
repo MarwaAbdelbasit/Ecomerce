@@ -27,9 +27,6 @@ const adminSchema=new Schema({
                 )
         }
     },
-    orders:{
-        type:Array
-    },
     tokens:[
         {
             token:{
@@ -53,8 +50,8 @@ adminSchema.methods.toJSON=function(){
 adminSchema.statics.loginAdmin=async function(email,password){
     let admin = await this.findOne({ email }) 
     if (admin) {
-        const exist = await bcrypt.compare(password, admin.password);
-        if (exist) {  
+        const validPassword = await bcrypt.compare(password, admin.password);
+        if (validPassword) {  
             return admin
         }
         throw Error('Incorrect Password')

@@ -27,6 +27,10 @@ class User{
             errorHandler(err,res)
         }
     }
+    static profile =async(req,res)=>{
+        res.send(req.user)
+    }
+
     static logout=async(req,res)=>{
         try{
             req.user.tokens=req.user.tokens.filter(t=>t.token!=req.token)
@@ -47,6 +51,53 @@ class User{
             errorHandler(err,res)
         }
     }
+    
+    // --------------user control for his wishlist--------------------
+    static toggleWishList= async (req, res) => {
+        try {
+            if(!req.user.wishList.includes(req.params.productId)){
+                await req.user.updateOne({
+                    $push: {
+                        wishList:req.params.productId
+                    }
+                })
+                successHandler(req.user,res,'product added to wishlist successfully')
+            }else{
+                await req.user.updateOne({
+                    $pull: {
+                        wishList: req.params.productId
+                    }
+                })
+                successHandler(req.user,res,'product removed from wishlist successfully')
+            }
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static getAllWishList= async (req, res) => {
+        try{
+            let allWishList=req.user.wishList
+            successHandler(allWishList,res,'data fetched successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static deleteAllWishList= async (req, res)=>{
+        try{
+            let allWishList = req.user.wishList
+            if(allWishList.length==0) throw new Error("no wish list to delete")
+            req.user.wishList = []
+            await req.user.save()
+            successHandler(allWishList,res,'wishList deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    //---------------- admin control for users-------------
     static showUser = async (req, res) => {
         try{
             const user = await userModel.findOne({_id:req.params.id})
@@ -98,51 +149,5 @@ class User{
         }
     }
 
-    static profile =async(req,res)=>{
-        res.send(req.user)
-    }
-    static toggleWishList= async (req, res) => {
-        try {
-            if(!req.user.wishList.includes(req.params.productId)){
-                await req.user.updateOne({
-                    $push: {
-                        wishList:req.params.productId
-                    }
-                })
-                successHandler(req.user,res,'product added to wishlist successfully')
-            }else{
-                await req.user.updateOne({
-                    $pull: {
-                        wishList: req.params.productId
-                    }
-                })
-                successHandler(req.user,res,'product removed from wishlist successfully')
-            }
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
-    static getAllWishList= async (req, res) => {
-        try{
-            let allWishList=req.user.wishList
-            successHandler(allWishList,res,'data fetched successfully')
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
-    static deleteAllWishList= async (req, res)=>{
-        try{
-            let allWishList = req.user.wishList
-            if(allWishList.length==0) throw new Error("no wish list to delete")
-            req.user.wishList = []
-            await req.user.save()
-            successHandler(allWishList,res,'wishList deleted successfully')
-        }
-        catch(e) {
-            errorHandler(e,res)
-        }
-    }
 }
 module.exports=User

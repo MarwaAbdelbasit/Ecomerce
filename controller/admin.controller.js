@@ -70,13 +70,5 @@ class Admin{
             errorHandler(err,res)
         }
     }
-    static getAllOrders=async(req,res)=>{
-        try{
-            
-        }
-        catch(err) {
-            errorHandler(err,res)
-        }
-    }
 }
 module.exports=Admin
