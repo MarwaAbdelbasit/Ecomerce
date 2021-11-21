@@ -66,6 +66,7 @@ class Order {
         try{
             req.user.orders=[]
             await req.user.save()
+            await ordersModel.deleteMany({userId:req.user._id})
             successHandler(req.user,res,'orders deleted successfully')
         }
         catch(e) {
