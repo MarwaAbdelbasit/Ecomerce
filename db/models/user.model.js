@@ -3,10 +3,10 @@ const {isEmail,isStrongPassword,isCreditCard} =require('validator')
 const bcrypt=require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const userSchema=new Schema({
-    userName:{
+    name:{
         type:String,
-        required:[true,'userName is required'],
-        
+        required:[true,'name is required'],
+        trim:true,
     },
     email:{
         type:String,
@@ -65,10 +65,17 @@ const userSchema=new Schema({
             },
         }
     ],
-    isAdmin:{
-        type:Boolean,
-        default:false
-    }
+    role:{
+        type:String, 
+        enum:["Admin", "User"],
+        required:true,
+        default:"User"
+    },
+    position:{
+        type:String,
+        enum:["Manger","Assistant"],
+        required: function(){ return this.role != "User" }
+    },
 
 },{timestamps:true})
 userSchema.pre('save',async function(){
@@ -91,8 +98,14 @@ userSchema.statics.loginUser=async function(email,password){
     throw Error('Incorrect E-mail')
 }
 userSchema.methods.generateToken=function(){
-    let token=jwt.sign({_id:this._id},process.env.USER_TOKEN)
+    let token=jwt.sign({_id:this._id},process.env.TOKEN)
     this.tokens=this.tokens.concat({token})
 }
+userSchema.virtual('userOrders',{
+    ref:"Order",
+    localField:"_id",
+    foreignField:"userId"
+})
+
 const User=model('User',userSchema)
 module.exports=User

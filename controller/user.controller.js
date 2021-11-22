@@ -16,6 +16,21 @@ class User{
             errorHandler(err,res)
         }
     }
+    static registerAdmin = async(req, res) =>{
+        try{
+            if(req.body.role =="User") throw new Error("Please choose an admin type")
+            const admin =await new userModel(req.body)
+            await admin.generateToken()
+            await admin.save()
+            successHandler(admin,res,'Admin registered successfully')
+        }
+        catch(err){
+            if(err.code===11000) {
+                err.message='Email is already registered'
+            }
+            errorHandler(err,res)
+        }
+    }
     static login=async(req,res)=>{
         try{
             const user=await userModel.loginUser(req.body.email,req.body.password)
@@ -27,10 +42,50 @@ class User{
             errorHandler(err,res)
         }
     }
-    static profile =async(req,res)=>{
+    static profileShow =async(req,res)=>{
         res.send(req.user)
     }
+    static profileEdit =async(req,res)=>{
+        try{
+            let user = await userModel.findByIdAndUpdate(req.user._id,{$set:req.body})
+            if(!user) throw new Error("user not found")
+            successHandler(user,res,' profile is edited successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
+    static profileDelete =async(req,res)=>{
+        try{
+            let user = await userModel.findByIdAndDelete(req.user._id)
+            if(!user) throw new Error("user not found")
+            successHandler(null,res,' profile is deleted successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
 
+    }
+    static editUser = async (req, res) => {
+        try{
+            let user = await userModel.updateOne({_id:req.params.id,role:"User"},{$set:req.body})
+            if(!user) throw new Error("user not found")
+            successHandler(user,res,' User is edited successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
+    static delUser = async (req, res) => {
+        try{
+            let user = await userModel.deleteOne({_id:req.params.id,role:"User"})
+            if(!user) throw new Error("user not found")
+            successHandler(null,res,' User is deleted successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
     static logout=async(req,res)=>{
         try{
             req.user.tokens=req.user.tokens.filter(t=>t.token!=req.token)
@@ -51,7 +106,6 @@ class User{
             errorHandler(err,res)
         }
     }
-    
     // --------------user control for his wishlist--------------------
     static toggleWishList= async (req, res) => {
         try {
@@ -96,7 +150,6 @@ class User{
             errorHandler(e,res)
         }
     }
-
     //---------------- admin control for users-------------
     static showUser = async (req, res) => {
         try{
@@ -109,45 +162,61 @@ class User{
     }
     static showAllUsers = async (req, res) => {
         try{
-            const allUsers = await userModel.find()
+            const allUsers = await userModel.find({role:"User"})
             successHandler(allUsers,res,'all Users shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
         }
     }
-    static editUser = async (req, res) => {
+    static showAllAdmins = async (req, res) => {
         try{
-            let user = await userModel.findByIdAndUpdate(req.params.id,{$set:req.body})
-            if(!user) throw new Error("user not found")
-            await user.save()
-            successHandler(user,res,' User is edited successfully')
+            const allAdmins = await userModel.find({role:"Admin"})
+            successHandler(allAdmins,res,'all Admins shown successfully')
         }
         catch(err) {
             errorHandler(err,res)
         }
     }
-
-    static delUser = async (req, res) => {
-        try{
-            let user = await userModel.findByIdAndDelete(req.params.id)
-            if(!user) throw new Error("user not found")
-            successHandler(null,res,' User is deleted successfully')
-        }
-        catch(err) {
-            errorHandler(err,res)
-        }
-    }
-
     static delAll = async (req, res) => {
         try{
-            await userModel.deleteMany()
+            await userModel.deleteMany({role:"User"})
             successHandler(null,res,'all Users are deleted successfully')
         }
         catch(err) {
             errorHandler(err,res)
         }
     }
-
+    static delUser = async (req, res) => {
+        try{
+            await userModel.findByIdAndDelete(req.params.id)
+            successHandler(null,res,'all Users are deleted successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
+    static editAdmin = async (req, res) => {
+        try{
+            let admin = await userModel.updateOne({_id:req.user._id},{
+                $set:req.body
+            })
+            if(!admin) throw new Error("Failed to edit admin")
+            successHandler(admin,res,' admin is edited successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
+    static delAdmin = async (req, res) => {
+        try{
+            let admin = await userModel.deleteOne({_id:req.user._id})
+            if(!admin) throw new Error("Failed to delete admin")
+            successHandler(null,res,' admin is deleted successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
 }
 module.exports=User
