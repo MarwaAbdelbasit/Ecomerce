@@ -27,22 +27,36 @@ const productSchema = new mongoose.Schema({
             type:String,
             trim:true,
             // minlength:20
-        },}
+        }}
     ],
     image: {
         type: String,
         trim: true
-    }
-    // inventory_id:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Inventory",
-    //     required: true
-    // },
-    // discount_id:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Discount",
-    //     required: true
-    // }
+    },
+    inventoryQuantity:{
+        type: Number,
+        min: 1,
+        required: true
+    },
+    discount:[
+        {name:{
+            type: String,
+            trim:true,
+            maxlength:20
+        },
+        description:{
+            type:String,
+            trim:true
+        },
+        percent:{
+            type:Number,
+            min:1
+        },
+        active:{
+            type:Boolean,
+            dafault:true
+        }}
+    ]
 },{timestamps:true})
 productSchema.methods.toJSON=function(){
     const product=this.toObject()

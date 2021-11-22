@@ -20,5 +20,11 @@ router.post("/addCategory/:productId",auth('Admin') ,productController.addCatego
 router.delete("/delCategory/:productId/:catId",auth('Admin') ,productController.delCategory)
 router.delete("/delAllCate/:productId",auth('Admin') ,productController.delAllCate)
 
+//----------------crud operations of discount controlled by admin only-----
+router.post("/addDiscount/:productId", auth('Admin'), productController.addDiscount)
+router.patch("/editDiscount/:productId", auth('Admin'), productController.editDiscount)
+router.delete("/delDiscount/:productId", auth('Admin'), productController.delDiscount)
+router.get("/getDiscount/:productId/:discountId", auth('Admin'), productController.getDiscount)
+
 module.exports=router
 
