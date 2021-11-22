@@ -76,7 +76,33 @@ class Product {
             successHandler(product,res,'image uploaded successfully')
         }
         catch(e) {
-            errorHandler(err,res)
+            errorHandler(e,res)
+        }
+    }
+
+    static allCate = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            const allCate = product.category
+            if(allCate.length==0) throw new Error("no categories to show")
+            successHandler(allCate,res,'category added successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static singleCate = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            const cate = product.category.find(c=>c._id==req.params.catId)
+            if(!cate) throw new Error("category not found")
+            successHandler(cate,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
         }
     }
 
@@ -89,9 +115,36 @@ class Product {
             successHandler(product,res,'category added successfully')
         }
         catch(e) {
-            errorHandler(err,res)
+            errorHandler(e,res)
         }
     }
+
+    static delCategory = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            product.category = product.category.filter(c=>c._id!=req.params.catId)
+            await product.save()
+            successHandler(product,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static delAllCate = async (req, res) => {
+        try {
+            await productModel.findByIdAndUpdate(
+                req.params.productId,{
+                    $set:{category:[]}
+                })
+            successHandler(null,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
 }
 
 module.exports = Product
