@@ -38,8 +38,11 @@ const userSchema=new Schema({
         city:{
             type:String,
         },
-        buildingNo:{
+        postalCode:{
             type:String
+        },
+        telephone:{
+            type:String,
         }
     },
     paymentDetails:{
@@ -103,6 +106,11 @@ userSchema.methods.generateToken=function(){
 }
 userSchema.virtual('userOrders',{
     ref:"Order",
+    localField:"_id",
+    foreignField:"userId"
+})
+userSchema.virtual('userCart',{
+    ref:"Cart",
     localField:"_id",
     foreignField:"userId"
 })

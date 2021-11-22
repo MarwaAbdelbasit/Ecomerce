@@ -76,7 +76,7 @@ class Product {
             successHandler(product,res,'image uploaded successfully')
         }
         catch(e) {
-            errorHandler(err,res)
+            errorHandler(e,res)
         }
     }
 
@@ -89,7 +89,7 @@ class Product {
             successHandler(product,res,'category added successfully')
         }
         catch(e) {
-            errorHandler(err,res)
+            errorHandler(e,res)
         }
     }
 }

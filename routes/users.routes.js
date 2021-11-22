@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const userController = require("../controller/user.controller")
 const auth = require("../middleware/auth")
+const upload = require("../middleware/fileUpload")
 
 //-----------------register/login for users -----------
 router.post('/register',userController.register);
 router.post('/login',userController.login); 
 
-//----------------user options to show/edit/delete/ his account---------
+//----------------user options to contol his account---------
 router.get('/showProfile', auth('User'), userController.profileShow)
 router.patch('/editProfile', auth('User'), userController.profileEdit)
 router.delete('/deleteProfile', auth('User'), userController.profileDelete)
@@ -25,14 +26,16 @@ router.delete('/deleteUser/:id',auth('Admin'),userController.delUser)
 router.patch('/editUser/:id',auth('Admin'),userController.editUser)
 router.get('/showAllUsers',auth('Admin'),userController.showAllUsers)
 router.delete('/deleteAll',auth('Admin'),userController.delAll)
-
 router.get("/showAllAdmins",auth('Admin'),userController.showAllAdmins)
+
 //----------------admin options to show/edit/delete/logout(1/many devices) his account---------
 router.patch('/editAdmin/:id',auth("Admin"),userController.editAdmin)
 router.delete('/deleteAdmin/:id',auth("Admin"),userController.delAdmin)
 
+//---------------common actions between user/admin--------
 router.post('/logout', auth(""), userController.logout)
 router.post('/logoutAll', auth(""), userController.logoutAll)
+router.patch("/changeImage", auth(""), upload.single('img'), userController.changeImage)
 
 
 module.exports=router

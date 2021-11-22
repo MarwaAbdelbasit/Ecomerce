@@ -45,6 +45,18 @@ class User{
     static profileShow =async(req,res)=>{
         res.send(req.user)
     }
+    static changeImage=async(req,res)=>{
+        try{
+            let user = await userModel.findByIdAndUpdate(req.user._id, {
+                $set:{profilePic: "uploads/" + req.user._id + "/" + req.file.filename}
+            })
+            if(!user) throw new Error("upload failed")
+            successHandler(user,res,'image uploaded successfully')
+        }
+        catch(err) {
+            errorHandler(err,res)
+        }
+    }
     static profileEdit =async(req,res)=>{
         try{
             let user = await userModel.findByIdAndUpdate(req.user._id,{$set:req.body})
@@ -64,7 +76,6 @@ class User{
         catch(err) {
             errorHandler(err,res)
         }
-
     }
     static editUser = async (req, res) => {
         try{
