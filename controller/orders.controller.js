@@ -39,7 +39,7 @@ class Order {
         }
     }
 
-    static allOrders = async (req, res) => {
+    static showAllOrders = async (req, res) => {
         try{
             let allOrders = await ordersModel.find({userId:req.user._id})
             if(allOrders.length==0) throw new Error("user have no orders")

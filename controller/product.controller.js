@@ -16,6 +16,7 @@ class Product {
     static singleProduct = async (req, res) => {
         try{
             const product = await productModel.findOne({_id:req.params.productId})
+            if(!product) throw new Error("product not found")
             successHandler(product,res,'product shown successfully')
         }
         catch(err) {
