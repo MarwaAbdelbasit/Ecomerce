@@ -3,7 +3,7 @@ const orderController = require("../controller/orders.controller")
 const auth = require("../middleware/auth")
 
 //----------------user options to control his order ----------------
-router.post('/placeOrder', auth('User'), orderController.placeOrder);
+router.post('/placeOrder/:productId', auth('User'), orderController.placeOrder);
 router.patch('/editOrder/:orderId', auth('User'), orderController.editOrder);
 router.get('/showAllOrders', auth('User'), orderController.showAllOrders)
 router.get('/singleOrder/:orderId', auth('User'), orderController.singleOrder)

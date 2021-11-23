@@ -64,6 +64,12 @@ productSchema.methods.toJSON=function(){
     return others
 }
 
+productSchema.virtual('userProducts',{
+    ref:"Product",
+    localField:"_id",
+    foreignField:"productId"
+})
+
 const Product = mongoose.model("Product", productSchema)
 
 module.exports=Product
