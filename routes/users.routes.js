@@ -37,5 +37,4 @@ router.post('/logout', auth(""), userController.logout)
 router.post('/logoutAll', auth(""), userController.logoutAll)
 router.patch("/changeImage", auth(""), upload.single('img'), userController.changeImage)
 
-
 module.exports=router

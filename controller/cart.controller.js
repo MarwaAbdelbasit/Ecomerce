@@ -27,9 +27,7 @@ class Cart{
     }
     static myCart=async(req,res)=>{
         try{
-            await req.user.populate({
-                path:"userCart",
-            })
+            await req.user.populate("userCart")
             successHandler(req.user.userCart,res,'cart shown successfully')        }
         catch(e){
             errorHandler(e,res)
