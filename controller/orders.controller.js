@@ -9,10 +9,11 @@ class Order {
         try {
             const order = await new ordersModel(req.body)
             order.userId = req.user._id
+            order.productId = req.params.productId
             order.save()
             req.user.orders.push(order._id)
             await req.user.save()
-            successHandler(req.user,res,'order placed successfully')
+            successHandler(order,res,'order placed successfully')
         }
         catch(e) {
             errorHandler(e,res)
@@ -30,7 +31,7 @@ class Order {
     }
     static singleOrder = async (req, res) => {
         try{
-            let order = await ordersModel.findById(req.params.orderId)
+            let order = await ordersModel.findById(req.params.orderId).populate("userId").populate("productId")
             if(!order) throw new Error("order not found")
             successHandler(order,res,'order fetched successfully')
         }
@@ -41,7 +42,7 @@ class Order {
 
     static showAllOrders = async (req, res) => {
         try{
-            let allOrders = await ordersModel.find({userId:req.user._id})
+            let allOrders = await ordersModel.find({userId:req.user._id}).populate("userId").populate("productId")
             if(allOrders.length==0) throw new Error("user have no orders")
             successHandler(allOrders,res,'orders fetched successfully')
         }
@@ -78,7 +79,7 @@ class Order {
 //show all orders
     static allOrdersAdmin = async (req, res) => {
         try{
-            let allOrders = await ordersModel.find()
+            let allOrders = await ordersModel.find().populate("userId").populate("productId")
             if(allOrders.length==0) throw new Error("no orders")
             successHandler(allOrders,res,'orders fetched successfully')
         }
