@@ -16,6 +16,31 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    sizes:[
+        {
+            size:{
+                type:String,
+                enum: ["small", "medium", "large",'x-large', 'x-xlarge'],
+                required:true,
+            },
+            description:{
+                type:String,
+                default: "size of the product"
+            }
+        }
+    ],
+    colors:[
+        {
+            color:{
+                type:String,
+                required:true,
+            },
+            description:{
+                type:String,
+                default: "color of the product"
+            }
+        }
+    ],
     category:[
         {name:{
             type:String,
@@ -31,7 +56,8 @@ const productSchema = new mongoose.Schema({
     ],
     image: {
         type: String,
-        trim: true
+        trim: true,
+        default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
     },
     inventoryQuantity:{
         type: Number,
@@ -39,7 +65,8 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     discount:[
-        {name:{
+        {
+        name:{
             type: String,
             trim:true,
             maxlength:20
@@ -55,7 +82,8 @@ const productSchema = new mongoose.Schema({
         active:{
             type:Boolean,
             dafault:true
-        }}
+        }
+    }
     ]
 },{timestamps:true})
 productSchema.methods.toJSON=function(){
@@ -63,13 +91,16 @@ productSchema.methods.toJSON=function(){
     const {__v,...others}=product
     return others
 }
-
-productSchema.virtual('userProducts',{
-    ref:"Product",
+productSchema.virtual('productOrders',{
+    ref:"Order",
     localField:"_id",
     foreignField:"productId"
 })
-
+productSchema.virtual('productCart',{
+    ref:"Cart",
+    localField:"_id",
+    foreignField:"productId"
+})
 const Product = mongoose.model("Product", productSchema)
 
 module.exports=Product

@@ -21,11 +21,11 @@ const userSchema=new Schema({
     password:{
         type:String,
         required:[true,'password is required'],
-        // validate(value){
-        //     if(!isStrongPassword(value)) throw new Error(
-        //         'for security reasons you should use a strong password > 8 characters, at least 1 Lowercase,1 Uppercase,1 Number,1 Symbol'
-        //         )
-        // }
+        validate(value){
+            if(!isStrongPassword(value)) throw new Error(
+                'for security reasons you should use a strong password > 8 characters, at least 1 Lowercase,1 Uppercase,1 Number,1 Symbol'
+                )
+        }
     },
     profilePic:{
         type:String,
@@ -38,8 +38,11 @@ const userSchema=new Schema({
         city:{
             type:String,
         },
-        buildingNo:{
+        postalCode:{
             type:String
+        },
+        telephone:{
+            type:String,
         }
     },
     paymentDetails:{
@@ -53,6 +56,9 @@ const userSchema=new Schema({
         }
     },
     orders:{
+        type:Array
+    },
+    cart:{
         type:Array
     },
     wishList:{
@@ -103,6 +109,11 @@ userSchema.methods.generateToken=function(){
 }
 userSchema.virtual('userOrders',{
     ref:"Order",
+    localField:"_id",
+    foreignField:"userId"
+})
+userSchema.virtual('userCart',{
+    ref:"Cart",
     localField:"_id",
     foreignField:"userId"
 })

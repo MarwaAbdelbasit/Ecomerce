@@ -31,7 +31,7 @@ class Order {
     }
     static singleOrder = async (req, res) => {
         try{
-            let order = await ordersModel.findById(req.params.orderId).populate("userId").populate("productId")
+            let order = await ordersModel.findById(req.params.orderId).populate("productId")
             if(!order) throw new Error("order not found")
             successHandler(order,res,'order fetched successfully')
         }
@@ -42,7 +42,7 @@ class Order {
 
     static showAllOrders = async (req, res) => {
         try{
-            let allOrders = await ordersModel.find({userId:req.user._id}).populate("userId").populate("productId")
+            let allOrders = await ordersModel.find({userId:req.user._id}).populate("productId")
             if(allOrders.length==0) throw new Error("user have no orders")
             successHandler(allOrders,res,'orders fetched successfully')
         }
