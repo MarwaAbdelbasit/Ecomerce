@@ -5,6 +5,7 @@ const upload = require("../middleware/fileUpload")
 
 //----------------crud operations of product controlled by admin-----
 router.get("/allProducts", productController.allProducts)
+router.post("/addCategory/:productId",auth("Admin") ,productController.addCategory)
 router.get("/singleProduct/:productId", productController.singleProduct)
 router.patch("/editProduct/:productId",auth('Admin') ,productController.editProduct)
 router.patch("/uploadImage/:productId",auth('Admin'), upload.single('img'), productController.uploadImage)
