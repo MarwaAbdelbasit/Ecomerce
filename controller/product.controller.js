@@ -16,6 +16,7 @@ class Product {
     static singleProduct = async (req, res) => {
         try{
             const product = await productModel.findOne({_id:req.params.productId})
+            if(!product) throw new Error("product not found")
             successHandler(product,res,'product shown successfully')
         }
         catch(err) {
@@ -80,6 +81,34 @@ class Product {
         }
     }
 
+    //-------------------admin control for categories-----------------
+
+    static allCate = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            const allCate = product.category
+            if(allCate.length==0) throw new Error("no categories to show")
+            successHandler(allCate,res,'category added successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static singleCate = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            const cate = product.category.find(c=>c._id==req.params.catId)
+            if(!cate) throw new Error("category not found")
+            successHandler(cate,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
     static addCategory = async (req, res) => {
         try {
             const product = await productModel.findByIdAndUpdate(
@@ -92,6 +121,88 @@ class Product {
             errorHandler(e,res)
         }
     }
+
+    static delCategory = async (req, res) => {
+        try {
+            const product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            product.category = product.category.filter(c=>c._id!=req.params.catId)
+            await product.save()
+            successHandler(product,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static delAllCate = async (req, res) => {
+        try {
+            await productModel.findByIdAndUpdate(
+                req.params.productId,{
+                    $set:{category:[]}
+                })
+            successHandler(null,res,'category deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    //-------------------admin control for discount-----------------
+    static addDiscount = async (req, res) => {
+        try {
+            const product = await productModel.findByIdAndUpdate(
+                req.params.productId,
+                {$push:{discount:req.body}}
+            )
+            if(!product) throw new Error("product not found")
+            successHandler(product,res,'discount added successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static editDiscount = async (req, res) => {
+        try {
+            let product = await productModel.findByIdAndUpdate(
+                req.params.productId,
+                {$set:{discount:req.body}}
+            )
+            if(!product) throw new Error("product not found")
+            successHandler(product,res,'discount edited successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static delDiscount = async (req, res) => {
+        try {
+            await productModel.findByIdAndUpdate(
+                req.params.productId,{
+                    $set:{discount:[]}
+                })
+            successHandler(null,res,'discount deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
+    static getDiscount = async (req, res) => {
+        try {
+            let product = await productModel.findById(req.params.productId)
+            if(!product) throw new Error("product not found")
+            let getdiscount = product.discount.find(d=>d._id==req.params.discountId)
+            if(!getdiscount) throw new Error("discount not found")
+            successHandler(getdiscount,res,'discount deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+
 }
 
 module.exports = Product
