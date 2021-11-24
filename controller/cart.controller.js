@@ -7,9 +7,12 @@ class Cart{
         try{
             const cartItem=await new cartModel({
                 ...req.body,
-                userId: req.user._id
+                userId: req.user._id,
+                productId:req.params.productId
             })
             await cartItem.save()
+            req.user.cart.push(cartItem._id)
+            await req.user.save()
             successHandler(cartItem,res,'product added to cart successfully')
         }
         catch(e){
@@ -27,8 +30,9 @@ class Cart{
     }
     static myCart=async(req,res)=>{
         try{
-            await req.user.populate("userCart")
-            successHandler(req.user.userCart,res,'cart shown successfully')        }
+            const myCart=await cartModel.find({userId:req.user._id}).populate("productId")
+            successHandler(myCart,res,'cart shown successfully')        
+        }
         catch(e){
             errorHandler(e,res)
         }

@@ -5,10 +5,10 @@ const cartSchema = new Schema({
         ref:"User",
         required:true
     },
-    name:{
-        type:String,
-        trim:true,
-        required:true,
+    productId:{
+        type:Schema.Types.ObjectId,
+        ref:"Product",
+        required:true
     },
     amount:{
         type:Number,
@@ -19,8 +19,19 @@ const cartSchema = new Schema({
         required:true
     },
     discound:{
-        type:Number,
-        default:0
+        name:{
+            type: String,
+            trim:true,
+            maxlength:20
+        },
+        description:{
+            type:String,
+            trim:true
+        },
+        percent:{
+            type:Number,
+            min:1
+        }
     }
 },{timestamps:true})
 cartSchema.methods.toJSON=function(){

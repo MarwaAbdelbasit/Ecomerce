@@ -10,22 +10,37 @@ const orderSchema = new Schema({
         ref:"Product",
         required:true
     },
-    orderName:{
-        type:String,
-        trim:true,
-        required:true,
-    },
     amount:{
         type:Number,
         default:1,
         minlength:1
     },
+    shipping:{
+        shippedTo:{
+            type:String,
+            required:true
+        },
+        adress:{
+            type:String,
+            required:true
+        }
+    },
     paid:{
         type:Boolean,
         dafault:false
     },
+    payment:{
+        method:{
+            type:String,
+            required: function(){ return this.paid}
+        },
+        transaction:{
+            type:String,
+            required: function(){ return this.paid}
+        }
+    },
     delivered:{
-        type:Number,
+        type:Boolean,
         dafault:false
     }
 },{timestamps:true})
