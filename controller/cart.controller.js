@@ -1,8 +1,8 @@
-    // --------------user control for his cart--------------------
 const cartModel= require('../db/models/cart.model')
 const errorHandler = require('../helpers/errorHandler')
 const successHandler = require('../helpers/successHandler')
 class Cart{
+    // --------------user control for his cart--------------------
     static addCartItem=async(req,res)=>{
         try{
             const cartItem=await new cartModel({
