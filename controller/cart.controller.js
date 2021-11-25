@@ -11,7 +11,6 @@ class Cart{
                 productId:req.params.productId
             })
             await cartItem.save()
-            req.user.cart.push(cartItem._id)
             await req.user.save()
             successHandler(cartItem,res,'product added to cart successfully')
         }

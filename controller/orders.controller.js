@@ -11,7 +11,6 @@ class Order {
             order.userId = req.user._id
             order.productId = req.params.productId
             order.save()
-            req.user.orders.push(order._id)
             await req.user.save()
             successHandler(order,res,'order placed successfully')
         }

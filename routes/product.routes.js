@@ -24,7 +24,7 @@ router.delete("/delAllCate/:productId",auth('Admin') ,productController.delAllCa
 router.post("/addDiscount/:productId", auth('Admin'), productController.addDiscount)
 router.patch("/editDiscount/:productId", auth('Admin'), productController.editDiscount)
 router.delete("/delDiscount/:productId", auth('Admin'), productController.delDiscount)
-router.get("/getDiscount/:productId/:discountId", auth('Admin'), productController.getDiscount)
+router.get("/getDiscount/:productId/:discountId", productController.getDiscount)
 
 module.exports=router
 
