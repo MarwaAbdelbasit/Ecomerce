@@ -18,7 +18,7 @@ router.get('/getAllWishList', auth('User'),userController.getAllWishList)
 router.delete('/deleteAllWishList', auth('User'),userController.deleteAllWishList)
 
 //-----------------register for admins -----------
-router.post('/registerAdmin',userController.registerAdmin);
+router.post('/registerAdmin',auth('Admin'),userController.registerAdmin);
 
 //----------------admin options to show single/all registerd users/delete them-----
 router.get('/showUser/:id',auth('Admin'),userController.showUser)

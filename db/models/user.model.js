@@ -55,12 +55,6 @@ const userSchema=new Schema({
             }
         }
     },
-    orders:{
-        type:Array
-    },
-    cart:{
-        type:Array
-    },
     wishList:{
         type:Array
     },

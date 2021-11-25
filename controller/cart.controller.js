@@ -1,8 +1,8 @@
-    // --------------user control for his cart--------------------
 const cartModel= require('../db/models/cart.model')
 const errorHandler = require('../helpers/errorHandler')
 const successHandler = require('../helpers/successHandler')
 class Cart{
+    // --------------user control for his cart--------------------
     static addCartItem=async(req,res)=>{
         try{
             const cartItem=await new cartModel({
@@ -11,7 +11,6 @@ class Cart{
                 productId:req.params.productId
             })
             await cartItem.save()
-            req.user.cart.push(cartItem._id)
             await req.user.save()
             successHandler(cartItem,res,'product added to cart successfully')
         }
