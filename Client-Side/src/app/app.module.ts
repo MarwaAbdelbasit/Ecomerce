@@ -18,6 +18,9 @@ import { FooterTopComponent } from './components/layout/footer/footer-top/footer
 import { FooterMiddleComponent } from './components/layout/footer/footer-middle/footer-middle.component';
 import { FooterBottomComponent } from './components/layout/footer/footer-bottom/footer-bottom.component';
 import { Error404Component } from './pages/error404/error404.component';
+import { TermsComponent } from './pages/policy/terms/terms.component';
+import { ShippingComponent } from './pages/policy/shipping/shipping.component';
+import { ReturnComponent } from './pages/policy/return/return.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { Error404Component } from './pages/error404/error404.component';
     FooterMiddleComponent,
     FooterBottomComponent,
     Error404Component,
+    TermsComponent,
+    ShippingComponent,
+    ReturnComponent,
   ],
   imports: [
     BrowserModule,
