@@ -14,6 +14,9 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { FooterTopComponent } from './components/layout/footer/footer-top/footer-top.component';
+import { FooterMiddleComponent } from './components/layout/footer/footer-middle/footer-middle.component';
+import { FooterBottomComponent } from './components/layout/footer/footer-bottom/footer-bottom.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { ContactComponent } from './pages/contact/contact.component';
     WishlistComponent,
     AboutComponent,
     ContactComponent,
+    FooterTopComponent,
+    FooterMiddleComponent,
+    FooterBottomComponent,
   ],
   imports: [
     BrowserModule,
