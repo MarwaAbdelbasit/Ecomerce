@@ -1,5 +1,5 @@
 .inner-content {
-  padding: 60px 0;
+  padding: 25px 0;
   border-bottom: 1px solid #ffffff26;
 }
 
@@ -49,6 +49,7 @@
 
 .newsletter-form button {
   border-radius: 15px;
+  transition: all 0.2s ease-in-out;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -72,8 +73,6 @@
   .footer-top .footer-newsletter .newsletter-form {
     float: none;
   }
-
-
 }
 
 @media (max-width: 767px) {
