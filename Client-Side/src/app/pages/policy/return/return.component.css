@@ -1,0 +1,23 @@
+.return h1{
+    padding: 10px;
+    background-color: rgb(243, 235, 224);
+}
+.return img{
+    border-radius: 10px;
+    width: 100%;
+}
+.return .return-part div{
+ padding: 10px;
+ font-size: 20px;
+}
+.return-policy span{
+    color: rgb(3, 79, 109);
+    font-weight: bold;
+}
+.return-policy{
+    font-size:25px;
+    padding:20px;
+    line-height: 50px;
+    margin: auto;
+    text-align: center;
+}
