@@ -1,0 +1,46 @@
+.footer-middle {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .footer-middle {
+      padding-top: 30px;
+      padding-bottom: 70px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .footer-middle {
+      padding-top: 10px;
+      padding-bottom: 50px;
+    }
+  }
+  
+  .footer-middle .newsletter-form input {
+    width: 100%;
+    border-radius: 4px;
+    padding: 0px 20px;
+    height: 50px;
+    border: 1px solid #eee;
+  }
+  
+  .footer-middle .newsletter-form .button {
+    margin-top: 12px;
+  }
+  
+  .footer-middle .newsletter-form .button .btn {
+    background-color: #081828;
+    color: #fff;
+  }
+  
+  .footer-middle .newsletter-form .button .btn:hover {
+    background-color: #0167F3;
+    color: #fff;
+  }
+  
+  .footer-middle .newsletter-form p {
+    color: #888;
+    margin-top: 20px;
+  }
+  
