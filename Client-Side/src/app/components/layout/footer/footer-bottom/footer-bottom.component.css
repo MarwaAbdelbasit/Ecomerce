@@ -1,0 +1,107 @@
+.footer-bottom .inner-content {
+  border-top: 1px solid #ffffff26;
+  padding: 25px 0;
+}
+
+
+.footer-bottom .payment-gateway span {
+  display: inline-block;
+  margin-right: 12px;
+  color: #fff;
+}
+
+
+.footer-bottom .payment-gateway img {
+  width: 200px;
+}
+
+.footer-bottom .copyright {
+  text-align: center;
+}
+
+.footer-bottom .copyright p a {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.footer-bottom .copyright p a img{
+    width:100%;
+    width: 30px;
+    height: 30px;
+    object-fit:cover;
+    border-radius: 50%;
+  }
+  
+.footer-bottom .socila {
+  display: block;
+  float: right;
+}
+
+
+.footer-bottom .socila li {
+  margin: 0;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.footer-bottom .socila li:last-child {
+  margin: 0;
+}
+
+.footer-bottom .socila li a {
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  display: block;
+  color: #fff;
+  border-radius: 50%;
+  line-height: 35px;
+  font-size: 15px;
+}
+
+.footer-bottom .socila li a:hover {
+  background-color: #0167F3;
+  color: #fff;
+  border-color: transparent;
+}
+
+.footer-bottom .socila li span {
+  display: inline-block;
+  color: #fff;
+  margin-right: 12px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
+  .footer-bottom .inner-content {
+    text-align: center;
+  }
+
+  .footer-bottom .payment-gateway {
+    margin-bottom: 12px;
+  }
+
+  .footer-bottom .socila {
+    float: none;
+    text-align: center;
+  }
+
+  .footer-bottom .copyright {
+    margin-bottom: 12px;
+  }
+
+
+}
+
+@media (max-width: 767px) {
+  .footer-bottom .payment-gateway span {
+    display: block;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .footer-bottom .socila li span {
+    display: none;
+  }
+
+}
