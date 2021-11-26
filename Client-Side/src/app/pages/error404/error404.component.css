@@ -1,0 +1,18 @@
+.not-found{
+    position: relative;
+    height:500px;
+    background-image: url('src/assets/images/404-2.gif');
+    background-position:center;
+    background-size: contain;
+}
+.not-found a {
+    position: absolute;
+    left: 43%;
+    bottom:0;
+    padding:15px 50px;
+}
+@media screen and (max-width:768px){
+    .not-found a{
+        left:35%
+    }
+}
