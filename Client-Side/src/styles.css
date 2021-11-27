@@ -1,4 +1,17 @@
 body{
     font-family: 'Roboto', sans-serif;
     text-transform: capitalize;
+    --colorR0:#460202;
+    --colorR1:#810000;
+    --colorR2:#ce121270;
+    --colorR3:#ce1212a8;
+    --colorR4:#eb2e2ea8;
+    --colorR5:#f37171a8;
+    --colorP0:#820035;
+    --colorP1:#6E2258;
+    --colorP2:#4D3869;
+    --colorP3:#38116b;
+    --colorP4:#4f06ad;
+    --colorP5:#7c045a;
+    --colorP6:#e48181a8;
 }

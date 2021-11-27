@@ -51,14 +51,14 @@
   .item-details .product-info .price {
     color: #081828;
     display: block;
-    font-size: 24px;
+    font-size: 60px;
     font-weight: 600;
     margin-bottom: 15px;
   }
   
   @media (max-width: 767px) {
     .item-details .product-info .price {
-      font-size: 20px;
+      font-size: 50px;
     }
   }
     
@@ -101,19 +101,19 @@
   }
   #cart-button {
     color: rgb(255, 255, 255);
-    background-color: #0167F3;
+    background-color: var(--colorR3);
   }
 .fa-dot-circle{
-  color: #0167F3;
+  color: var(--colorR1);
 }
   .item-details .product-info .wish-button .btn:hover {
     color: #fff;
-    background-color: #0167F3;
+    background-color: var(--colorR1);
     border-color: transparent;
   }
   #cart-button:hover {
     color: rgb(255, 255, 255);
-    background-color: #053374;
+    background-color: var(--colorR1);
   }
   
   .item-details .product-info .wish-button .btn .fa-heart {
@@ -137,7 +137,9 @@
     border-radius: 4px;
     margin-top: 30px;
   }
-  
+  .custom-responsive-margin p{
+    font-size: 20px;
+  }
   @media only screen and (min-width: 768px) and (max-width: 991px),
   (max-width: 767px) {
     .product-details-info .info-body.custom-responsive-margin {
