@@ -1,32 +1,69 @@
-
 .form-cont {
-    background: #141E30;
     height: 100%;
-    background: linear-gradient(to bottom, #076363, #31047a);
-    color: white;
+    /* color: white; */
     display: flex;
     align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 3rem 5rem;
 }
 
 .form-signin {
     width: 100%;
-    max-width: 330px;
+    max-width: 600px;
+    min-width: 100px;
     padding: 15px;
     margin: auto;
-    color: #212121;
-    border: 4px solid #ff993b;
+    color: #396EB0;
     border-radius: 25px;
+    border: 0.2rem solid #df6363;
+    font-weight: 700;
 }
-.form-signin h1{
-    margin: 15px;
+
+.form-signin:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.form-signin .user{
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  color: #396EB0;
+  border-radius: 50%;
+  box-shadow: rgba(198, 198, 238, 0.2) 0px 7px 29px 0px;
+  position: relative;
+  min-height: 70px;
+  background-color: #fff;
+}
+
+.form-signin h1 {
+  margin:auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.form-signin .form-floating {
+  margin: 1rem 0rem;
 }
 .form-signin .form-floating:focus-within {
     z-index: 2;
 }
 
-.form-signin input{
+.form-signin input,
+.form-signin .btn{
     margin: 5px 0;
-    border-radius: 15px;
+    border-radius: 2rem;
+    border: none;
+    cursor: pointer;
 }
+
+.form-signin .btn:hover {
+  border: 1px solid #396EB0;
+  background: none;
+  color: #396EB0;
+}
+
+.form-signin input:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+

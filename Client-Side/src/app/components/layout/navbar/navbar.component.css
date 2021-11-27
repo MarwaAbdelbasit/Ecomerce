@@ -1,6 +1,6 @@
 .navbar-logo{
-  width: 120px;
-  height: 80px;
+  width: 70px;
+  height: 60px;
 }
 ul li a{
   text-decoration: none;
@@ -19,6 +19,7 @@ ul li a:hover {
   background-color: #fff;
   padding: 0rem 1.5rem;
   min-height: 5vh;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .navbar-toggler {
