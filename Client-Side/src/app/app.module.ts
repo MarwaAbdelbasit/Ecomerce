@@ -24,6 +24,7 @@ import { ShippingComponent } from './pages/policy/shipping/shipping.component';
 import { ReturnComponent } from './pages/policy/return/return.component';
 import { HeroComponent } from './pages/home/hero/hero.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { ProductsComponent } from './pages/home/products/products.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     ShippingComponent,
     ReturnComponent,
     SignUpComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

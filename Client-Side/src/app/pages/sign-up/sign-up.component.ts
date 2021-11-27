@@ -26,10 +26,12 @@ export class SignUpComponent implements OnInit {
   register(registerForm:any): void {
     if(registerForm.valid){
       this._auth.register(this.user).subscribe(
+
         (response)=>console.log(response),
         (err)=>{console.log(err.error.message)},
         ()=>{console.log("DONE")}
         )
+      registerForm.resetForm();
     }
     else{
       this.msg='some fields are not correct'
