@@ -1,4 +1,9 @@
 const mongoose=require('mongoose');
-const dbName=process.env.DBNAME
 const dbUrl=process.env.DBURL
-mongoose.connect(`${dbUrl}${dbName}`,{})
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(console.log('connecting to mongodb'))
+.then((result) => console.log(`connected to Data Base`))
+.catch((err) => console.log(err));
