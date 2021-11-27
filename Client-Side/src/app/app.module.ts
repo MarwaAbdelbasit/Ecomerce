@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
+import { SwiperModule } from "swiper/angular";
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/layout/header/header.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
-import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -21,13 +22,15 @@ import { Error404Component } from './pages/error404/error404.component';
 import { TermsComponent } from './pages/policy/terms/terms.component';
 import { ShippingComponent } from './pages/policy/shipping/shipping.component';
 import { ReturnComponent } from './pages/policy/return/return.component';
+import { HeroComponent } from './pages/home/hero/hero.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     HomeComponent,
+    HeroComponent,
     NavbarComponent,
     ProductDetailsComponent,
     CartComponent,
@@ -42,12 +45,15 @@ import { ReturnComponent } from './pages/policy/return/return.component';
     TermsComponent,
     ShippingComponent,
     ReturnComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

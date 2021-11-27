@@ -54,12 +54,19 @@ const productSchema = new mongoose.Schema({
             // minlength:20
         }}
     ],
-    image: {
-        type: String,
-        trim: true,
-        default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
+    mainImage:{
+            type: String,
+            trim: true,
+            default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
     },
-    inventoryQuantity:{
+    images:[
+        {
+            type: String,
+            trim: true,
+            default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
+        }
+    ] ,
+        inventoryQuantity:{
         type: Number,
         min: 1,
         required: true

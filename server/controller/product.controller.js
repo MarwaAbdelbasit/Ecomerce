@@ -71,7 +71,19 @@ class Product {
     static uploadImage = async (req, res) => {
         try{
             let product = await productModel.findByIdAndUpdate(req.params.productId, {
-                $set:{image: "uploads/" + req.params.productId + "/" + req.file.filename}
+                $set:{mainImage: "uploads/" + req.params.productId + "/" + req.file.filename}
+            })
+            if(!product) throw new Error("product not found")
+            successHandler(product,res,'image uploaded successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static uploadImages = async (req, res) => {
+        try{
+            let product = await productModel.findByIdAndUpdate(req.params.productId, {
+                $push:{images: "uploads/" + req.params.productId + "/" + req.file.filename}
             })
             if(!product) throw new Error("product not found")
             successHandler(product,res,'image uploaded successfully')

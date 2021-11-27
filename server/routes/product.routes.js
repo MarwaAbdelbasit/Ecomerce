@@ -12,6 +12,7 @@ router.post("/addProduct", auth('Admin'),productController.addProduct)
 router.post("/addCategory/:productId",auth("Admin") ,productController.addCategory)
 router.patch("/editProduct/:productId",auth('Admin') ,productController.editProduct)
 router.patch("/uploadImage/:productId",auth('Admin'), upload.single('img'), productController.uploadImage)
+router.patch("/uploadImages/:productId",auth('Admin'), upload.single('img'), productController.uploadImages)
 router.delete("/delProduct/:productId",auth('Admin'), productController.delProduct)
 router.delete("/delAll",auth('Admin'), productController.delAll)
 
