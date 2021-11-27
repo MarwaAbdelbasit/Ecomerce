@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 })
 export class SignUpComponent implements OnInit {
   msg=''
+  serverErrMsg=""
   user={
     name: '',
     email:"",
@@ -28,7 +29,10 @@ export class SignUpComponent implements OnInit {
       this._auth.register(this.user).subscribe(
 
         (response)=>console.log(response),
-        (err)=>{console.log(err.error.message)},
+        (err)=>{
+          this.serverErrMsg = err.error.message
+          console.log(err.error.message)
+        },
         ()=>{console.log("DONE")}
         )
       registerForm.resetForm();
