@@ -26,6 +26,7 @@ import { HeroComponent } from './pages/home/hero/hero.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ProductsComponent } from './pages/home/products/products.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './admin/pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LoginComponent } from './pages/login/login.component';
     ReturnComponent,
     SignUpComponent,
     ProductsComponent,
+    RegisterComponent,
     LoginComponent,
   ],
   imports: [
