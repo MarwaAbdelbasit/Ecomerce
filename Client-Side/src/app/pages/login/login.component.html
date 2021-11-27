@@ -23,6 +23,14 @@
                 <div *ngIf="password.errors?.['required']">password is required</div>
             </div>
           </div>
+          <div class="my-3 form-check form-switch text-start text-muted">
+            <input type="checkbox" class="form-check-input me-2" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+          </div>
+          <div class="text-start text-muted my-3 p-3">
+            <a href="">Forgot password?</a> <br>
+            Don't have account? <a href="/register">Sign Up</a>
+          </div>
           <div class='alert alert-danger' *ngIf="loginForm.invalid && (loginForm.submitted)">
               {{msg}}
           </div>
