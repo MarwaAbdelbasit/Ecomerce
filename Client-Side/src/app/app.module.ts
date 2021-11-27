@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { SwiperModule } from "swiper/angular";
@@ -23,6 +23,7 @@ import { TermsComponent } from './pages/policy/terms/terms.component';
 import { ShippingComponent } from './pages/policy/shipping/shipping.component';
 import { ReturnComponent } from './pages/policy/return/return.component';
 import { HeroComponent } from './pages/home/hero/hero.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,13 @@ import { HeroComponent } from './pages/home/hero/hero.component';
     TermsComponent,
     ShippingComponent,
     ReturnComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SwiperModule
   ],
