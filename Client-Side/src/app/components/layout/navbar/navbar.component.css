@@ -5,7 +5,7 @@
 ul li a{
   text-decoration: none;
   color: #222;
-  font-weight: 500;
+  font-weight: 600;
   font-size: large;
 }
 
@@ -17,8 +17,8 @@ ul li a:hover {
 
 .navbar {
   background-color: #fff;
-  padding: 0rem 3rem;
-  min-height: 7vh;
+  padding: 0rem 1.5rem;
+  min-height: 5vh;
 }
 
 .navbar-toggler {
@@ -27,8 +27,9 @@ ul li a:hover {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-  padding: 1rem;
-  font-size: 1.4rem;
+  padding: 0.7rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
   position: relative;
 }
 
@@ -44,3 +45,17 @@ ul li a:hover {
   border-radius: 1rem;
 }
 
+form .mySearch {
+  border-radius: 1.5rem;
+  border: 1px solid #ce121270;
+}
+
+form .btn {
+  border-radius: 2rem;
+  border-color: #ce121270;
+  color: #ce121270;
+}
+
+form .btn:hover {
+  background: #ce121270;
+}
