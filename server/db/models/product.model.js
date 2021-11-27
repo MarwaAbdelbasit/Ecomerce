@@ -16,31 +16,23 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    sizes:[
-        {
-            size:{
-                type:String,
-                enum: ["small", "medium", "large",'x-large', 'x-xlarge'],
-                required:true,
-            },
-            description:{
-                type:String,
-                default: "size of the product"
-            }
-        }
-    ],
-    colors:[
-        {
-            color:{
-                type:String,
-                required:true,
-            },
-            description:{
-                type:String,
-                default: "color of the product"
-            }
-        }
-    ],
+    // sizes:[
+    //     {
+    //         size:{
+    //             type:String,
+    //             enum: ["small", "medium", "large",'x-large', 'x-xlarge'],
+    //             required:true,
+    //         }
+    //     }
+    // ],
+    // colors:[
+    //     {
+    //         color:{
+    //             type:String,
+    //             required:true,
+    //         }
+    //     }
+    // ],
     category:[
         {name:{
             type:String,
@@ -57,13 +49,13 @@ const productSchema = new mongoose.Schema({
     mainImage:{
             type: String,
             trim: true,
-            default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
+            default: "uploads/product.png"
     },
     images:[
         {
             type: String,
             trim: true,
-            default: "https://www.psdstamps.com/wp-content/uploads/2019/11/round-new-product-stamp-png.png"
+            default: "uploads/product.png"
         }
     ] ,
         inventoryQuantity:{

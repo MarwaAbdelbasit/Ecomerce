@@ -25,8 +25,10 @@ export class SignUpComponent implements OnInit {
   }
   register(registerForm:any): void {
     if(registerForm.valid){
-      this._auth.register(this.user).subscribe((res: any)=>(
-        console.log(res)))
+      this._auth.register(this.user).subscribe(
+        res=>console.log(res),
+        err=>console.log(err),
+        ()=>console.log('done'))
       registerForm.resetForm();
     }
     else{
