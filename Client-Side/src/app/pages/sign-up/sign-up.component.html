@@ -1,4 +1,4 @@
-<div class="text-center form-cont">
+<!-- <div class="text-center form-cont">
     <div class="form-signin bg-light">
         <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
               <div class="user">
@@ -79,5 +79,95 @@
             <button class="w-100 btn btn-lg btn-dark" >Sign Up</button>
         </form>
     </div>
+</div> -->
+<div class='sign-up'>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+
+        <div class='row'>
+            <div class='col-6'>
+      <div class="user-box">
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name" required minlength="3"
+          maxlength="18" #name="ngModel">
+        <label for="name">Name</label>
+        <div class="alert alert-danger my-2"
+          *ngIf="name.invalid && (name.touched || name.dirty || registerForm.submitted)">
+          <div *ngIf="name.errors?.['required']">name is required</div>
+          <div *ngIf="name.errors?.['minlength']">name must be more than 3 chars</div>
+          <div *ngIf="name.errors?.['maxlength']">name must be less than 15 chars </div>
+        </div>
+      </div>
+      <div class="user-box">
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" #email="ngModel"
+          required email>
+        <label for="email">Email address</label>
+        <div class="alert alert-danger my-2"
+          *ngIf="email.invalid && (email.touched || email.dirty || registerForm.submitted)">
+          <div *ngIf="email.errors?.['required']">email is required</div>
+          <div *ngIf="email.errors?.['email']">invalid email address</div>
+        </div>
+
+      </div>
+      <div class="user-box">
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
+          #password="ngModel" required>
+        <label for="password">Password</label>
+        <div class="alert alert-danger my-2"
+          *ngIf="password.invalid && (password.touched || password.dirty || registerForm.submitted)">
+          <div *ngIf="password.errors?.['required']">password is required</div>
+        </div>
+      </div>
+    </div>
+    <div class='col-6'>
+
+      <div class="user-box">
+        <input type="text" class="form-control" id="country" name="country" [(ngModel)]="user.adress.country"
+        required minlength="3" maxlength="18" #country="ngModel">
+        <label for="country">Country</label>
+        <div class="alert alert-danger my-2" *ngIf="country.invalid && (country.touched || country.dirty || registerForm.submitted)">
+            <div *ngIf="country.errors?.['required']">country is required</div>
+        </div>
+    </div>
+
+        <div class="user-box">
+            <input type="text" class="form-control" id="city" name="city" [(ngModel)]="user.adress.city"
+            required minlength="3" maxlength="18" #city="ngModel">
+            <label for="city">City</label>
+            <div class="alert alert-danger my-2" *ngIf="city.invalid && (city.touched || city.dirty || registerForm.submitted)">
+                <div *ngIf="city.errors?.['required']">city is required</div>
+            </div>
+        </div>
+
+        <div class="user-box">
+            <input type="text" class="form-control" id="postalCode" name="postalCode" [(ngModel)]="user.adress.postalCode"
+            required minlength="3" maxlength="18" #postalCode="ngModel">
+            <label for="postalCode">Postal Code</label>
+            <div class="alert alert-danger my-2" *ngIf="postalCode.invalid && (postalCode.touched || postalCode.dirty || registerForm.submitted)">
+                <div *ngIf="postalCode.errors?.['required']">postal code is required</div>
+            </div>
+        </div>
+
+        <div class="user-box">
+            <input type="text" class="form-control" id="telephone" name="telephone" [(ngModel)]="user.adress.telephone"
+            required minlength="3" maxlength="18" #telephone="ngModel">
+            <label for="telephone">Phone</label>
+            <div class="alert alert-danger my-2" *ngIf="telephone.invalid && (telephone.touched || telephone.dirty || registerForm.submitted)">
+                <div *ngIf="telephone.errors?.['required']">Phone is required</div>
+            </div>
+        </div>
+    </div>
 </div>
 
+      <button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
