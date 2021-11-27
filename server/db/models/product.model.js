@@ -1,16 +1,19 @@
 const mongoose = require("mongoose")
 const productSchema = new mongoose.Schema({
-    name:{
+    shortName:{
         type:String,
         trim:true,
         required:true,
-        maxlength:30
+    },
+    longName:{
+        type:String,
+        trim:true,
+        required:true,
     },
     description:{
         type:String,
         trim:true,
         required:true,
-        minlength:30
     },
     price:{
         type:Number,
@@ -34,17 +37,14 @@ const productSchema = new mongoose.Schema({
     //     }
     // ],
     category:[
-        {name:{
+        {
+            name:{
             type:String,
             trim:true,
             required:true,
             maxlength:30
-        },
-        description:{
-            type:String,
-            trim:true,
-            // minlength:20
-        }}
+        }
+    }
     ],
     mainImage:{
             type: String,

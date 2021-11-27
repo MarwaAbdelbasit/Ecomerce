@@ -18,7 +18,7 @@
   
   
   .single-product .product-image a {
-    background: #0167F3;
+    background: var(--colorR1);
     border-radius: 2px;
     font-size: 12px;
     color: #fff;
@@ -59,7 +59,14 @@
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
-  
+  @media only screen and (max-width: 767px) {
+    .single-product .product-image img {
+      width: 50%;
+      margin: auto;
+      display: block;
+    }
+  }
+
   .single-product:hover .product-image .button {
     bottom: 60px;
     opacity: 1;
@@ -143,7 +150,7 @@
   
   /* End Single Product */
   .trending-product {
-    background-color: #f9f9f9;
+    background:linear-gradient(to top,var(--colorP6),white) ;
   }
   
   .trending-product .section-title {
