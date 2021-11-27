@@ -11,4 +11,10 @@ export class UsersService {
   register(data:any):Observable<any>{
     return this._auth.post('http://localhost:3000/users/register',data)
   }
+  registerAdmin(data:any):Observable<any>{
+    return this._auth.post('http://localhost:3000/users/registerAdmin',data)
+  }
+  login(data:any):Observable<any>{
+    return this._auth.post('http://localhost:3000/users/login',data)
+  }
 }
