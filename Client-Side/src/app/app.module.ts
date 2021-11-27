@@ -25,8 +25,8 @@ import { ReturnComponent } from './pages/policy/return/return.component';
 import { HeroComponent } from './pages/home/hero/hero.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ProductsComponent } from './pages/home/products/products.component';
+import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './admin/pages/register/register.component';
-import { LoginComponent } from './admin/pages/login/login.component';
 
 @NgModule({
   declarations: [
