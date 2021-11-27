@@ -1,6 +1,6 @@
 .footer {
-    background: linear-gradient(to bottom,#012333,#023e75);
+    /* background: linear-gradient(to bottom,#012333,#023e75); */
+    background: linear-gradient(to right, #232526, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color:white;
     position: relative;
   }
-  
