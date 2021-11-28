@@ -1,0 +1,39 @@
+.contact-us-content h1 {
+    font-size: 66px;
+  }
+  
+  @media (max-width: 992px) {
+    .contact-us-content h1 {
+      font-size: 45px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-us-content h1 {
+      font-size: 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-us-content h1 {
+      font-size: 36px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .contact-us-content h1 {
+      font-size: 36px;
+    }
+  }
+  .page-title {
+    background: linear-gradient(to right,rgb(0, 0, 0),var(--colorR0),var(--colorR1),rgb(0, 0, 0));
+    padding: 35px 0;
+  }
+  
+  .page-title h3 {
+    color: #fff;
+    font-size: 42px;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+  }

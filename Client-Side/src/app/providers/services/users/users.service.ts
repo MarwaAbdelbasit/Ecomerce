@@ -13,7 +13,7 @@ export class UsersService {
     return this._auth.post(`${this.commonUrl}register`,data)
   }
   registerAdmin(data:any):Observable<any>{
-    return this._auth.post(`${this.commonUrl}registerAdmin`,data)
+    return this._auth.post(`${this.commonUrl}registerAdmin`,{...data,role:"Admin"})
   }
   login(data:any):Observable<any>{
     return this._auth.post(`${this.commonUrl}login`,data)

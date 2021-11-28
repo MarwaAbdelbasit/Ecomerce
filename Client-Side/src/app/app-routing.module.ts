@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './admin/pages/register/register.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/information/about/about.component';
+import { ContactComponent } from './pages/information/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReturnComponent } from './pages/policy/return/return.component';
 import { ShippingComponent } from './pages/policy/shipping/shipping.component';
@@ -20,6 +22,10 @@ const routes: Routes = [
   {path:"shipping",component:ShippingComponent},
   {path:"terms",component:TermsComponent}
 ]},
+{path:'information',children:[
+  {path:'contact',component:ContactComponent},
+  {path:'about',component:AboutComponent},
+]},
 {path:"admin",children:[
   {path:"register",component:RegisterComponent}
 ]},
@@ -27,7 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

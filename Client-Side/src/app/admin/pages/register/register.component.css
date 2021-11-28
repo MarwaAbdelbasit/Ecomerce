@@ -46,6 +46,12 @@ input{
 	outline: none;
 	border-radius: 5px;
 }
+select{
+	width: 60%;
+	display: flex;
+	justify-content: center;
+	margin: 20px auto;
+}
 button{
 	width: 60%;
 	height: 40px;
@@ -104,4 +110,8 @@ button:hover{
 	100%{
 		left: 0;
 	}
+}
+.server-err{
+	color:red;
+	text-align:center;
 }

@@ -1,5 +1,6 @@
 const userModel=require('../db/models/user.model')
 const errorHandler = require('../helpers/errorHandler')
+const errorAuthHandler = require('../helpers/errorAuthHandler')
 const successHandler = require('../helpers/successHandler')
 class User{
     static register=async(req,res)=>{
@@ -13,7 +14,7 @@ class User{
             if(err.code===11000) {
                 err.message='Email is already registered'
             }
-            errorHandler(err,res)
+            errorAuthHandler(err,res)
         }
     }
     static registerAdmin = async(req, res) =>{
@@ -25,10 +26,7 @@ class User{
             successHandler(admin,res,'Admin registered successfully')
         }
         catch(err){
-            if(err.code===11000) {
-                err.message='Email is already registered'
-            }
-            errorHandler(err,res)
+            errorAuthHandler(err,res)
         }
     }
     static login=async(req,res)=>{
@@ -39,7 +37,7 @@ class User{
             successHandler(user,res,'User logged in successfully')
         }
         catch(err){
-            errorHandler(err,res)
+            errorAuthHandler(err,res)
         }
     }
     static profileShow =async(req,res)=>{

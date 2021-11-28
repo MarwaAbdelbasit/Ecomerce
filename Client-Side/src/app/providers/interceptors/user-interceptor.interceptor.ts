@@ -13,7 +13,6 @@ export class UserInterceptorInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
-    console.log("hello from interceptor");
     let token = localStorage.getItem('token')
     if(token){
       request = request.clone({
