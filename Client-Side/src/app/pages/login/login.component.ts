@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       this._auth.login(this.loginForm.value).subscribe(
         (res)=>{
           console.log(res)
+          localStorage.setItem('token',res.data.tokens[0].token)
         },
         (err)=>{
           this.serverErrMsg = err.error.message

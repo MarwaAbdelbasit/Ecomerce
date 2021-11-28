@@ -23,6 +23,20 @@ class Product {
             errorHandler(err,res)
         }
     }
+    static addReview = async (req, res) => {
+        try{
+            let product= await productModel.updateOne({_id:req.params.productId},{
+                $push: {
+                    reviews:{...req.body,reviewerId:req.user._id}
+                }
+            })
+            if(!product) throw new Error("product not found")
+            successHandler(product,res,'product added to wishlist successfully')
+        }
+        catch(err) {
+        errorHandler(err,res)
+    }
+    }
     //-------------------admin control for products-----------------
     static addProduct = async (req, res) => {
         try{

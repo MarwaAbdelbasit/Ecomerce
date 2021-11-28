@@ -1,0 +1,24 @@
+.terms-condition-content p {
+    line-height: 30px;
+  }
+  .section {
+    padding: 100px 0;
+  }
+  .page-title {
+    background: linear-gradient(to right,rgb(0, 0, 0),var(--colorR0),var(--colorR1),rgb(0, 0, 0));
+    padding: 35px 0;
+  }
+  
+  .page-title h3 {
+    color: #fff;
+    font-size: 42px;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+    .shadow-box{
+        box-shadow:-1px 1px 6px black;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+    }
