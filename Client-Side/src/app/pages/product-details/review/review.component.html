@@ -1,40 +1,28 @@
 <div>
     <h3 class="tab-title my-4">Product Reviews</h3>
     <div class="product-review">
-      <div class="media">
+      <div class="media" *ngFor="let review of reviews">
         <!-- Avater -->
-        <img src="assets/p.jpg" alt="avater">
+        <img [src]="apiURL+review.reviewerPic" alt="avater">
         <div class="media-body">
           <!-- Ratings -->
+          <div class="name">
+            <h5>{{review.reviewerName}}</h5>
+          </div>
+          <div class="date">
+            <p class="text-muted">{{review.date}}</p>
+          </div>
+
           <div class="ratings">
             <ul class="list-inline">
-              <li class="list-inline-item">
-                <i class="fa fa-star"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star"></i>
-              </li>
-              <li class="list-inline-item">
-                <i class="fa fa-star"></i>
-              </li>
-              <li class="list-inline-item">
+              <li class="list-inline-item" *ngFor="let rating of createRange(review.rate);">
                 <i class="fa fa-star"></i>
               </li>
             </ul>
           </div>
-          <div class="name">
-            <h5>Jessica Brown</h5>
-          </div>
-          <div class="date">
-            <p>Mar 20, 2018</p>
-          </div>
           <div class="review-comment">
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape
-              riamipsa eaque.
+              {{review.message}}
             </p>
           </div>
         </div>
