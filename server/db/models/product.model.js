@@ -86,7 +86,10 @@ const productSchema = new mongoose.Schema({
     ],
     reviews:[
         {
-            reviewerId:{
+            reviewerName:{
+                type:String
+            },
+            reviewerPic:{
                 type:String
             },
             message:{
@@ -94,6 +97,9 @@ const productSchema = new mongoose.Schema({
             },
             date:{
                 type:String
+            },
+            rate:{
+                type:Number
             }
         }
     ]

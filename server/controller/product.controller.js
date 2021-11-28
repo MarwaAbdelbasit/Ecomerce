@@ -27,7 +27,12 @@ class Product {
         try{
             let product= await productModel.updateOne({_id:req.params.productId},{
                 $push: {
-                    reviews:{...req.body,reviewerId:req.user._id}
+                    reviews:{
+                        ...req.body,
+                        reviewerName:req.user.name,
+                        reviewerPic:req.user.profilePic,
+                        date:new Date().toLocaleDateString()
+                    }
                 }
             })
             if(!product) throw new Error("product not found")
