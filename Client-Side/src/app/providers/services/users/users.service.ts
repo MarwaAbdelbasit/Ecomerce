@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   constructor(private _auth:HttpClient) { }
+
   register(data:any):Observable<any>{
     return this._auth.post('http://localhost:3000/users/register',data)
   }
