@@ -1,1 +1,47 @@
-<p>register works!</p>
+<div class='admin-reg'>
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" #name="ngModel" name="name" [(ngModel)]="admin.name" placeholder="Admin name" required>
+        <input type="email" #email="ngModel" name="email" [(ngModel)]="admin.email" placeholder="Email" required email>
+        <input type="password" #password="ngModel" name="password" [(ngModel)]="admin.password" placeholder="Password"
+          required>
+        <button>Sign up</button>
+      </form>
+    </div>
+    <div class="register-errors" [ngClass]="registerForm.submitted?'d-block':'d-none'">
+    <div *ngIf="name.invalid && (name.touched || name.dirty || registerForm.submitted)">
+      <div *ngIf="name.errors?.['required']">name is required</div>
+    </div>
+    <div *ngIf="email.invalid && (email.touched || email.dirty || registerForm.submitted)">
+      <div *ngIf="email.errors?.['required']">email is required</div>
+      <div *ngIf="email.errors?.['email']">invalid email address</div>
+    </div>
+    <div *ngIf="password.invalid && (password.touched || password.dirty || registerForm.submitted)">
+      <div *ngIf="password.errors?.['required']">password is required</div>
+    </div>
+</div>
+    <div class="login">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" #email="ngModel" name="email" [(ngModel)]="admin.email" placeholder="Email" required email>
+        <input type="password" #password="ngModel" name="password" [(ngModel)]="admin.password" placeholder="Password"
+          required>
+        <button>Login</button>
+      </form>
+    </div>
+    <div class="register-errors" [ngClass]="loginForm.submitted?'d-block':'d-none'">
+        <div *ngIf="email.invalid && (email.touched || email.dirty || loginForm.submitted)">
+          <div *ngIf="email.errors?.['required']">email is required</div>
+          <div *ngIf="email.errors?.['email']">invalid email address</div>
+        </div>
+        <div *ngIf="password.invalid && (password.touched || password.dirty || loginForm.submitted)">
+          <div *ngIf="password.errors?.['required']">password is required</div>
+        </div>
+    </div>
+    
+  </div>
+</div>

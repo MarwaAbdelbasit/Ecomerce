@@ -51,7 +51,6 @@ import { RegisterComponent } from './admin/pages/register/register.component';
     SignUpComponent,
     ProductsComponent,
     RegisterComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
