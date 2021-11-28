@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { SwiperModule } from "swiper/angular";
 import { RatingModule } from 'ng-starrating';
@@ -28,8 +28,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ProductsComponent } from './pages/home/products/products.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './admin/pages/register/register.component';
+import { UserInterceptorInterceptor } from './providers/interceptors/user-interceptor.interceptor';
 import { ReviewComponent } from './pages/product-details/review/review.component';
-
 
 @NgModule({
   declarations: [
@@ -67,7 +67,11 @@ import { ReviewComponent } from './pages/product-details/review/review.component
     ReactiveFormsModule,
     RatingModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,
+    useClass: UserInterceptorInterceptor,
+    multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
