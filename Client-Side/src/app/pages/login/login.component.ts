@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -9,34 +10,40 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 })
 export class LoginComponent implements OnInit {
 
-  msg=""
-  serverErrMsg=""
-  user = {
-    email:"",
-    password:""
-  }
+  serverErrMsg:string=""
+  isSubmitted = false
+  invalidData = false
+  loginForm = new FormGroup({
+    email:new FormControl( '' , [Validators.required, Validators.email] ),
+    password: new FormControl('', [Validators.required])
+  })
 
-  constructor(private _auth:UsersService) { }
+  constructor(private _auth:UsersService, private _router:Router) { }
 
   ngOnInit(): void {
   }
 
-  login(loginForm:NgForm){
-    if(loginForm.valid) {
-      console.log(this.user);
-      this._auth.login(this.user).subscribe(
-        (response)=>{console.log(response)},
-        (err)=>{
-            this.serverErrMsg = err.error.message
-            console.log(err.error.message);
+  get email(){return this.loginForm.get('email')}
+  get password(){return this.loginForm.get('password')}
+
+  login(){
+    if(this.loginForm.valid) {
+      console.log(this.loginForm);
+      this._auth.login(this.loginForm.value).subscribe(
+        (res)=>{
+          console.log(res)
         },
-        ()=>{console.log("DONE");
+        (err)=>{
+          this.serverErrMsg = err.error.message
+          console.log(err)
+          this.invalidData=true
+        },
+        ()=>{
+          this.loginForm.reset()
+          this.isSubmitted=false
+          this._router.navigateByUrl('/')
         }
       )
-      loginForm.resetForm();
-    }
-    else {
-      this.msg = "incorrect form data"
     }
   }
 

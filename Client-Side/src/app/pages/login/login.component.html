@@ -1,27 +1,25 @@
 <div class="text-center form-cont">
   <div class="form-login bg-light">
-      <form #loginForm="ngForm" (submit)="login(loginForm)">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="user">
               <h1 class="h3 mb-3 fw-normal"><img src="assets/images/logo.png" alt=""></h1>
             </div>
 
           <div class="form-floating">
-              <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" #email="ngModel"
-              required email>
+              <input type="email" class="form-control" id="email" name="email" formControlName="email">
               <label for="email">Email address</label>
-              <div class="alert alert-danger my-2" *ngIf="email.invalid && (email.touched || email.dirty || loginForm.submitted)">
-                  <div *ngIf="email.errors?.['required']">email is required</div>
-                  <div *ngIf="email.errors?.['email']">invalid email address</div>
-              </div>
+              <div class="my-3 alert alert-danger" *ngIf="email?.invalid && (isSubmitted || email?.dirty || email?.touched )">
+                <p *ngIf="email?.errors?.['required']">* Email is required </p>
+                <p *ngIf="email?.errors?.['email']">* Email is required </p>
+            </div>
           </div>
 
           <div class="form-floating">
-            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" #password="ngModel"
-            required>
+            <input type="password" class="form-control" id="password" name="password" formControlName="password">
             <label for="password">Password</label>
-            <div class="alert alert-danger my-2" *ngIf="password.invalid && (password.touched || password.dirty || loginForm.submitted)">
-                <div *ngIf="password.errors?.['required']">password is required</div>
-            </div>
+            <div class="my-3 alert alert-danger" *ngIf="password?.invalid && (isSubmitted || password?.dirty || password?.touched )">
+              <p *ngIf="password?.errors?.['required']">* Password is required </p>
+          </div>
           </div>
           <div class="my-3 form-check form-switch text-start text-muted">
             <input type="checkbox" class="form-check-input me-2" id="exampleCheck1">
@@ -30,9 +28,6 @@
           <div class="text-start text-muted my-3 p-3">
             <a href="">Forgot password?</a> <br>
             Don't have account? <a href="/register">Sign Up</a>
-          </div>
-          <div class='alert alert-danger' *ngIf="loginForm.invalid && (loginForm.submitted)">
-              {{msg}}
           </div>
           <div class='alert alert-danger' *ngIf="serverErrMsg.length">
             {{serverErrMsg}}
