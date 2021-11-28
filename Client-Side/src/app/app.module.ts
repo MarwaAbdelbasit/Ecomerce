@@ -55,7 +55,8 @@ import { ReviewComponent } from './pages/product-details/review/review.component
     ProductsComponent,
     RegisterComponent,
     LoginComponent,
-    ReviewComponent
+    ReviewComponent,
+    
   ],
   imports: [
     BrowserModule,

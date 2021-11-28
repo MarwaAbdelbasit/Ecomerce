@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -7,46 +9,80 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  
-  admin={
-    name: '',
+  serverErrMsg:any={
+    name:"",
     email:"",
     password:""
   }
-  serverErrMsg=""
-  msg=''
-  constructor(private _auth:UsersService) { }
+  isSubmittedR = false
+  isSubmittedL = false
+  loginForm = new FormGroup({
+    email:new FormControl( '' , [Validators.required, Validators.email] ),
+    password: new FormControl('', [Validators.required])
+  }) 
+  registerForm = new FormGroup({
+    name:new FormControl( '' , [Validators.required] ),
+    email:new FormControl( '' , [Validators.required, Validators.email] ),
+    password: new FormControl('', [Validators.required]),
+    position: new FormControl( 'Manger' , [Validators.required])
+  }) 
+  constructor(private _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
   }
-  login(loginForm:any): void {
-    if(loginForm.valid){
-      this._auth.login(this.admin).subscribe(
-        (response)=>console.log(response),
-        (err)=>{
-          this.serverErrMsg = err.error.message
-          console.log(err.error.message)
+  get emailL(){return this.loginForm.get('email')}
+  get passwordL(){return this.loginForm.get('password')}
+
+  get nameR(){return this.registerForm.get('name')}
+  get emailR(){return this.registerForm.get('email')}
+  get passwordR(){return this.registerForm.get('password')}
+
+  register(): void {
+    this.isSubmittedR=true
+    if(this.registerForm.valid){
+      this._auth.registerAdmin(this.registerForm.value).subscribe(
+        (res)=>{
+          console.log(res);
+          this.isSubmittedR=false
+          localStorage.setItem('token', res.data.tokens[0].token)
         },
-        ()=>{console.log("DONE")}
+        (err)=>{
+          this.serverErrMsg.name = err.error.message.name
+          this.serverErrMsg.email = err.error.message.email
+          this.serverErrMsg.password = err.error.message.password
+          console.log(err)
+        },
+        ()=>{
+          this.loginForm.reset()
+          this._router.navigateByUrl('/')
+        }
         )
-      loginForm.resetForm();
+      this.registerForm.reset();
     }
   }
-  register(registerForm:any): void {
-    if(registerForm.valid){
-      this._auth.registerAdmin(this.admin).subscribe(
-
-        (response)=>console.log(response),
-        (err)=>{
-          this.serverErrMsg = err.error.message
-          console.log(err.error.message)
+  login(): void {
+    this.isSubmittedL=true
+    if(this.loginForm.valid){
+      this._auth.login(this.loginForm.value).subscribe(
+        (res)=>{
+          console.log(res);
+          localStorage.setItem('token', res.data.tokens[0].token)
         },
-        ()=>{console.log("DONE")}
+        (err)=>{
+          this.serverErrMsg.email = err.error.message.email
+          this.serverErrMsg.password = err.error.message.password
+          console.log(err)
+        },
+        ()=>{
+          this.loginForm.reset()
+          this.isSubmittedL=false
+          this._router.navigateByUrl('/')
+        }
         )
-      registerForm.resetForm();
+      this.loginForm.reset();
     }
     else{
-      this.msg='some fields are not correct'
+      console.log('not valid')
     }
   }
 

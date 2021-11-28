@@ -23,7 +23,7 @@ const userSchema=new Schema({
         required:[true,'password is required'],
         validate(value){
             if(!isStrongPassword(value)) throw new Error(
-                'for security reasons you should use a strong password > 8 characters, at least 1 Lowercase,1 Uppercase,1 Number,1 Symbol'
+                'Use a strong password instead'
                 )
         }
     },
