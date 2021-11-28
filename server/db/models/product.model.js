@@ -83,6 +83,25 @@ const productSchema = new mongoose.Schema({
             dafault:true
         }
     }
+    ],
+    reviews:[
+        {
+            reviewerName:{
+                type:String
+            },
+            reviewerPic:{
+                type:String
+            },
+            message:{
+                type:String
+            },
+            date:{
+                type:String
+            },
+            rate:{
+                type:Number
+            }
+        }
     ]
 },{timestamps:true})
 productSchema.methods.toJSON=function(){
