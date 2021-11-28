@@ -4,6 +4,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { SwiperModule } from "swiper/angular";
+import { RatingModule } from 'ng-starrating';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
@@ -28,7 +29,7 @@ import { ProductsComponent } from './pages/home/products/products.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './admin/pages/register/register.component';
 import { UserInterceptorInterceptor } from './providers/interceptors/user-interceptor.interceptor';
-
+import { ReviewComponent } from './pages/product-details/review/review.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UserInterceptorInterceptor } from './providers/interceptors/user-interc
     SignUpComponent,
     ProductsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { UserInterceptorInterceptor } from './providers/interceptors/user-interc
     ReactiveFormsModule,
     HttpClientModule,
     SwiperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RatingModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,

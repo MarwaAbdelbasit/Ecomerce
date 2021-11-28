@@ -1,0 +1,67 @@
+<div>
+    <h3 class="tab-title my-4">Product Reviews</h3>
+    <div class="product-review">
+      <div class="media">
+        <!-- Avater -->
+        <img src="assets/p.jpg" alt="avater">
+        <div class="media-body">
+          <!-- Ratings -->
+          <div class="ratings">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <i class="fa fa-star"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star"></i>
+              </li>
+            </ul>
+          </div>
+          <div class="name">
+            <h5>Jessica Brown</h5>
+          </div>
+          <div class="date">
+            <p>Mar 20, 2018</p>
+          </div>
+          <div class="review-comment">
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape
+              riamipsa eaque.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="review-submission">
+        <h3 class="tab-title">Submit your review</h3>
+        <!-- Rate -->
+        <div class="rate">
+            <star-rating 
+            [value]="0" 
+            [totalstars]="5" 
+            checkedcolor="rgb(83, 2, 2)" 
+            uncheckedcolor="rgb(238, 110, 110)" 
+            size="30px" 
+            [readonly]="false" 
+            (rate)="onRate($event)"></star-rating>
+        </div>
+        <div class="review-submit">
+          <form class="row">
+            <div class="col-12">
+              <textarea name="review" rows="10" class="form-control" placeholder="Write Your Review Here"></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-main">Sumbit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

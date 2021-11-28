@@ -1,0 +1,65 @@
+.product-review img {
+    width: 60px;
+    margin-right: 20px;
+    border-radius:50%;
+    object-fit: cover;
+  }
+  .media{
+display: flex;
+align-items: flex-start;
+  }
+  .product-review .name h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .product-review .media-body {
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 2px;
+  }
+  
+  .product-review .review-submission h5 {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  .product-review .review-submission .rate {
+    margin-bottom: 20px;
+  }
+  
+  .product-review .review-submission .rate i {
+    margin: 0 5px;
+  }
+  
+  .product-review .review-submission .form-control {
+    margin-bottom: 8px;
+    border-radius: 0;
+  }
+  
+  .product-review .review-submission input[type="email"], .product-review .review-submission input[type="password"], .product-review .review-submission input[type="text"], .product-review .review-submission input[type="tel"] {
+    height: 40px;
+  }
+  .tab-title {
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .btn-main:hover {
+    background: #082de1;
+    color: #fff;
+  }
+  .btn-main {
+    background: #5672f9;
+    color: #fff;
+  }
+  .btn {
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 4px;
+  }
+  

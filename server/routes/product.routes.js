@@ -16,6 +16,9 @@ router.patch("/uploadImages/:productId",auth('Admin'), upload.single('img'), pro
 router.delete("/delProduct/:productId",auth('Admin'), productController.delProduct)
 router.delete("/delAll",auth('Admin'), productController.delAll)
 
+//----------------adding review-----
+router.patch("/addReview/:productId", auth('User'),productController.addReview)
+
 //----------------crud operations of categories controlled by admin only-----
 router.get("/allCate/:productId",auth('Admin') ,productController.allCate)
 router.get("/singleCate/:productId/:catId",auth('Admin') ,productController.singleCate)
