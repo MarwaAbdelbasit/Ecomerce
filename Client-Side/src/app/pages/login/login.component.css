@@ -17,7 +17,14 @@
   border: 0.2rem solid #df6363;
   font-weight: 700;
 }
-
+.form-login form{
+  color:red;
+}
+.form-login form img{
+  width: 100%;
+  width: 80px;
+  height: 80px;
+}
 .form-login:hover {
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

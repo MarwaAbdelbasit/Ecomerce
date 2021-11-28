@@ -7,6 +7,7 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  
   admin={
     name: '',
     email:"",
