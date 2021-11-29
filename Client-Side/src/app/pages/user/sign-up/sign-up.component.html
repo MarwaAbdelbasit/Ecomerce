@@ -1,4 +1,3 @@
-
 <div class='sign-up'>
 
   <div class="login-box">
@@ -9,15 +8,15 @@
         <div class='row'>
             <div class='col-6'>
       <div class="user-box">
-        <input type="text" class="form-control" id="name" name="name" formControlName="name">
+        <input type="text" class="form-control" formControlName="name" required>
         <label for="name">Name</label>
       </div>
       <div class="user-box">
-        <input type="email" class="form-control" id="email" name="email" formControlName="email">
+        <input type="email" class="form-control" formControlName="email" required>
         <label for="email">Email address</label>
       </div>
       <div class="user-box">
-        <input type="password" class="form-control" id="password" name="password" formControlName="password">
+        <input type="password" class="form-control" formControlName="password" required>
         <label for="password">Password</label>
       </div>
     </div>
@@ -25,22 +24,22 @@
 
     <div formGroupName="adress">
       <div class="user-box">
-        <input type="text" class="form-control" id="country" name="country" formControlName="country">
+        <input type="text" class="form-control" formControlName="country" required>
         <label for="country">Country</label>
     </div>
 
         <div class="user-box">
-            <input type="text" class="form-control" id="city" name="city" formControlName="city">
+            <input type="text" class="form-control" formControlName="city" required>
             <label for="city">City</label>
         </div>
 
         <div class="user-box">
-            <input type="text" class="form-control" id="postalCode" name="postalCode" formControlName="postalCode">
+            <input type="text" class="form-control" formControlName="postalCode" required>
             <label for="postalCode">Postal Code</label>
         </div>
 
         <div class="user-box">
-            <input type="text" class="form-control" id="telephone" name="telephone" formControlName="telephone">
+            <input type="text" class="form-control" formControlName="telephone" required>
             <label for="telephone">Phone</label>
         </div>
       </div>
@@ -68,11 +67,16 @@
     <div *ngIf="telephone?.invalid && (telephone?.touched || telephone?.dirty || isSubmitted)">
       <div *ngIf="telephone?.errors?.['required']">Phone is required</div>
   </div>
-
       </div>
 
     </div>
 </div>
+<div class='server-err'>
+  {{serverErrMsg.name}}
+  {{serverErrMsg.email}}
+  {{serverErrMsg.password}}
+</div>
+
 <div class='signup-bottom'>
 
       <button>
@@ -88,3 +92,6 @@
     </form>
   </div>
 </div>
+
+
+

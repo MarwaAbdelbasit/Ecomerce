@@ -2,6 +2,7 @@ const userModel=require('../db/models/user.model')
 const errorHandler = require('../helpers/errorHandler')
 const errorAuthHandler = require('../helpers/errorAuthHandler')
 const successHandler = require('../helpers/successHandler')
+const bcrypt = require('bcryptjs')
 class User{
     static register=async(req,res)=>{
         try{
@@ -63,6 +64,21 @@ class User{
         }
         catch(err) {
             errorHandler(err,res)
+        }
+    }
+    static passwordEdit =async(req,res)=>{
+        try{
+                const validPassword = await bcrypt.compare(req.body.oldPassword, req.user.password);
+                
+                if (validPassword) { 
+                    req.user.password=req.body.newPassword  
+                    await req.user.save()
+                     successHandler(req.user,res,' password is edited successfully')
+                }
+                else throw Error('Incorrect Password')
+            }
+        catch(err) {
+            errorAuthHandler(err,res)
         }
     }
     static profileDelete =async(req,res)=>{

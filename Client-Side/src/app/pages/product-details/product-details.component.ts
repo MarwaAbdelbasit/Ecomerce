@@ -19,7 +19,6 @@ export class ProductDetailsComponent implements OnInit {
   getSingleProduct(){
     this._products.getSingleProduct(this._route.snapshot.params['productId']).subscribe(
       data =>this.product = data.data,
-      err=>console.log(err),
-      ()=>console.log('done'))
+      err=>console.log(err))
   }
 }

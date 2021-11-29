@@ -60,3 +60,18 @@ form .btn {
 form .btn:hover {
   background: #ce121270;
 }
+.log-out{
+  padding: 5px 40px;
+  border-radius: 20px;
+  border:none;
+  outline: none;
+  background-color: var(--colorR3);
+  color:white;font-size: 15px;
+  align-self:center;
+  transition: all .2s ease-in-out;
+  font-weight: 500;
+}
+.log-out:hover{
+  background-color: var(--colorR4);
+
+}

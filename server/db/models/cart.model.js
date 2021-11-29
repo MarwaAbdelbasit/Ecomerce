@@ -16,17 +16,11 @@ const cartSchema = new Schema({
     },
     price:{
         type:Number,
-        required:true
     },
     discound:{
         name:{
             type: String,
             trim:true,
-            maxlength:20
-        },
-        description:{
-            type:String,
-            trim:true
         },
         percent:{
             type:Number,

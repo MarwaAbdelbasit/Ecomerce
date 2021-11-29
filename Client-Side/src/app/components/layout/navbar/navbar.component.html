@@ -14,9 +14,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Shop</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Customers Reviews</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Products
@@ -35,12 +32,22 @@
         <button class="btn " type="submit"><i class="fas fa-search"></i></button>
       </form>
       <ul class="navbar-nav my-2">
-        <li class="nav-item myItem">
-          <a class="nav-link myLink" href="/register">Sign Up</a>
-        </li>
-        <li class="nav-item myItem">
-          <a class="nav-link myLink" href="/login">Login</a>
-        </li>
+        <span *ngIf="!_auth.isAuthed; else isAuthed">
+          <li class="nav-item myItem">
+            <a class="nav-link" href="/user/register">Sign Up</a>
+          </li>
+          <li class="nav-item myItem">
+            <a class="nav-link" href="/user/login">Login</a>
+          </li>
+        </span>
+        <ng-template #isAuthed>
+          <li class="nav-item myItem">
+            <a class="nav-link" href="/user/profile">{{_auth.userData.name}}</a>
+          </li>
+          <li class="nav-item myItem">
+            <button (click)="handleLogOut()" class="log-out">Log-Out</button>
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>

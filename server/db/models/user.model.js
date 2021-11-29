@@ -29,7 +29,7 @@ const userSchema=new Schema({
     },
     profilePic:{
         type:String,
-        default:"https://upload.wikimedia.org/wikipedia/commons/9/9a/No_avatar.png"
+        default:"uploads/noAvatar.png"
     },
     adress:{
         country:{

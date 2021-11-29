@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   getProducts(){
     this._products.getProducts().subscribe(
       data =>this.products = data.data,
-      err=>console.log(err),
-      ()=>console.log(this.products))
+      err=>console.log(err)
+      )
   }
 }

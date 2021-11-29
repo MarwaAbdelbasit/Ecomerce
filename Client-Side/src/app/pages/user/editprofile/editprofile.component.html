@@ -1,0 +1,128 @@
+<section class="user-profile section" *ngIf="_auth.userData!=null">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
+				<div class="sidebar">
+					<!-- User Widget -->
+					<div class="widget user">
+						<!-- User Image -->
+						<div class="image d-flex justify-content-center">
+							<img [src]="apiURL+this._auth.userData.profilePic" alt="">
+						</div>
+						<!-- User Name -->
+						<h5 class="text-center">{{this._auth.userData.name}}</h5>
+                            <!-- File chooser -->
+								<div class="form-group choose-file d-flex justify-content-center">
+                                    <label for="file-upload">
+                                        <div class='btn btn-success'>
+                                            <i class="fas fa-photo-video"></i>
+                                            <span class='text-white'>
+                                                Change Photo
+                                            </span>
+                                        </div>
+                                        <input id='file-upload' type="file" class="form-control-file d-none" accept='.png,.jpg,.jpeg'>
+                                    </label>
+                                </div>
+
+					</div>
+					<!-- Dashboard Links -->
+					<div class="widget dashboard-links">
+						<ul>
+							<li><a class="my-1 d-inline-block" routerLink="/cart">My Cart</a></li>
+							<li><a class="my-1 d-inline-block" routerLink="/orders">My Orders</a></li>
+							<li><a class="my-1 d-inline-block" routerLink="/wishlist">My WishList</a></li>
+						</ul>
+					</div>
+					<div class="widget user-dashboard-menu">
+						<ul class="list-none">
+						  <li><button class='btn btn-danger my-1' ><i class="fa fa-cog"></i> Logout all sessions</button></li>
+						</ul>
+					  </div>
+		  
+				</div>
+			</div>
+			<div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
+				<!-- Edit Profile Welcome Text -->
+				<div class="widget welcome-message">
+					<h2>Edit profile</h2>
+					<p>Customize Your profile From Here</p>
+				</div>
+				<!-- Edit Personal Info -->
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="widget personal-info">
+							<h3 class="widget-header user">Edit Personal Information</h3>
+							<form  [formGroup]="myForm" (ngSubmit)="handleEdit()">
+								<!-- user Name -->
+								<div class="form-group">
+									<label for="name">User Name</label>
+									<input id='name' type="text" class="form-control" formControlName="name">
+								</div>
+                                <!-- email-->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" formControlName="email">
+                                </div>
+                                <div formGroupName="adress">
+								<div class="form-group">
+									<label for="country">Country</label>
+									<input type="text" class="form-control" id="country" formControlName="country">
+								</div>
+								<div class="form-group">
+									<label for="city">City</label>
+									<input type="text" class="form-control" id="city" formControlName="city">
+								</div>
+								<div class="form-group">
+									<label for="postal-code">Potal Code</label>
+									<input type="text" class="form-control" id="postal-code" formControlName="postalCode">
+								</div>
+								<div class="form-group">
+									<label for="phone">Phone</label>
+									<input type="text" class="form-control" id="phone" formControlName="telephone">
+								</div>
+                            </div>
+                                <div formGroupName="paymentDetails">
+								<div class="form-group">
+									<label for="creditCard">creditCard Number</label>
+									<input type="text" class="form-control" id="creditCard" formControlName="creditCard">
+								</div>
+                            </div>
+								<!-- Submit button -->
+								<button class="btn btn-primary">Save My Changes</button>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<!-- Change Password -->
+					<div class="widget change-password">
+						<h3 class="widget-header user">Edit Password</h3>
+						<form [formGroup]="myForm2" (ngSubmit)="handleEditPassword()">
+							<!-- Current Password -->
+							<div class="form-group">
+								<label for="current-password">Current Password</label>
+								<input type="password" class="form-control" id="current-password" formControlName="password">
+							</div>
+							<!-- New Password -->
+							<div class="form-group">
+								<label for="new-password">New Password</label>
+								<input type="password" class="form-control" id="new-password" formControlName="password1">
+							</div>
+							<!-- Confirm New Password -->
+							<div class="form-group">
+								<label for="confirm-password">Confirm New Password</label>
+								<input type="password" class="form-control" id="confirm-password" formControlName="password2">
+							</div>
+                            <div class='server-err'>
+                                {{serverErrMsg.password}}
+                              </div>
+                    
+							<!-- Submit Button -->
+							<button class="btn btn-primary">Change Password</button>
+						</form>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -12,7 +12,9 @@
         <div class="col-lg-6 col-md-12 col-12">
           <div class="product-info">
             <h2 class="title">{{product.longName}}</h2>
-            <p class="category">{{product.category[0].name}}</p>
+            <span *ngFor="let single of product.category">
+              <p class="category">{{single.name}} ,</p>
+            </span>
             <h3 class="price">{{product.price |currency}}</h3>
             <p class="info-text"></p>
             <div class="bottom-content">

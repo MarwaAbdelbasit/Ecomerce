@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 export class SignUpComponent implements OnInit {
   isSubmitted:Boolean = false
   invalidData = false
-  serverErrMsg=""
+  serverErrMsg:any={
+    name:"",
+    email:"",
+    password:""
+  }
   registerForm = new FormGroup({
     name:new FormControl('', [Validators.required]),
     email:new FormControl('', [Validators.required, Validators.email]),
@@ -31,24 +36,44 @@ export class SignUpComponent implements OnInit {
   get postalCode(){return this.registerForm.get('adress')?.get('postalCode')}
   get telephone(){return this.registerForm.get('adress')?.get('telephone')}
 
-  constructor(private _auth:UsersService) { }
+  constructor(private _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
   }
 
   register(): void {
+    this.isSubmitted=true
     if(this.registerForm.valid){
       this._auth.register(this.registerForm.value).subscribe(
-        (response)=>console.log(response),
+        (res)=>{
+          console.log(res);
+          localStorage.setItem('token', res.data.tokens[0].token)
+        },
         (err)=>{
           this.invalidData = true
-          this.serverErrMsg = err.error.message
+          this.serverErrMsg.name = err.error.message.name
+          this.serverErrMsg.email = err.error.message.email
+          this.serverErrMsg.password = err.error.message.password
           console.log(err.error.message)
         },
         ()=>{
-          this.isSubmitted = true
-          this.registerForm.reset()
-          console.log("DONE")
+          this._auth.showProfile().subscribe(
+            (data:any)=>{
+              console.log(data)
+              this._auth.userData = data
+            },
+            (err:any)=>{
+              console.log(err)
+              this._auth.isAuthed=false
+            },
+            ()=>{
+              console.log('done')
+              this._auth.isAuthed=true
+              this.registerForm.reset()
+              this.isSubmitted=false
+              this._router.navigateByUrl('/user/profile')
+            }
+          )
         }
       )
     }

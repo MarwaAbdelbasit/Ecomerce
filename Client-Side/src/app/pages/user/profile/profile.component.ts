@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+
   constructor(public _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -25,22 +26,8 @@ export class NavbarComponent implements OnInit {
         this._auth.isAuthed=true
       }
     )
+
   }
-handleLogOut(){
-  this._auth.logOut().subscribe(
-    (data:any)=>{
-      console.log(data)
-      this._auth.userData = null
-    },
-    (err:any)=>{
-      console.log(err)
-    },
-    ()=>{
-      console.log('done')
-      this._auth.isAuthed=false
-      localStorage.clear()
-      this._router.navigateByUrl('/user/login')
-    }
-  )
-}
+  ngAfterViewChecked(): void {
+  }
 }
