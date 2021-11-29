@@ -9,8 +9,10 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  serverErrMsg:string=""
+  serverErrMsg:any={
+    email:"",
+    password:""
+  }
   isSubmitted = false
   invalidData = false
   loginForm = new FormGroup({
@@ -21,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private _auth:UsersService, private _router:Router) { }
 
   ngOnInit(): void {
+
   }
 
   get email(){return this.loginForm.get('email')}
@@ -34,17 +37,36 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.data.tokens[0].token)
         },
         (err)=>{
-          this.serverErrMsg = err.error.message
-          console.log(err)
+          this.serverErrMsg.email = err.error.message.email
+          this.serverErrMsg.password = err.error.message.password
+          console.log(this.serverErrMsg,err)
           this.invalidData=true
         },
         ()=>{
-          this.loginForm.reset()
-          this.isSubmitted=false
-          this._router.navigateByUrl('/')
+          this._auth.showProfile().subscribe(
+            (data:any)=>{
+              console.log(data)
+              this._auth.userData = data
+            },
+            (err:any)=>{
+              console.log(err)
+              this._auth.isAuthed=false
+            },
+            ()=>{
+              console.log('done')
+              this._auth.isAuthed=true
+              this.loginForm.reset()
+              this.isSubmitted=false
+              this._router.navigateByUrl('/user/profile')
+            }
+          )
         }
       )
     }
   }
-
+handleCheck(){
+  if(this.loginForm.invalid){
+    this.serverErrMsg.email = "some data are missing"
+  }
+}
 }

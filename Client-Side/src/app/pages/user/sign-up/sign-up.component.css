@@ -207,3 +207,7 @@
     position: absolute;
     top:10px
 }
+.server-err{
+	color:red;
+	text-align:center;
+}

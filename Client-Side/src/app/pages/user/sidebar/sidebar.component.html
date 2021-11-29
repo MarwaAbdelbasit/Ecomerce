@@ -1,0 +1,31 @@
+<div class="sidebar">
+    <div class="widget user">
+        <!-- User Image -->
+        <div class="image d-flex justify-content-center">
+            <img [src]="apiURL+user.profilePic" alt="">
+        </div>
+        <!-- User Name -->
+        <h5 class="text-center">{{user.name}}</h5>
+                <div class="form-group choose-file d-flex justify-content-center" routerLink="/user/editprofile">
+                        <div class='btn btn-success'>
+                            <span class='text-white'>
+                                Edit Profile
+                            </span>
+                        </div>
+                </div>
+
+    </div>
+    <div class="widget dashboard-links">
+        <ul>
+            <li><a class="my-1 d-inline-block" routerLink="/user/cart">My Cart</a></li>
+            <li><a class="my-1 d-inline-block" routerLink="/user/orders">My Orders</a></li>
+            <li><a class="my-1 d-inline-block" routerLink="/user/wishlist">My WishList</a></li>
+        </ul>
+    </div>
+    <div class="widget user-dashboard-menu">
+        <ul class="list-none">
+          <li><button class='btn btn-danger my-1' ><i class="fa fa-cog"></i> Logout all sessions</button></li>
+        </ul>
+      </div>
+
+</div>

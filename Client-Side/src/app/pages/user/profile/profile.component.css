@@ -1,0 +1,79 @@
+.user-profile {
+    padding-top: 50px;
+  }
+  .section {
+    padding: 100px 0;
+  }
+  .widget {
+    background: rgb(247, 241, 241);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+  }
+  
+  .widget .widget-header {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dedede;
+  }
+  
+  .widget .welcome-message h2 {
+    font-size: 30px;
+    line-height: 54px;
+    letter-spacing: .05em;
+  }
+  
+  .widget .welcome-message p {
+    font-size: 14px;
+    line-height: 26px;
+    letter-spacing: 0;
+    color: #848484;
+  }
+  .widget.personal-info .form-group, .widget.change-password .form-group, .widget.change-email .form-group {
+    margin-bottom: 25px;
+  }
+  .personal-info{
+    font-size: 20px;
+  }
+  .widget.personal-info .form-group i, .widget.change-password .form-group i, .widget.change-email .form-group i {
+    color: white;
+    background: #5672f9;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    margin-right: 15px;
+    border-radius: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .widget.personal-info .form-group i, .widget.change-password .form-group i, .widget.change-email .form-group i {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .widget.personal-info .form-check, .widget.change-password .form-check, .widget.change-email .form-check {
+    margin-bottom: 25px;
+  }
+  
+  .widget.personal-info .form-check .form-check-label input, .widget.change-password .form-check .form-check-label input, .widget.change-email .form-check .form-check-label input {
+    margin-right: 7px;
+  }
+  
+  .widget.personal-info button, .widget.change-password button, .widget.change-email button {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .server-err{
+    color:red;
+    text-align:center;
+  }
+  .gear{
+    font-weight: bold;
+    font-size:20px;
+    color:var(--colorR1)
+  }

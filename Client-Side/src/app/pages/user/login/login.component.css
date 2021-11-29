@@ -1,11 +1,10 @@
 .form-cont {
   height: 100%;
-  /* color: white; */
   display: flex;
   align-items: center;
   padding: 3rem 5rem;
+  background: url('/assets/images/back1.jpg');
 }
-
 .form-login {
   width: 100%;
   max-width: 600px;
@@ -60,8 +59,8 @@ margin: 1rem 0rem;
 .form-login .btn{
   margin: 5px 0;
   border-radius: 2rem;
-  border: none;
-  cursor: pointer;
+  border: 1px solid #000000;
+  transition: all 0.3s ease-in-out;
 }
 
 .form-login .btn:hover {
@@ -72,4 +71,8 @@ color: #396EB0;
 
 .form-login input:hover {
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.server-err{
+	color:red;
+	text-align:center;
 }

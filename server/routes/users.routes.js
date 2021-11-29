@@ -10,6 +10,7 @@ router.post('/login',userController.login);
 //----------------user options to contol his account---------
 router.get('/showProfile', auth('User'), userController.profileShow)
 router.patch('/editProfile', auth('User'), userController.profileEdit)
+router.patch('/editPassword', auth('User'), userController.passwordEdit)
 router.delete('/deleteProfile', auth('User'), userController.profileDelete)
 
 //----------------user options to control his wishlist ----------------

@@ -16,8 +16,4 @@ app.use('/users', usersRoutes)
 app.use('/products', productRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/cart', cartRoutes)
-app.set('view engine', 'hbs')
-app.get("*", (req,res)=>{
-    res.render('error404', {pageTitle: "error page"})
-})
 module.exports = app

@@ -32,7 +32,7 @@
         <!-- Rate -->
         <div class="rate">
             <star-rating 
-            [value]="0" 
+            [value]="1" 
             [totalstars]="5" 
             checkedcolor="rgb(83, 2, 2)" 
             uncheckedcolor="rgb(238, 110, 110)" 
@@ -41,9 +41,9 @@
             (rate)="onRate($event)"></star-rating>
         </div>
         <div class="review-submit">
-          <form class="row">
+          <form class="row" [formGroup]="reviewForm" (ngSubmit)="addReview()">
             <div class="col-12">
-              <textarea name="review" rows="10" class="form-control" placeholder="Write Your Review Here"></textarea>
+              <textarea formControlName="message" rows="10" class="form-control" placeholder="Write Your Review Here"></textarea>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-main">Sumbit</button>

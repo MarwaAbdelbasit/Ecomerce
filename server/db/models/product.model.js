@@ -38,12 +38,11 @@ const productSchema = new mongoose.Schema({
     // ],
     category:[
         {
-            name:{
+        name:{
             type:String,
             trim:true,
             required:true,
-            maxlength:30
-        }
+            }
     }
     ],
     mainImage:{

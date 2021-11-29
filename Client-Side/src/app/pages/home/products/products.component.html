@@ -18,10 +18,12 @@
                         </div>
                     </div>
                     <div class="product-info">
-                        <span class="category">{{product.category[0].name}}</span>
-                        <h4 class="title">
+                        <span *ngFor="let single of product.category">
+                            <p class="category">{{single.name}},</p>
+                        </span>
+                        <h6 class="title">
                             <a routerLink="/products/{{product._id}}">{{product.shortName}}</a>
-                        </h4>
+                        </h6>
                         <div class="price">
                             <span>{{product.price |currency}}</span>
                         </div>
