@@ -118,5 +118,11 @@ userSchema.virtual('userCart',{
     foreignField:"userId"
 })
 
+userSchema.virtual('userWishlist',{
+    ref:"Wishlist",
+    localField:"_id",
+    foreignField:"userId"
+})
+
 const User=model('User',userSchema)
 module.exports=User
