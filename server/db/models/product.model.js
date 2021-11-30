@@ -118,6 +118,13 @@ productSchema.virtual('productCart',{
     localField:"_id",
     foreignField:"productId"
 })
+
+productSchema.virtual('productWishlist',{
+    ref:"Wishlist",
+    localField:"_id",
+    foreignField:"productId"
+})
+
 const Product = mongoose.model("Product", productSchema)
 
 module.exports=Product

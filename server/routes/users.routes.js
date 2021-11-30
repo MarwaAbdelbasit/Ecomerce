@@ -14,9 +14,9 @@ router.patch('/editPassword', auth('User'), userController.passwordEdit)
 router.delete('/deleteProfile', auth('User'), userController.profileDelete)
 
 //----------------user options to control his wishlist ----------------
-router.post('/toggleWishList/:productId', auth('User'), userController.toggleWishList);
-router.get('/getAllWishList', auth('User'),userController.getAllWishList)
-router.delete('/deleteAllWishList', auth('User'),userController.deleteAllWishList)
+// router.post('/toggleWishList/:productId', auth('User'), userController.toggleWishList);
+// router.get('/getAllWishList', auth('User'),userController.getAllWishList)
+// router.delete('/deleteAllWishList', auth('User'),userController.deleteAllWishList)
 
 //-----------------register for admins -----------
 router.post('/registerAdmin',userController.registerAdmin);

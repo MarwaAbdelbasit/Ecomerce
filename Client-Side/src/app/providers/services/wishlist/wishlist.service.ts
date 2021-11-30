@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WishlistService {
-  private commonUrl='http://localhost:3000/users/'
-  constructor(private _cart:HttpClient) { }
+  private commonUrl='http://localhost:3000/wishlist/'
+  constructor(private _wishlist:HttpClient) { }
 
   toggleWishList(productId:any):Observable<any>{
-    return this._cart.patch(`${this.commonUrl}toggleWishList/${productId}`,null)
+    return this._wishlist.post(`${this.commonUrl}toggleWishList/${productId}`,null)
   }
   getAllWishList():Observable<any>{
-    return this._cart.delete(`${this.commonUrl}getAllWishList`)
+    return this._wishlist.delete(`${this.commonUrl}getAllWishList`)
   }
   deleteAllWishList():Observable<any>{
-    return this._cart.get(`${this.commonUrl}deleteAllWishList`)
+    return this._wishlist.get(`${this.commonUrl}deleteAllWishList`)
   }
 }
