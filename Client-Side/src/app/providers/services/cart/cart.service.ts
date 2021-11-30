@@ -12,8 +12,8 @@ export class CartService {
   addCartItem(productId:any,data:any):Observable<any>{
     return this._cart.post(`${this.commonUrl}addCartItem/${productId}`,data)
   }
-  removeCartItem(productId:any,data:any):Observable<any>{
-    return this._cart.delete(`${this.commonUrl}removeCartItem/${productId}`,data)
+  removeCartItem(productId:any):Observable<any>{
+    return this._cart.delete(`${this.commonUrl}removeCartItem/${productId}`)
   }
   getMyCart():Observable<any>{
     return this._cart.get(`${this.commonUrl}myCart`)

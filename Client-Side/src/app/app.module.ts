@@ -33,6 +33,7 @@ import { ReviewComponent } from './pages/product-details/review/review.component
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { SidebarComponent } from './pages/user/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { SidebarComponent } from './pages/user/sidebar/sidebar.component';
     HttpClientModule,
     SwiperModule,
     ReactiveFormsModule,
-    RatingModule
+    RatingModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,

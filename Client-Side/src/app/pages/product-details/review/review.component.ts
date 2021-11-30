@@ -22,6 +22,7 @@ export class ReviewComponent implements OnInit {
   constructor(private _review:ProductsService) { }
 
   ngOnInit(): void {
+    console.log(this.product)
     this.reviews=this.product.reviews;
   }
   get message(){return this.reviewForm.get('message')}
@@ -39,7 +40,7 @@ export class ReviewComponent implements OnInit {
       }).subscribe(
         data => console.log(data),
         error => console.log(error),
-        () => window.location.reload()
+        // () => window.location.reload()
       )
   }
 }
