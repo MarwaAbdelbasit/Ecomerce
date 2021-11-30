@@ -6,6 +6,7 @@ const productRoutes = require("../routes/product.routes")
 const ordersRoutes = require("../routes/orders.routes")
 const cartRoutes = require("../routes/cart.routes")
 const wishlistRoutes = require("../routes/wishlist.routes")
+const citiesController = require("../controller/cities.controller")
 const express = require("express")
 const app = express()
 
@@ -18,4 +19,5 @@ app.use('/products', productRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/cart', cartRoutes)
 app.use('/wishlist', wishlistRoutes)
+app.get('/cities',citiesController.getCities)
 module.exports = app

@@ -1,0 +1,10 @@
+<button (click)="showToast()"></button>
+
+<div [ngClass]="clicked?'show':''" id="toast">
+    <div id="img">
+        <img src='assets/images/logo.png' >
+    </div>
+    <div id="desc">
+    {{message}}
+    </div>
+</div>

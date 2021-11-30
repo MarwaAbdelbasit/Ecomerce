@@ -6,16 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  public   isAuthed = false
-  public userData:any = null  
+  public isAuthed = false
+  public userData:any = null
   private commonUrl='http://localhost:3000/users/'
   constructor(private _auth:HttpClient) { }
 
   register(data:any):Observable<any>{
     return this._auth.post(`${this.commonUrl}register`,data)
-  }
-  registerAdmin(data:any):Observable<any>{
-    return this._auth.post(`${this.commonUrl}registerAdmin`,{...data,role:"Admin"})
   }
   login(data:any):Observable<any>{
     return this._auth.post(`${this.commonUrl}login`,data)
@@ -34,5 +31,8 @@ export class UsersService {
   }
   logOutAll():Observable<any>{
     return this._auth.post(`${this.commonUrl}logoutAll`,null)
+  }
+  getCities():Observable<any>{
+    return this._auth.get('http://localhost:3000/cities')
   }
 }

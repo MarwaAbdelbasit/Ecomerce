@@ -7,11 +7,6 @@ const upload = require("../middleware/fileUpload")
 router.post('/register',userController.register);
 router.post('/login',userController.login); 
 
-//----------------user options to contol his account---------
-router.get('/showProfile', auth('User'), userController.profileShow)
-router.patch('/editProfile', auth('User'), userController.profileEdit)
-router.patch('/editPassword', auth('User'), userController.passwordEdit)
-router.delete('/deleteProfile', auth('User'), userController.profileDelete)
 
 //----------------user options to control his wishlist ----------------
 // router.post('/toggleWishList/:productId', auth('User'), userController.toggleWishList);
@@ -37,5 +32,11 @@ router.delete('/deleteAdmin/:id',auth("Admin"),userController.delAdmin)
 router.post('/logout', auth(""), userController.logout)
 router.post('/logoutAll', auth(""), userController.logoutAll)
 router.patch("/changeImage", auth(""), upload.single('img'), userController.changeImage)
+
+//----------------user/admin options to contol his account---------
+router.get('/showProfile', auth(''), userController.profileShow)
+router.patch('/editProfile', auth(''), userController.profileEdit)
+router.patch('/editPassword', auth(''), userController.passwordEdit)
+router.delete('/deleteProfile', auth(''), userController.profileDelete)
 
 module.exports=router

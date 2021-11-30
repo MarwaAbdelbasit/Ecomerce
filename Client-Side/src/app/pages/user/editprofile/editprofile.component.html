@@ -1,4 +1,4 @@
-<section class="user-profile section" *ngIf="_auth.userData!=null">
+<section class="user-profile section" *ngIf="isLoaded else elseBlock">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 offset-md-1 col-lg-3 offset-lg-0">
@@ -126,3 +126,11 @@
 		</div>
 	</div>
 </section>
+<ng-template #elseBlock>
+	<div class="d-flex justify-content-center my-5">
+	  <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+	  </div>
+	</div>
+	</ng-template>
+  
+  

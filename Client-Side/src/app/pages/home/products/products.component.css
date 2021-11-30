@@ -80,6 +80,7 @@
 .single-product .product-info .title a {
   font-size: 16px;
   font-weight: 700;
+  text-decoration: none;
   color: #081828;
 }
 

@@ -1,5 +1,4 @@
-<div class='sign-up'>
-
+<div class='sign-up' *ngIf="isLoaded else elseBlock">
   <div class="login-box">
     <h2>Sign Up</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
@@ -22,7 +21,7 @@
       <div class="user-box" formGroupName="security">
         <span>secuirty question</span>
         <select class="form-control" formControlName="securityQuestion" required>
-          <option selected disabled hidden [selected]="true">Choose a question ..</option>
+          <option disabled hidden [selected]="true">Choose a question ..</option>
           <option value="what's your first pet name ?" >what's your first pet name ?</option>
           <option value="what's your uncle name ?" >what's your uncle name ?</option>
           <option value="what's your best memory ?" >what's your best memory ?</option>
@@ -36,15 +35,11 @@
     <div class='col-6'>
     <div formGroupName="adress">
         <div class="user-box">
-          <!-- <span>Select City</span>
+          <span>Select City</span>
           <select class="form-control" formControlName="city" required>
-            <option selected disabled hidden [selected]="true">Choose a question ..</option>
-            <span *ngFor="let city of cities">
-            <option [value]="city.name" >{{city.name}}</option>
-          </span>
-          </select> -->
-          <input type="text" class="form-control" formControlName="city" required>
-          <label class="form-label">City</label>
+            <option disabled hidden [selected]="true">Choose a city ..</option>
+            <option *ngFor="let city of cities" [value]="city.name" >{{city.name}}</option>
+          </select>
         </div>
 
         <div class="user-box mt-4">
@@ -110,6 +105,12 @@
     </form>
   </div>
 </div>
+<ng-template #elseBlock>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+    </div>
+  </div>
+  </ng-template>
 
 
 

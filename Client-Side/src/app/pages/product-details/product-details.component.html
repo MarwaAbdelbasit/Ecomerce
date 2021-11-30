@@ -1,4 +1,4 @@
-<section class="item-details section">
+<section class="item-details section" *ngIf="isLoaded else elseBlock">
   <div class="container">
     <div class="top-area">
       <div class="row align-items-center">
@@ -15,13 +15,15 @@
             <span *ngFor="let single of product.category">
               <p class="category">{{single.name}} ,</p>
             </span>
-            <h3 class="price">{{product.price |currency}}</h3>
+            <h3 class="price">{{product.price |currency:' '}} L.E</h3>
             <p class="info-text"></p>
             <div class="bottom-content">
               <div class="row align-items-end">
                 <div class="col-lg-6 col-md-6 col-12">
                   <div  class="wish-button">
-                    <button id='cart-button' class="btn" (click)="addToCart(product._id)"><i class="fas fa-cart-plus"></i> Add To Cart</button>
+                    <button id='cart-button' class="btn" (click)="addToCart(product._id)">
+                      <app-toast [message]="'product added to cart'" ></app-toast>
+                      <i class="fas fa-cart-plus"></i> Add To Cart</button>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
@@ -58,3 +60,12 @@
   <app-review [product]="product" ></app-review>
   </div>
 </section>
+<ng-template #elseBlock>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+    </div>
+  </div>
+  </ng-template>
+
+
+

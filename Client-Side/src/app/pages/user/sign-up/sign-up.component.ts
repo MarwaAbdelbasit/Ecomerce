@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
-import { State}  from 'country-state-city';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -43,12 +42,20 @@ export class SignUpComponent implements OnInit {
   get telephone(){return this.registerForm.get('adress')?.get('telephone')}
 
   constructor(private _auth:UsersService,private _router:Router) { }
-
+  isLoaded=false
   ngOnInit(): void {
-    this.cities=State.getStatesOfCountry('EG')
-    console.log(this.cities)
+    this.getCities()
   }  
   ngAfterViewChecked(): void {
+
+  }
+  getCities():void{
+    this._auth.getCities().subscribe(
+      data =>{
+        console.log(data)
+        this.cities = data.data
+        this.isLoaded=true
+      })
   }
   register(): void {
     this.isSubmitted=true

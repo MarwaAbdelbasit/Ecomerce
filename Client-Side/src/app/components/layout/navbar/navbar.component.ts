@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/providers/services/cart/cart.service';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public _auth:UsersService,private _router:Router) { }
+  constructor(public _auth:UsersService,private _cart:CartService,private _router:Router) { }
   className: string=''
+  myCartCount:number=0
   ngOnInit(): void {
       this._auth.showProfile().subscribe(
         (data:any)=>{
@@ -23,6 +25,14 @@ export class NavbarComponent implements OnInit {
           this._auth.isAuthed=true
         }
       )
+      this._cart.getMyCart().subscribe(
+        data => {
+          this.myCartCount=data.data.length
+        },
+        error => console.log(error),
+        () => console.log('done')
+      )
+    
     }
 handleLogOut(){
   this._auth.logOut().subscribe(

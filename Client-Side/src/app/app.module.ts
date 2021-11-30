@@ -34,6 +34,16 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { SidebarComponent } from './pages/user/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastComponent } from './components/toast/toast.component';
+import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
+import { SidebarAdminComponent } from './admin/components/sidebar-admin/sidebar-admin.component';
+import { MainAdminComponent } from './admin/components/main-admin/main-admin.component';
+import { TopbarComponent } from './admin/components/topbar/topbar.component';
+import { AllusersComponent } from './admin/pages/users/allusers/allusers.component';
+import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
+import { AlladminsComponent } from './admin/pages/admins/alladmins/alladmins.component';
+import { AllProductsComponent } from './admin/pages/products/all-products/all-products.component';
+import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +73,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     EditprofileComponent,
     SidebarComponent,
+    ToastComponent,
+    HomeAdminComponent,
+    SidebarAdminComponent,
+    MainAdminComponent,
+    TopbarComponent,
+    AllusersComponent,
+    SingleuserComponent,
+    AlladminsComponent,
+    AllProductsComponent,
+    EditProductComponent,
+    
     
   ],
   imports: [
