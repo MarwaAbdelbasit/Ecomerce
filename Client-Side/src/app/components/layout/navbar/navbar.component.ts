@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 })
 export class NavbarComponent implements OnInit {
   constructor(public _auth:UsersService,private _router:Router) { }
-
+  className: string=''
   ngOnInit(): void {
       this._auth.showProfile().subscribe(
         (data:any)=>{
@@ -40,5 +40,11 @@ handleLogOut(){
       this._router.navigateByUrl('/user/login')
     }
   )
+}
+expanded(){
+this.className='expand'
+}
+dispanded(){
+  this.className=''
 }
 }

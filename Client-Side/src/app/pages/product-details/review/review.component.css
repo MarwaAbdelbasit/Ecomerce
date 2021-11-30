@@ -15,6 +15,9 @@ align-items: flex-start;
   .product-review .date p {
     font-size:12px;
   }
+  .media-body{
+    width: 100%;
+  }
   .product-review .media-body {
     background: rgb(224, 223, 223);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);

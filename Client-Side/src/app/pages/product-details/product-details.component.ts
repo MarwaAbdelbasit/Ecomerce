@@ -20,7 +20,6 @@ export class ProductDetailsComponent implements OnInit {
   getSingleProduct(){
     this._products.getSingleProduct(this._route.snapshot.params['productId']).subscribe(
       data =>{
-        console.log(data.data);
         this.product = data.data},
       err=>console.log(err))
   }
@@ -37,6 +36,5 @@ export class ProductDetailsComponent implements OnInit {
         ()=>{console.log("added")}
       )
     }
-    console.log(productId);
   }
 }

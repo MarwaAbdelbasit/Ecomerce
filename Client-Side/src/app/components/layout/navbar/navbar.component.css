@@ -7,6 +7,7 @@ ul li a{
   color: #222;
   font-weight: 600;
   font-size: large;
+  transition: all 0.3s ease-in-out;
 }
 
 ul li a:hover {
@@ -45,10 +46,18 @@ ul li a:hover {
   color: #fff;
   border-radius: 1rem;
 }
-
+form{
+  justify-content: flex-end
+}
 form .mySearch {
   border-radius: 1.5rem;
   border: 1px solid #ce121270;
+  width: 95px;
+  transition: 0.8s ease-in-out;
+}
+form .expand {
+  transition: 0.8s ease-in-out;
+  width: 100%;
 }
 
 form .btn {
@@ -74,4 +83,30 @@ form .btn:hover {
 .log-out:hover{
   background-color: var(--colorR4);
 
+}
+.icons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icons .fa-shopping-cart {
+  color: rgb(7, 55, 146);
+  font-size: 25px;
+  margin-right:10px;
+  position: relative;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.icons .fa-heart {
+  color: red;
+font-size: 25px;
+margin-left:10px;
+transition: all 0.4s ease;
+cursor: pointer;
+}
+.icons .fa-shopping-cart:hover {
+  color: rgb(5, 27, 70);
+}
+.icons .fa-heart:hover {
+  color: rgb(85, 7, 7);
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StarRatingComponent } from 'ng-starrating';
 import { ProductsService } from 'src/app/providers/services/products/products.service';
+import { UsersService } from 'src/app/providers/services/users/users.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,12 +20,14 @@ export class ReviewComponent implements OnInit {
     message:new FormControl( '' , [Validators.required] )
   })
 
-  constructor(private _review:ProductsService) { }
+  constructor(private _auth:UsersService,private _review:ProductsService) { }
 
   ngOnInit(): void {
-    console.log(this.product)
+  }
+  ngAfterViewChecked(): void {
     this.reviews=this.product.reviews;
   }
+
   get message(){return this.reviewForm.get('message')}
   onRate($event:{newValue:number, starRating:StarRatingComponent}) {
     this.rate=$event.newValue
@@ -33,14 +36,22 @@ export class ReviewComponent implements OnInit {
     return new Array(num)
   }
   addReview(){
+    let addedReview:any={
+      rate:this.rate,
+      reviewerName:this._auth.userData.name,
+      reviewerPic:this._auth.userData.profilePic,
+      date:new Date().toLocaleDateString(),
+      message:this.reviewForm.value.message
+    }
     this._review.addReview(
-      this.product._id,{
-        rate:this.rate,
-        message:this.reviewForm.value.message
-      }).subscribe(
-        data => console.log(data),
+      this.product._id,addedReview
+      ).subscribe(
+        () => {
+          this.reviews.push(addedReview)
+          
+        },
         error => console.log(error),
-        // () => window.location.reload()
+        () => this.reviewForm.reset()
       )
   }
 }

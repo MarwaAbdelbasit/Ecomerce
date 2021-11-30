@@ -37,6 +37,9 @@
   outline: none;
   background: transparent;
 }
+.user-box span{
+  color: #fff;
+}
 .login-box .user-box label {
   position: absolute;
   top:0;
