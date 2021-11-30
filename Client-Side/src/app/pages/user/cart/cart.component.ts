@@ -26,4 +26,14 @@ getCart(){
     () => console.log('done')
   )
 }
+removeCartItem(id: any){
+  this._cart.removeCartItem(id).subscribe(
+    data => {
+      console.log(data)
+      this.myCart=this.myCart.filter(ci => ci._id != id)
+    },
+    error => console.log(error),
+    () => console.log('done')
+  )
+}
 }
