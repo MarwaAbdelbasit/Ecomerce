@@ -11,21 +11,19 @@ export class NavbarComponent implements OnInit {
   constructor(public _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
-    this._auth.showProfile().subscribe(
-      (data:any)=>{
-        console.log(data)
-        this._auth.userData = data
-      },
-      (err:any)=>{
-        console.log(err)
-        this._auth.isAuthed=false
-      },
-      ()=>{
-        console.log('done')
-        this._auth.isAuthed=true
-      }
-    )
-  }
+      this._auth.showProfile().subscribe(
+        (data:any)=>{
+          this._auth.userData = data
+        },
+        (err:any)=>{
+          console.log(err)
+          this._auth.isAuthed=false
+        },
+        ()=>{
+          this._auth.isAuthed=true
+        }
+      )
+    }
 handleLogOut(){
   this._auth.logOut().subscribe(
     (data:any)=>{

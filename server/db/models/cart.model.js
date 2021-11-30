@@ -17,15 +17,8 @@ const cartSchema = new Schema({
     price:{
         type:Number,
     },
-    discound:{
-        name:{
-            type: String,
-            trim:true,
-        },
-        percent:{
+    discount:{
             type:Number,
-            min:1
-        }
     }
 },{timestamps:true})
 cartSchema.methods.toJSON=function(){
