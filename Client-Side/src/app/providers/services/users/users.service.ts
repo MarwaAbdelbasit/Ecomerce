@@ -32,4 +32,7 @@ export class UsersService {
   logOut():Observable<any>{
     return this._auth.post(`${this.commonUrl}logout`,null)
   }
+  logOutAll():Observable<any>{
+    return this._auth.post(`${this.commonUrl}logoutAll`,null)
+  }
 }

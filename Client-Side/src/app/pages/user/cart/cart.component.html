@@ -8,7 +8,8 @@
                     <tr>
                       <th>Image</th>
                       <th>Product Name</th>
-                      <th class="text-center">Category</th>
+                      <th class="text-center">Price</th>
+                      <th class="text-center">Amount</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
@@ -21,9 +22,10 @@
                         <h6 class="title">{{cartItem.productId.shortName}}</h6>
                       </td>
                       <td class="product-category">
-                        <span *ngFor="let single of cartItem.productId.category">
-                            <p class="categories">{{single.name}} ,</p>
-                          </span>
+                            <p class="categories">{{cartItem.productId.price |currency}}</p>
+                        </td>
+                      <td class="product-category">
+                            <p class="categories">{{cartItem.amount}}</p>
                         </td>
                       <td class="action" data-title="Action">
                         <div class="">
@@ -38,8 +40,8 @@
                                 <i class="fa fa-pencil"></i>
                               </a>
                             </li>
-                            <li class="list-inline-item">
-                              <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" routerLink="">
+                            <li class="list-inline-item" >
+                              <a class="delete" (click)="removeCartItem(cartItem._id)" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="fa fa-trash"></i>
                               </a>
                             </li>
