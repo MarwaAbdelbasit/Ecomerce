@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/providers/services/cart/cart.service';
 import { ProductsService } from 'src/app/providers/services/products/products.service';
+import { WishlistService } from 'src/app/providers/services/wishlist/wishlist.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,7 +13,12 @@ import { environment } from 'src/environments/environment';
 export class ProductDetailsComponent implements OnInit {
   apiURL = environment.apiURL;
   product:any={}
-  constructor(private _products: ProductsService, private _cart:CartService,private _route:ActivatedRoute) { }
+  // wishlistErr:string = ""
+  constructor(
+    private _products: ProductsService,
+    private _cart:CartService,
+    private _wishlist:WishlistService,
+    private _route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getSingleProduct()
@@ -20,7 +26,7 @@ export class ProductDetailsComponent implements OnInit {
   getSingleProduct(){
     this._products.getSingleProduct(this._route.snapshot.params['productId']).subscribe(
       data =>{
-        console.log(data.data);
+        // console.log(data.data);
         this.product = data.data},
       err=>console.log(err))
   }
@@ -38,5 +44,16 @@ export class ProductDetailsComponent implements OnInit {
       )
     }
     console.log(productId);
+  }
+
+  addToWishlist(productId:string) {
+    this._wishlist.toggleWishList(productId).subscribe(
+      (res)=>{console.log(res)},
+      (err)=>{
+        alert(err.error.message)
+        console.log(err.error.message)
+      },
+      ()=>{console.log("done from add wishlist")}
+    )
   }
 }
