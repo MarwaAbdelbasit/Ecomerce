@@ -15,6 +15,8 @@ import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { CartComponent } from './pages/user/cart/cart.component';
+import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 import { AuthGuard } from './providers/guards/auth.guard';
 
@@ -25,7 +27,11 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"profile",component:ProfileComponent ,canActivate:[AuthGuard]},
   {path:"editprofile",component:EditprofileComponent ,canActivate:[AuthGuard]},
-  {path:"cart",component:CartComponent ,canActivate:[AuthGuard]},
+  {path:"wishlist", component:WishlistComponent},
+  {path:"cart", children:[
+    {path:"", component:CartComponent},
+    // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
+  ],canActivate:[AuthGuard]},
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[

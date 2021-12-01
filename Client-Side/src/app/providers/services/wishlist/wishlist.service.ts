@@ -13,9 +13,9 @@ export class WishlistService {
     return this._wishlist.post(`${this.commonUrl}toggleWishList/${productId}`,null)
   }
   getAllWishList():Observable<any>{
-    return this._wishlist.delete(`${this.commonUrl}getAllWishList`)
+    return this._wishlist.get(`${this.commonUrl}getAllWishList`)
   }
   deleteAllWishList():Observable<any>{
-    return this._wishlist.get(`${this.commonUrl}deleteAllWishList`)
+    return this._wishlist.delete(`${this.commonUrl}deleteAllWishList`)
   }
 }
