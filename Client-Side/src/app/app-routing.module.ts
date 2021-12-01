@@ -25,22 +25,13 @@ const routes: Routes = [
 {path:'user',children:[
   {path:"register",component:SignUpComponent},
   {path:"login", component:LoginComponent},
-<<<<<<< HEAD
-  {path:"profile",component:ProfileComponent},
-  {path:"editprofile",component:EditprofileComponent},
-=======
   {path:"profile",component:ProfileComponent ,canActivate:[AuthGuard]},
   {path:"editprofile",component:EditprofileComponent ,canActivate:[AuthGuard]},
->>>>>>> 9b0d105872afe7cbe5846612c7e2ff409ecaa62f
   {path:"wishlist", component:WishlistComponent},
   {path:"cart", children:[
     {path:"", component:CartComponent},
     // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
-<<<<<<< HEAD
-  ]},
-=======
   ],canActivate:[AuthGuard]},
->>>>>>> 9b0d105872afe7cbe5846612c7e2ff409ecaa62f
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[
