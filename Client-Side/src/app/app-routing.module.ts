@@ -14,6 +14,7 @@ import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { CartComponent } from './pages/user/cart/cart.component';
+import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -35,7 +36,8 @@ const routes: Routes = [
   {path:'about',component:AboutComponent},
 ]},
 {path:"admin",children:[
-  {path:"register",component:RegisterComponent}
+  {path:"",component:HomeAdminComponent},
+  {path:"register",component:RegisterComponent},
 ]},
 {path:"**",component:Error404Component}
 ];

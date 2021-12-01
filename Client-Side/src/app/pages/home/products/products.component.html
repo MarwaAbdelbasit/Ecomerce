@@ -12,10 +12,9 @@
           <div class="col-lg-3 col-md-6 col-12" *ngFor="let product of products">
               <div class="single-product">
                   <div class="product-image">
-                      <img [src]="apiURL+product.mainImage" alt="#">
-                      <div class="button">
-                          <a routerLink="/products/{{product._id}}" class="btn"><i class="fas fa-eye"></i></a>
-                      </div>
+                      <a routerLink="/products/{{product._id}}">
+                        <img [src]="apiURL+product.mainImage" alt="#">
+                        </a>
                   </div>
                   <div class="product-info">
                       <span *ngFor="let single of product.category">
@@ -25,7 +24,7 @@
                           <a routerLink="/products/{{product._id}}">{{product.shortName}}</a>
                       </h6>
                       <div class="price">
-                          <span>{{product.price |currency}}</span>
+                          <span>{{product.price |currency:' '}} L.E</span>
                       </div>
                   </div>
               </div>

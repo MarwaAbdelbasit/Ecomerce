@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -8,14 +7,15 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(public _auth:UsersService,private _router:Router) { }
+isLoaded=false
+  constructor(public _auth:UsersService,) { }
 
   ngOnInit(): void {
     this._auth.showProfile().subscribe(
       (data:any)=>{
         console.log(data)
         this._auth.userData = data
+        this.isLoaded=true
       },
       (err:any)=>{
         console.log(err)

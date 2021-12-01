@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/providers/services/admin/admin.service';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
     position: new FormControl( 'Manger' , [Validators.required])
   }) 
-  constructor(private _auth:UsersService,private _router:Router) { }
+  constructor(private _auth:UsersService,private _admin:AdminService,private _router:Router) { }
 
   ngOnInit(): void {
   }
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
   register(): void {
     this.isSubmittedR=true
     if(this.registerForm.valid){
-      this._auth.registerAdmin(this.registerForm.value).subscribe(
+      this._admin.registerAdmin(this.registerForm.value).subscribe(
         (res)=>{
           console.log(res);
           this.isSubmittedR=false
@@ -53,8 +54,22 @@ export class RegisterComponent implements OnInit {
           console.log(err)
         },
         ()=>{
-          this.loginForm.reset()
-          this._router.navigateByUrl('/')
+          this._auth.showProfile().subscribe(
+            (data:any)=>{
+              console.log(data)
+              this._admin.adminData = data
+            },
+            (err:any)=>{
+              console.log(err)
+              this._admin.adminAuthed=false
+            },
+            ()=>{
+              console.log('done')
+              this._admin.adminAuthed=true
+              this.loginForm.reset()
+              this._router.navigateByUrl('/admin')
+                    }
+          )
         }
         )
       this.registerForm.reset();
@@ -74,9 +89,23 @@ export class RegisterComponent implements OnInit {
           console.log(err)
         },
         ()=>{
-          this.loginForm.reset()
-          this.isSubmittedL=false
-          this._router.navigateByUrl('/')
+          this._auth.showProfile().subscribe(
+            (data:any)=>{
+              console.log(data)
+              this._admin.adminData = data
+            },
+            (err:any)=>{
+              console.log(err)
+              this._admin.adminAuthed=false
+            },
+            ()=>{
+              console.log('done')
+              this._admin.adminAuthed=true
+              this.loginForm.reset()
+              this.isSubmittedL=false
+              this._router.navigateByUrl('/admin')
+                }
+          )
         }
         )
       this.loginForm.reset();

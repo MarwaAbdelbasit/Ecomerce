@@ -1,5 +1,4 @@
-<div class='sign-up'>
-
+<div class='sign-up' *ngIf="isLoaded else elseBlock">
   <div class="login-box">
     <h2>Sign Up</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
@@ -19,21 +18,31 @@
         <input type="password" class="form-control" formControlName="password" required>
         <label for="password">Password</label>
       </div>
+      <div class="user-box" formGroupName="security">
+        <span>secuirty question</span>
+        <select class="form-control" formControlName="securityQuestion" required>
+          <option disabled hidden [selected]="true">Choose a question ..</option>
+          <option value="what's your first pet name ?" >what's your first pet name ?</option>
+          <option value="what's your uncle name ?" >what's your uncle name ?</option>
+          <option value="what's your best memory ?" >what's your best memory ?</option>
+        </select>
+        <div class="user-box">
+          <input type="text" class="form-control" formControlName="answer" required>
+          <label class="form-label" for="secq">Answer</label>
+        </div>
+      </div>
     </div>
     <div class='col-6'>
-
     <div formGroupName="adress">
-      <div class="user-box">
-        <input type="text" class="form-control" formControlName="country" required>
-        <label for="country">Country</label>
-    </div>
-
         <div class="user-box">
-            <input type="text" class="form-control" formControlName="city" required>
-            <label for="city">City</label>
+          <span>Select City</span>
+          <select class="form-control" formControlName="city" required>
+            <option disabled hidden [selected]="true">Choose a city ..</option>
+            <option *ngFor="let city of cities" [value]="city.name" >{{city.name}}</option>
+          </select>
         </div>
 
-        <div class="user-box">
+        <div class="user-box mt-4">
             <input type="text" class="form-control" formControlName="postalCode" required>
             <label for="postalCode">Postal Code</label>
         </div>
@@ -55,9 +64,12 @@
             <div *ngIf="password?.errors?.['required']">password is required</div>
             <div *ngIf="password?.errors?.['pattern']">password must contain 8 characters, one number, one letter, and a special case</div>
           </div>
-          <div *ngIf="country?.invalid && (country?.touched || country?.dirty || isSubmitted)">
-            <div *ngIf="country?.errors?.['required']">country is required</div>
-        </div>
+          <div *ngIf="securityQuestion?.invalid && (securityQuestion?.touched || securityQuestion?.dirty || isSubmitted)">
+            <div *ngIf="securityQuestion?.errors?.['required']">you have to choose a question</div>
+          </div>
+          <div *ngIf="answer?.invalid && (answer?.touched || answer?.dirty || isSubmitted)">
+            <div *ngIf="answer?.errors?.['required']">you have to answer the secuirty question</div>
+          </div>
         <div *ngIf="city?.invalid && (city?.touched || city?.dirty || isSubmitted)">
           <div *ngIf="city?.errors?.['required']">city is required</div>
       </div>
@@ -66,6 +78,7 @@
     </div>
     <div *ngIf="telephone?.invalid && (telephone?.touched || telephone?.dirty || isSubmitted)">
       <div *ngIf="telephone?.errors?.['required']">Phone is required</div>
+      <div *ngIf="telephone?.errors?.['minlength']">invalid Phone number</div>
   </div>
       </div>
 
@@ -92,6 +105,12 @@
     </form>
   </div>
 </div>
+<ng-template #elseBlock>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+    </div>
+  </div>
+  </ng-template>
 
 
 

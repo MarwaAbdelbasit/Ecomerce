@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  isLoaded=false
   myCart:any[]=[]
   apiURL = environment.apiURL;
 
@@ -21,6 +22,7 @@ getCart(){
     data => {
       console.log(data)
       this.myCart=data.data
+      this.isLoaded=true
     },
     error => console.log(error),
     () => console.log('done')

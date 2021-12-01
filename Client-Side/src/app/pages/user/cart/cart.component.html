@@ -1,6 +1,6 @@
-<section class="dashboard section">
+<section class="section" *ngIf="isLoaded else elseBlock">
     <div class="container">
-          <div class="widget dashboard-container my-adslist">
+          <div class="widget ">
             <h3 class="widget-header">My Cart</h3>
             <div class="table-responsive">
                 <table class="table  product-dashboard-table">
@@ -19,7 +19,7 @@
                       <td class="product-thumb">
                         <img width="80px" height="auto" [src]="apiURL+cartItem.productId.mainImage" alt="product image"></td>
                       <td class="product-details">
-                        <h6 class="title">{{cartItem.productId.shortName}}</h6>
+                        <h6 >{{cartItem.productId.shortName}}</h6>
                       </td>
                       <td class="product-category">
                             <p class="categories">{{cartItem.productId.price |currency}}</p>
@@ -79,4 +79,13 @@
         </div>
     </div>
   </section>
+  <ng-template #elseBlock>
+    <div class="d-flex justify-content-center my-5">
+      <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+      </div>
+    </div>
+    </ng-template>
+  
+  
+  
   

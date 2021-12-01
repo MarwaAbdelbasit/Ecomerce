@@ -28,15 +28,12 @@ class Product {
             let product= await productModel.updateOne({_id:req.params.productId},{
                 $push: {
                     reviews:{
-                        ...req.body,
-                        reviewerName:req.user.name,
-                        reviewerPic:req.user.profilePic,
-                        date:new Date().toLocaleDateString()
+                        ...req.body
                     }
                 }
             })
             if(!product) throw new Error("product not found")
-            successHandler(product,res,'product added to wishlist successfully')
+            successHandler(product,res,'review added  successfully')
         }
         catch(err) {
         errorHandler(err,res)
