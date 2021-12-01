@@ -81,6 +81,7 @@ export class ProductDetailsComponent implements OnInit {
     this._wishlist.toggleWishList(productId).subscribe(
       (res)=>{
         console.log(res)
+        this._wishlist.wishlistCount++
       },
       (err)=>{
         alert(err.error.message)

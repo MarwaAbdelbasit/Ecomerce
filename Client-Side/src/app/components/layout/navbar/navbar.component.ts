@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/providers/services/cart/cart.service';
 import { UsersService } from 'src/app/providers/services/users/users.service';
+import { WishlistService } from 'src/app/providers/services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 export class NavbarComponent implements OnInit {
   constructor(public _auth:UsersService,
     public _cart:CartService,
+    public _wishlist:WishlistService,
     private _router:Router,
     ) { }
   className: string=''
@@ -35,6 +37,16 @@ export class NavbarComponent implements OnInit {
         },
         error => console.log(error),
         () => console.log('done')
+      )
+
+      this._wishlist.getAllWishList().subscribe(
+        (res)=>{
+          console.log(res.data)
+          console.log("wishlist count "+this._wishlist.wishlistCount);
+          this._wishlist.wishlistCount = res.data.length
+        },
+        (err)=>{console.log(err)},
+        ()=>{console.log("get wishlist done")}
       )
 
     }

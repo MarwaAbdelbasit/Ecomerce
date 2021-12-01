@@ -65,4 +65,5 @@ editItemAmount(cartItemId:string, event:any) {
     }
   )
 }
+
 }

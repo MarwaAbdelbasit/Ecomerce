@@ -31,20 +31,15 @@
                       <div class="">
                         <ul class="list-inline d-flex justify-content-center">
                           <li class="list-inline-item">
-                            <a data-toggle="tooltip" data-placement="top" title="view" class="view" routerLink="/">
+                            <a data-toggle="tooltip" data-placement="top" title="view" class="view" routerLink="/products/{{listItem.productId._id}}">
                               <i class="fa fa-eye"></i>
                             </a>
                           </li>
-                          <!-- <li class="list-inline-item">
-                            <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" (click)="editlistItem()">
-                              <i class="fas fa-edit"></i>
-                            </a>
-                          </li> -->
-                          <!-- <li class="list-inline-item" >
+                          <li class="list-inline-item" >
                             <a class="delete" (click)="removelistItem(listItem._id)" data-toggle="tooltip" data-placement="top" title="Delete">
                               <i class="fa fa-trash"></i>
                             </a>
-                          </li> -->
+                          </li>
                         </ul>
                       </div>
                     </td>
