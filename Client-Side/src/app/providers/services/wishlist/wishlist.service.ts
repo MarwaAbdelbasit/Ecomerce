@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class WishlistService {
   private commonUrl='http://localhost:3000/wishlist/'
+  public wishlistCount:number = 0
   constructor(private _wishlist:HttpClient) { }
 
   toggleWishList(productId:any):Observable<any>{
@@ -17,5 +18,8 @@ export class WishlistService {
   }
   deleteAllWishList():Observable<any>{
     return this._wishlist.delete(`${this.commonUrl}deleteAllWishList`)
+  }
+  delSingleWishlist(itemId:any):Observable<any>{
+    return this._wishlist.delete(`${this.commonUrl}delSingleWishlist/${itemId}`)
   }
 }

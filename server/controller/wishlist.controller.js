@@ -5,8 +5,6 @@ const successHandler = require('../helpers/successHandler')
 class Wishlist {
     static toggleWishList= async (req, res) => {
         try {
-            let product = await wishlistModel.find({productId:req.params.productId})
-            if(product) throw new Error("product already wishlisted")
             const listItem = new wishlistModel({
                 userId: req.user._id,
                 productId:req.params.productId
@@ -32,6 +30,16 @@ class Wishlist {
         try{
             await wishlistModel.deleteMany()
             successHandler(null,res,'wishList deleted successfully')
+        }
+        catch(e) {
+            errorHandler(e,res)
+        }
+    }
+    static delSingleWishlist = async (req, res)=> {
+        try {
+            let item = await wishlistModel.findByIdAndDelete(req.params.itemId)
+            if(!item) throw new Error("item not found")
+            successHandler(null,res,' item is deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
