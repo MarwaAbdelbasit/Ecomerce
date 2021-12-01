@@ -19,6 +19,7 @@ import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-car
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 import { AuthGuard } from './providers/guards/auth.guard';
+import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -46,6 +47,9 @@ const routes: Routes = [
 {path:"admin",children:[
   {path:"",component:HomeAdminComponent,canActivate:[AdminAuthGuard]},
   {path:"register",component:RegisterComponent},
+  {path:"users",children:[
+    {path:"singleUser/:userId",component:SingleuserComponent}
+  ]}
 ]},
 {path:"**",component:Error404Component}
 ];

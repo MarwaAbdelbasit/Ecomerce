@@ -84,6 +84,9 @@ ul li a span:hover {
 }
 .user_img img {
     border-radius: 100% 100%;
+    max-width: 100%;
+    border: #1176b1 4px solid;
+
 }
 .user_img {
     width: 75px;
@@ -91,9 +94,6 @@ ul li a span:hover {
     float: left;
 }
 
-.img-responsive {
-    max-width: 100%;
-}
 .user_info {
     margin: 0 0 0 15px;
     padding-top: 15px;

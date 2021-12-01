@@ -9,6 +9,7 @@ export class AdminService {
   public adminAuthed = false
   public adminData:any = null  
   private commonUrl='http://localhost:3000/users/'
+  private commonProductsUrl='http://localhost:3000/products/'
 
   constructor(private _auth:HttpClient) { }
   registerAdmin(data:any):Observable<any>{
@@ -25,5 +26,11 @@ export class AdminService {
   }
   getAllAdmins():Observable<any>{
     return this._auth.get(`${this.commonUrl}showAllAdmins`)
+  }
+  showUser(userId:any):Observable<any>{
+    return this._auth.get(`${this.commonUrl}showUser/${userId}`)
+  }
+  addProduct(product:any):Observable<any>{
+    return this._auth.post(`${this.commonProductsUrl}addProduct/`,product)
   }
 }

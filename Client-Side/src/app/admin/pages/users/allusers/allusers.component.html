@@ -13,21 +13,22 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let user of allUsers"> 
-                      <td class="product-thumb">
-                        <img width="80px" height="auto" [src]="apiURL+user.profilePic" alt="user image"></td>
+                      <td class="user-image">
+                        <img [src]="apiURL+user.profilePic" alt="user image"></td>
                       <td class="product-details">
-                        <h3>{{user.name}}</h3>
+                        <h6>{{user.name}}</h6>
                       </td>
                       <td class="action" data-title="Action">
                         <div >
                           <ul class="list-inline d-flex justify-content-center">
                             <li class="list-inline-item">
-                              <a data-toggle="tooltip" data-placement="top" title="view" routerLink="/">
+                              <a data-toggle="tooltip" data-placement="top" title="view" routerLink="/admin/users/singleUser/{{user._id}}">
                                 <i class="fa fa-eye"></i>
                               </a>
                             </li>
                             <li class="list-inline-item" >
-                              <a (click)="removeUser(user._id)" data-toggle="tooltip" data-placement="top" title="Delete" class='delete'>
+                              <a (click)="removeUser(user._id);showToast()" data-toggle="tooltip" data-placement="top" title="Delete" class='delete'>
+                                <app-toast [clicked]="clicked" [message]="'User Removed successfully'" ></app-toast>
                                 <i class="fa fa-trash"></i>
                               </a>
                             </li>

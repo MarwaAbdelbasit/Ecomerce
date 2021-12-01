@@ -15,6 +15,11 @@ const productSchema = new mongoose.Schema({
         trim:true,
         required:true,
     },
+    specifications:{
+        type:String,
+        trim:true,
+        required:true,
+    },
     price:{
         type:Number,
         required:true
@@ -62,7 +67,7 @@ const productSchema = new mongoose.Schema({
         min: 1,
         required: true
     },
-    discount:[
+    discount:
         {
         name:{
             type: String,
@@ -82,7 +87,7 @@ const productSchema = new mongoose.Schema({
             dafault:true
         }
     }
-    ],
+    ,
     reviews:[
         {
             reviewerName:{
