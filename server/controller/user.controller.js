@@ -50,7 +50,7 @@ class User{
                 $set:{profilePic: "uploads/" + req.user._id + "/" + req.file.filename}
             })
             if(!user) throw new Error("upload failed")
-            successHandler(user,res,'image uploaded successfully')
+            successHandler(("uploads/" + req.user._id + "/" + req.file.filename),res,'image uploaded successfully')
         }
         catch(err) {
             errorHandler(err,res)

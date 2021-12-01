@@ -1,4 +1,5 @@
 <section class="section" *ngIf="isLoaded else elseBlock">
+  <div *ngIf="myCart.length!=0 else elseBlock2">
     <div class="container">
           <div class="widget ">
             <h3 class="widget-header">My Cart</h3>
@@ -78,6 +79,12 @@
           <!-- pagination -->
         </div>
     </div>
+  </div>
+  <ng-template #elseBlock2>
+    <div class='emptycart'>
+      <!-- <img src="assets/images/cartempty.png" alt="empty cart"> -->
+    </div>
+  </ng-template>
   </section>
   <ng-template #elseBlock>
     <div class="d-flex justify-content-center my-5">

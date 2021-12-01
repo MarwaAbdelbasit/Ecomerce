@@ -9,9 +9,11 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public _auth:UsersService,private _cart:CartService,private _router:Router) { }
+  constructor(public _auth:UsersService,
+    public _cart:CartService,
+    private _router:Router,
+    ) { }
   className: string=''
-  myCartCount:number=0
   ngOnInit(): void {
       this._auth.showProfile().subscribe(
         (data:any)=>{
@@ -27,12 +29,14 @@ export class NavbarComponent implements OnInit {
       )
       this._cart.getMyCart().subscribe(
         data => {
-          this.myCartCount=data.data.length
+          console.log(data)
+          console.log(this._cart.myCartCount)
+          this._cart.myCartCount=data.data.length
         },
         error => console.log(error),
         () => console.log('done')
       )
-    
+
     }
 handleLogOut(){
   this._auth.logOut().subscribe(

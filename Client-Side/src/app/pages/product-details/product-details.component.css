@@ -101,6 +101,7 @@
   }
   #cart-button {
     color: rgb(255, 255, 255);
+    position:relative;
     background-color: var(--colorR3);
   }
 .fa-dot-circle{
@@ -179,3 +180,25 @@
   .product-details-info .info-body .normal-list li:last-child {
     margin: 0;
   }
+  .cart-errors{
+    position: fixed;
+    background-color: #e0dede;
+    padding: 20px;
+    z-index: 2;
+    border-radius: 20px;
+    top: -350px;
+    right: -250px;
+    transition: all 0.4s ease-in-out;
+    animation: move 1s ease-in-out forwards;
+  }
+  .cart-errors div {
+    font-size:20px;
+    color:red
+  }
+  @keyframes move {
+    100%{
+      top: 200px;
+      right:200px
+    }
+  }
+  

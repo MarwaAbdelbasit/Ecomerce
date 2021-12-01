@@ -35,4 +35,8 @@ export class UsersService {
   getCities():Observable<any>{
     return this._auth.get('http://localhost:3000/cities')
   }
+  uploadImage(data:any):Observable<any>{
+    return this._auth.patch(`${this.commonUrl}changeImage`,data)
+  }
+
 }

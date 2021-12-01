@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CartService {
   private commonUrl='http://localhost:3000/cart/'
   constructor(private _cart:HttpClient) { }
-
+  public myCartCount:number=0
   addCartItem(productId:any,data:any):Observable<any>{
     return this._cart.post(`${this.commonUrl}addCartItem/${productId}`,data)
   }
