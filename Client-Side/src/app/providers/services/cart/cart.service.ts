@@ -18,8 +18,8 @@ export class CartService {
   getMyCart():Observable<any>{
     return this._cart.get(`${this.commonUrl}myCart`)
   }
-  editCartAmount(productId:any,data:any):Observable<any>{
-    return this._cart.post(`${this.commonUrl}editCartAmount/${productId}`,data)
+  editCartAmount(cartItemId:any,data:any):Observable<any>{
+    return this._cart.patch(`${this.commonUrl}editCartAmount/${cartItemId}`,data)
   }
   clearCart(productId:any,data:any):Observable<any>{
     return this._cart.patch(`${this.commonUrl}clearCart/${productId}`,data)

@@ -57,7 +57,7 @@ const productSchema = new mongoose.Schema({
             default: "uploads/product.png"
         }
     ] ,
-        inventoryQuantity:{
+    inventoryQuantity:{
         type: Number,
         min: 1,
         required: true
