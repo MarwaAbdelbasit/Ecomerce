@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EditprofileComponent implements OnInit {
   apiURL = environment.apiURL;
+  file:any;
   isLoaded=false
   myForm=new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -78,5 +79,22 @@ export class EditprofileComponent implements OnInit {
       console.log('password failed to update')
     }
   }
-
+  handleChange(event:any){
+    this.file=event.target.files[0]
+  }
+  uploadImage(){
+  const data=new FormData();
+  data.append('img',this.file,this.file.name)
+  this._auth.uploadImage(data).subscribe(
+    data=>{
+      console.log(data)
+      this._auth.userData.profilePic=data.data
+    },
+    err=>console.log(err),
+    ()=>{
+      console.log('done')
+    }
+  )
+  }
+  
 }

@@ -37,7 +37,7 @@
         <div class="user-box">
           <span>Select City</span>
           <select class="form-control" formControlName="city" required>
-            <option disabled hidden [selected]="true">Choose a city ..</option>
+            <option value="" disabled hidden [selected]="true">Choose a city ..</option>
             <option *ngFor="let city of cities" [value]="city.name" >{{city.name}}</option>
           </select>
         </div>

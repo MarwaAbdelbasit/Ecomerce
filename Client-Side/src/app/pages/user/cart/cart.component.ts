@@ -36,6 +36,7 @@ removeCartItem(id: any){
     data => {
       console.log(data)
       this.myCart=this.myCart.filter(ci => ci._id != id)
+      this._cart.myCartCount=this._cart.myCartCount-1
     },
     error => console.log(error),
     () => console.log('done')

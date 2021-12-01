@@ -26,3 +26,7 @@
 .product-category p{
   text-align: center;
 }
+.emptycart{
+  background:url('/assets/images/cartempty.png') no-repeat center;
+  height:500px;
+}

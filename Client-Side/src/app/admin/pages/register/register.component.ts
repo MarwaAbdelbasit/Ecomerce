@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         (res)=>{
           console.log(res);
           this.isSubmittedR=false
-          localStorage.setItem('token', res.data.tokens[0].token)
+          localStorage.setItem('adminToken', res.data.tokens[0].token)
         },
         (err)=>{
           this.serverErrMsg.name = err.error.message.name
@@ -66,13 +66,12 @@ export class RegisterComponent implements OnInit {
             ()=>{
               console.log('done')
               this._admin.adminAuthed=true
-              this.loginForm.reset()
               this._router.navigateByUrl('/admin')
-                    }
+              this.registerForm.reset();
+              }
           )
         }
         )
-      this.registerForm.reset();
     }
   }
   login(): void {
@@ -81,7 +80,7 @@ export class RegisterComponent implements OnInit {
       this._auth.login(this.loginForm.value).subscribe(
         (res)=>{
           console.log(res);
-          localStorage.setItem('token', res.data.tokens[0].token)
+          localStorage.setItem('adminToken', res.data.tokens[0].token)
         },
         (err)=>{
           this.serverErrMsg.email = err.error.message.email
@@ -101,14 +100,13 @@ export class RegisterComponent implements OnInit {
             ()=>{
               console.log('done')
               this._admin.adminAuthed=true
-              this.loginForm.reset()
               this.isSubmittedL=false
               this._router.navigateByUrl('/admin')
-                }
+              this.loginForm.reset()
+              }
           )
         }
         )
-      this.loginForm.reset();
     }
     else{
       console.log('not valid')

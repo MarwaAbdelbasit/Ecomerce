@@ -7,15 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ToastComponent implements OnInit {
   @Input() message: any;
-clicked=false
+  @Input() clicked:any;
   constructor() { }
 
   ngOnInit(): void {
   }
-showToast(): void {
-this.clicked=true
-setTimeout(
-  ()=>this.clicked=false 
-  , 5000);
-}
 }

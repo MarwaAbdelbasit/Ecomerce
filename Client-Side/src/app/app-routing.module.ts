@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './providers/guards/admin-auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './admin/pages/register/register.component';
@@ -17,19 +18,20 @@ import { CartComponent } from './pages/user/cart/cart.component';
 import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
+import { AuthGuard } from './providers/guards/auth.guard';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
 {path:'user',children:[
   {path:"register",component:SignUpComponent},
   {path:"login", component:LoginComponent},
-  {path:"profile",component:ProfileComponent},
-  {path:"editprofile",component:EditprofileComponent},
+  {path:"profile",component:ProfileComponent ,canActivate:[AuthGuard]},
+  {path:"editprofile",component:EditprofileComponent ,canActivate:[AuthGuard]},
   {path:"wishlist", component:WishlistComponent},
   {path:"cart", children:[
     {path:"", component:CartComponent},
     // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
-  ]},
+  ],canActivate:[AuthGuard]},
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[
@@ -42,7 +44,7 @@ const routes: Routes = [
   {path:'about',component:AboutComponent},
 ]},
 {path:"admin",children:[
-  {path:"",component:HomeAdminComponent},
+  {path:"",component:HomeAdminComponent,canActivate:[AdminAuthGuard]},
   {path:"register",component:RegisterComponent},
 ]},
 {path:"**",component:Error404Component}

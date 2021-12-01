@@ -7,22 +7,23 @@
 					<div class="widget user">
 						<!-- User Image -->
 						<div class="image d-flex justify-content-center">
-							<img [src]="apiURL+this._auth.userData.profilePic" alt="">
+							<img [src]="apiURL+_auth.userData.profilePic" alt="profile pic">
 						</div>
 						<!-- User Name -->
-						<h5 class="text-center">{{this._auth.userData.name}}</h5>
+						<h5 class="text-center">{{_auth.userData.name}}</h5>
                             <!-- File chooser -->
-								<div class="form-group choose-file d-flex justify-content-center">
+								<form (ngSubmit)="uploadImage()" #img="ngForm" class="form-group choose-file d-flex justify-content-center">
                                     <label for="file-upload">
-                                        <div class='btn btn-success'>
+                                        <div class='btn btn-success' >
                                             <i class="fas fa-photo-video"></i>
                                             <span class='text-white'>
-                                                Change Photo
+                                                Choose Photo
                                             </span>
                                         </div>
-                                        <input id='file-upload' type="file" class="form-control-file d-none" accept='.png,.jpg,.jpeg'>
+                                        <input id='file-upload' type="file" (change)="handleChange($event)" class="form-control-file d-none" accept='.png,.jpg,.jpeg'>
+										<button class='btn btn-primary'>Change</button>
                                     </label>
-                                </div>
+                                </form>
 
 					</div>
 					<!-- Dashboard Links -->

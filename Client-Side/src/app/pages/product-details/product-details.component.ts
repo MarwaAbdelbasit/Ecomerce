@@ -4,6 +4,7 @@ import { CartService } from 'src/app/providers/services/cart/cart.service';
 import { ProductsService } from 'src/app/providers/services/products/products.service';
 import { WishlistService } from 'src/app/providers/services/wishlist/wishlist.service';
 import { environment } from 'src/environments/environment';
+import { UsersService } from 'src/app/providers/services/users/users.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,9 +14,12 @@ import { environment } from 'src/environments/environment';
 export class ProductDetailsComponent implements OnInit {
   apiURL = environment.apiURL;
   isLoaded=false
+  isFailed=false
+  clicked=false
   product:any={}
   // wishlistErr:string = ""
   constructor(
+    public _auth:UsersService,
     private _products: ProductsService,
     private _cart:CartService,
     private _wishlist:WishlistService,
@@ -41,13 +45,28 @@ export class ProductDetailsComponent implements OnInit {
       }).subscribe(
         (res)=>{
           console.log(res)
+          this._cart.myCartCount=this._cart.myCartCount+1
         },
-        (err)=>{console.log(err)},
+        (err)=>{
+          this.isFailed=true
+          console.log(err)
+          setTimeout(()=>{
+            this.isFailed=false
+          },2000)
+        },
         ()=>{console.log("added")}
       )
     }
   }
-
+showToast(){
+  if(this._auth.isAuthed){
+    this.clicked=true
+    setTimeout(
+      ()=>this.clicked=false 
+      , 5000);
+    
+  }
+}
   addToWishlist(productId:string) {
     this._wishlist.toggleWishList(productId).subscribe(
       (res)=>{console.log(res)},

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/providers/services/admin/admin.service';
 import { UsersService } from 'src/app/providers/services/users/users.service';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class SidebarAdminComponent implements OnInit {
   apiURL = environment.apiURL;
   isLoaded=false
-  constructor(public _admin:AdminService,private _auth:UsersService) { }
+  constructor(public _admin:AdminService,private _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
     this._auth.showProfile().subscribe(
@@ -31,5 +32,22 @@ export class SidebarAdminComponent implements OnInit {
     )
 
   }
-
+  handleLogOut(){
+    this._auth.logOut().subscribe(
+      (data:any)=>{
+        console.log(data)
+        this._admin.adminData = null
+      },
+      (err:any)=>{
+        console.log(err)
+      },
+      ()=>{
+        console.log('done')
+        this._admin.adminAuthed=false
+        localStorage.clear()
+        this._router.navigateByUrl('/admin/register')
+      }
+    )
+  }
+  
 }
