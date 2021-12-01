@@ -20,5 +20,10 @@ export class AdminService {
   removeUser(userId:any):Observable<any>{
     return this._auth.delete(`${this.commonUrl}deleteUser/${userId}`)
   }
-
+  removeProduct(productId:any):Observable<any>{
+    return this._auth.delete(`${this.commonUrl}delProduct/${productId}`)
+  }
+  getAllAdmins():Observable<any>{
+    return this._auth.get(`${this.commonUrl}showAllAdmins`)
+  }
 }

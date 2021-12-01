@@ -22,17 +22,12 @@
                         <div >
                           <ul class="list-inline d-flex justify-content-center">
                             <li class="list-inline-item">
-                              <a data-toggle="tooltip" data-placement="top" title="view" class="view" routerLink="/">
+                              <a data-toggle="tooltip" data-placement="top" title="view" routerLink="/">
                                 <i class="fa fa-eye"></i>
                               </a>
                             </li>
-                            <!-- <li class="list-inline-item">
-                              <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" routerLink="">
-                                <i class="fa fa-pencil"></i>
-                              </a>
-                            </li> -->
                             <li class="list-inline-item" >
-                              <a class="delete" (click)="removeUser(user._id)" data-toggle="tooltip" data-placement="top" title="Delete">
+                              <a (click)="removeUser(user._id)" data-toggle="tooltip" data-placement="top" title="Delete" class='delete'>
                                 <i class="fa fa-trash"></i>
                               </a>
                             </li>
