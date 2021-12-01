@@ -16,7 +16,7 @@
                   </thead>
                   <tbody>
                       <!--product-->
-                    <tr *ngFor="let cartItem of myCart"> 
+                    <tr *ngFor="let cartItem of myCart">
                       <td class="product-thumb">
                         <img width="80px" height="auto" [src]="apiURL+cartItem.productId.mainImage" alt="product image"></td>
                       <td class="product-details">
@@ -26,7 +26,11 @@
                             <p class="categories">{{cartItem.productId.price |currency}}</p>
                         </td>
                       <td class="product-category">
-                            <p class="categories">{{cartItem.amount}}</p>
+                            <p class="categories" *ngIf="!editButtonPressed; else editBlock">{{cartItem.amount}}</p>
+                            <ng-template #editBlock>
+                              <input type="number" min="1" (keyup)="editItemAmount(cartItem._id, $event)">
+                              <!-- <button class="btn btn-success" (click)="editItemAmount(cartItem.productId._id,newAmount)">Add</button> -->
+                            </ng-template>
                         </td>
                       <td class="action" data-title="Action">
                         <div class="">
@@ -37,8 +41,8 @@
                               </a>
                             </li>
                             <li class="list-inline-item">
-                              <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" routerLink="">
-                                <i class="fa fa-pencil"></i>
+                              <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" (click)="editCartItem()">
+                                <i class="fas fa-edit"></i>
                               </a>
                             </li>
                             <li class="list-inline-item" >
@@ -92,7 +96,3 @@
       </div>
     </div>
     </ng-template>
-  
-  
-  
-  

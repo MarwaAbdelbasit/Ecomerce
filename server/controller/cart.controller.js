@@ -39,7 +39,7 @@ class Cart{
         try {
             let cartItem=await cartModel.updateOne({_id:req.params.productId,userId: req.user._id},{amount:req.body.amount})
             if(!cartItem) throw new Error()
-            successHandler(null,res,'product amount updated in cart successfully')
+            successHandler(cartItem,res,'product amount updated in cart successfully')
         }
         catch(e) {
             errorHandler(e,res)
