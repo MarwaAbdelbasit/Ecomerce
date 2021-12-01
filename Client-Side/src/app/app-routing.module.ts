@@ -25,11 +25,6 @@ const routes: Routes = [
 {path:'user',children:[
   {path:"register",component:SignUpComponent},
   {path:"login", component:LoginComponent},
-<<<<<<< HEAD
-  {path:"profile",component:ProfileComponent ,canActivate:[AuthGuard]},
-  {path:"editprofile",component:EditprofileComponent ,canActivate:[AuthGuard]},
-  {path:"cart",component:CartComponent ,canActivate:[AuthGuard]},
-=======
   {path:"profile",component:ProfileComponent},
   {path:"editprofile",component:EditprofileComponent},
   {path:"wishlist", component:WishlistComponent},
@@ -37,7 +32,6 @@ const routes: Routes = [
     {path:"", component:CartComponent},
     // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
   ]},
->>>>>>> a7cad4d598b9e176a820b2f7c3efba78916a0537
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[
