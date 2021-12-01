@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EditprofileComponent implements OnInit {
   apiURL = environment.apiURL;
+  isLoaded=false
   myForm=new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3)]),
     email:new FormControl('',[Validators.required,Validators.email]),
@@ -37,6 +38,7 @@ export class EditprofileComponent implements OnInit {
   constructor(public _auth:UsersService,private _router:Router) { }
 
   ngOnInit(): void {
+    this.isLoaded=true
   }
   ngAfterViewChecked(): void {
     this.myForm.patchValue(this._auth.userData)

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg sticky navbar-light">
   <div class="container-fluid">
     <a class="navbar-brand mr-auto" routerLink="/">
       <img class='navbar-logo' src="assets/images/logo.png" alt="logo">
@@ -11,9 +11,6 @@
         <li class="nav-item">
           <a class="nav-link active myLink" aria-current="page" routerLink="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Shop</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Products
@@ -23,28 +20,49 @@
             <li><a class="dropdown-item" href="#">category 2</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Our Partners</a>
-        </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2 mySearch" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn " type="submit"><i class="fas fa-search"></i></button>
+        <input class="form-control me-2 mySearch"
+        type="search" placeholder="Search.." aria-label="Search"
+        [ngClass]="className"
+        (focus)="expanded()"
+        (blur)="dispanded()"
+        >
+        <button class="btn" type="submit"
+        ><i class="fas fa-search"></i></button>
       </form>
       <ul class="navbar-nav my-2">
         <span *ngIf="!_auth.isAuthed; else isAuthed">
-          <li class="nav-item myItem">
+          <li class="nav-item">
             <a class="nav-link" href="/user/register">Sign Up</a>
           </li>
-          <li class="nav-item myItem">
+          <li class="nav-item">
             <a class="nav-link" href="/user/login">Login</a>
           </li>
         </span>
         <ng-template #isAuthed>
-          <li class="nav-item myItem">
+          <div class='icons'>
+            <a href="/user/cart">
+              <div class="position-relative">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{myCartCount}}
+                </span>
+              </div>
+            </a>
+            <a href="/user/wishlist">
+              <div class="position-relative">
+                <i class="fas fa-heart"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  2
+                </span>
+              </div>
+            </a>
+          </div>
+          <li class="nav-item">
             <a class="nav-link" href="/user/profile">{{_auth.userData.name}}</a>
           </li>
-          <li class="nav-item myItem">
+          <li class="nav-item">
             <button (click)="handleLogOut()" class="log-out">Log-Out</button>
           </li>
         </ng-template>

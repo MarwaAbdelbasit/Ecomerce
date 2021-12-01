@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductDetailsComponent implements OnInit {
   apiURL = environment.apiURL;
+  isLoaded=false
   product:any={}
   // wishlistErr:string = ""
   constructor(
@@ -22,11 +23,11 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSingleProduct()
+    this.isLoaded=true
   }
   getSingleProduct(){
     this._products.getSingleProduct(this._route.snapshot.params['productId']).subscribe(
       data =>{
-        // console.log(data.data);
         this.product = data.data},
       err=>console.log(err))
   }
@@ -38,12 +39,13 @@ export class ProductDetailsComponent implements OnInit {
       this._cart.addCartItem(productId, {
         price:this.product.price, discount:this.product.discount.percent
       }).subscribe(
-        (res)=>{console.log(res)},
+        (res)=>{
+          console.log(res)
+        },
         (err)=>{console.log(err)},
         ()=>{console.log("added")}
       )
     }
-    console.log(productId);
   }
 
   addToWishlist(productId:string) {

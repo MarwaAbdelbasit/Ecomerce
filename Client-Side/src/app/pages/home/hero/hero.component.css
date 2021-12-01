@@ -16,7 +16,15 @@
   .carousel-caption h5 {
     font-size: 100px;
     margin-bottom:50px;
+    -webkit-text-stroke:1px black;
     font-weight: bold;
+  }
+  .carousel-caption h6 {
+    font-size: 70px;
+    margin-bottom:50px;
+    line-height:60px;
+    font-weight: bold;
+    -webkit-text-stroke:1px black;
   }
   
   .carousel-caption p {

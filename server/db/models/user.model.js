@@ -27,6 +27,14 @@ const userSchema=new Schema({
                 )
         }
     },
+    security:{
+        securityQuestion:{
+            type:String,
+        },
+        answer:{
+            type:String,
+        }
+    },
     profilePic:{
         type:String,
         default:"uploads/noAvatar.png"
@@ -34,6 +42,7 @@ const userSchema=new Schema({
     adress:{
         country:{
             type:String,
+            default:'Egypt'
         },
         city:{
             type:String,
@@ -54,9 +63,6 @@ const userSchema=new Schema({
                 if(!isCreditCard(value)) throw new Error('invalid credit card')
             }
         }
-    },
-    wishList:{
-        type:Array
     },
     tokens:[
         {

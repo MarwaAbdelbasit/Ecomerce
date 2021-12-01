@@ -15,8 +15,8 @@ export class ProductsService {
   
     return this._products.get(`${this.commonUrl}singleProduct/${productId}`)
   }
-  addReview(productId:string,rate:any):Observable<any>{
-    return this._products.patch(`${this.commonUrl}addReview/${productId}`,rate)
+  addReview(productId:string,addedReview:any):Observable<any>{
+    return this._products.patch(`${this.commonUrl}addReview/${productId}`,addedReview)
   }
   
 }

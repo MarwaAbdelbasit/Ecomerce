@@ -16,6 +16,7 @@ import { EditprofileComponent } from './pages/user/editprofile/editprofile.compo
 import { CartComponent } from './pages/user/cart/cart.component';
 import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -41,7 +42,8 @@ const routes: Routes = [
   {path:'about',component:AboutComponent},
 ]},
 {path:"admin",children:[
-  {path:"register",component:RegisterComponent}
+  {path:"",component:HomeAdminComponent},
+  {path:"register",component:RegisterComponent},
 ]},
 {path:"**",component:Error404Component}
 ];

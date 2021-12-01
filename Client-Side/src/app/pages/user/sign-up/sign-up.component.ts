@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/providers/services/users/users.service';
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,6 +10,7 @@ import { UsersService } from 'src/app/providers/services/users/users.service';
 export class SignUpComponent implements OnInit {
   isSubmitted:Boolean = false
   invalidData = false
+  cities:any[]=[]
   serverErrMsg:any={
     name:"",
     email:"",
@@ -20,11 +20,14 @@ export class SignUpComponent implements OnInit {
     name:new FormControl('', [Validators.required]),
     email:new FormControl('', [Validators.required, Validators.email]),
     password:new FormControl('', [Validators.required, Validators.pattern('(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
+    security:new FormGroup({
+      securityQuestion:new FormControl('',[Validators.required]),
+      answer:new FormControl('', [Validators.required])
+    }),
     adress:new  FormGroup({
-      country:new FormControl('', [Validators.required]),
       city:new FormControl('', [Validators.required]),
       postalCode:new FormControl('', [Validators.required]),
-      telephone:new FormControl('', [Validators.required])
+      telephone:new FormControl('', [Validators.required,Validators.minLength(11)])
     }),
   })
 
@@ -32,15 +35,28 @@ export class SignUpComponent implements OnInit {
   get email(){return this.registerForm.get('email')}
   get password(){return this.registerForm.get('password')}
   get country(){return this.registerForm.get('adress')?.get('country')}
+  get securityQuestion(){return this.registerForm.get('security')?.get('securityQuestion')}
+  get answer(){return this.registerForm.get('security')?.get('answer')}
   get city(){return this.registerForm.get('adress')?.get('city')}
   get postalCode(){return this.registerForm.get('adress')?.get('postalCode')}
   get telephone(){return this.registerForm.get('adress')?.get('telephone')}
 
   constructor(private _auth:UsersService,private _router:Router) { }
-
+  isLoaded=false
   ngOnInit(): void {
-  }
+    this.getCities()
+  }  
+  ngAfterViewChecked(): void {
 
+  }
+  getCities():void{
+    this._auth.getCities().subscribe(
+      data =>{
+        console.log(data)
+        this.cities = data.data
+        this.isLoaded=true
+      })
+  }
   register(): void {
     this.isSubmitted=true
     if(this.registerForm.valid){

@@ -1,0 +1,131 @@
+#sidebar h4 {
+    background: #d1d5d8;
+    margin: 0;
+    padding: 21px 25px 19px;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    border-top: solid #ff5722 2px;
+}
+
+#sidebar {
+    min-width: 240px;
+    max-width: 240px;
+    color: #fff;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 11;
+    float: left;
+    width: 100%;
+    background: linear-gradient(to right, #2b1111, #440303,var(--colorR0)); 
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+#sidebar ul li a {
+    text-decoration: none;
+}
+ul li a span {
+    font-size:20px;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out
+}
+ul li a span:hover {
+    margin-left: 20px;
+}
+#sidebar ul.components {
+    padding: 15px 0;
+    margin: 0;
+    float: left;
+    width: 100%;
+}
+
+#sidebar ul li a {
+    padding: 15px 25px;
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+#sidebar ul.components li {
+    position: relative;
+}
+
+#sidebar ul.components ul {
+    background: linear-gradient(to right,#15283c,red);
+    padding: 20px 0;
+}
+
+#sidebar ul.components ul li a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, .7);
+    padding: 7px 35px;
+}
+
+#sidebar ul.components ul li a:hover {
+    color: #fff;
+    background: transparent;
+    padding-left: 45px;
+}
+
+#sidebar ul li a i {
+    margin-right: 20px;
+    width: 15px;
+    font-size: 20px;
+    float: left;
+}
+
+.sidebar_user_info {
+    padding: 15px 25px;
+    background: linear-gradient(to right,#15283c,rgb(92, 2, 2));
+    margin: 0;
+    outline: none;
+}
+.user_img img {
+    border-radius: 100% 100%;
+}
+.user_img {
+    width: 75px;
+    height: 75px;
+    float: left;
+}
+
+.img-responsive {
+    max-width: 100%;
+}
+.user_info {
+    margin: 0 0 0 15px;
+    padding-top: 15px;
+}
+.user_info h6 {
+    font-size: 17px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0;
+}
+.user_profle_side {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+.logo_section img.logo_icon {
+    margin: 0;
+    text-align: center;
+    padding: 8px 8px;
+    height: 60px;
+}
+
+.sidebar_part_1,
+.sidebar_part_2 {
+    float: left;
+    width: 100%;
+}
+
+.bottom_sidebar ul li {
+    float: left;
+    width: 50%;
+    list-style: none;
+}
