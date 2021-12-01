@@ -28,12 +28,7 @@
                       <td class="product-category">
                             <p class="categories" *ngIf="!editButtonPressed; else editBlock">{{cartItem.amount}}</p>
                             <ng-template #editBlock>
-<<<<<<< HEAD
-                              <input class='form-control w-25 m-auto' type="number" min="1" (keyup)="editItemAmount(cartItem._id, $event)">
-                              <!-- <button class="btn btn-success" (click)="editItemAmount(cartItem.productId._id,newAmount)">Add</button> -->
-=======
                               <input type="number" min="1" (change)="editItemAmount(cartItem._id, $event)">
->>>>>>> b8a3240a9e89b506576f6e69eb433f92f870edb6
                             </ng-template>
                         </td>
                       <td class="action" data-title="Action">

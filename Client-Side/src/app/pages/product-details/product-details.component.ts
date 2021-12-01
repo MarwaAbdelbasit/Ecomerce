@@ -59,7 +59,6 @@ export class ProductDetailsComponent implements OnInit {
       )
     }
   }
-<<<<<<< HEAD
   showToast1(){
     if(this._auth.isAuthed){
       this.clicked1=true
@@ -77,24 +76,12 @@ export class ProductDetailsComponent implements OnInit {
         , 5000);
       
     }
-=======
-showToast(){
-  if(this._auth.isAuthed){
-    this.clicked=true
-    setTimeout(
-      ()=>this.clicked=false
-      , 5000);
-
->>>>>>> b8a3240a9e89b506576f6e69eb433f92f870edb6
   }
   addToWishlist(productId:string) {
     this._wishlist.toggleWishList(productId).subscribe(
       (res)=>{
         console.log(res)
-<<<<<<< HEAD
-=======
         this._wishlist.wishlistCount++
->>>>>>> b8a3240a9e89b506576f6e69eb433f92f870edb6
       },
       (err)=>{
         alert(err.error.message)
