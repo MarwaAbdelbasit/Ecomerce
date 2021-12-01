@@ -1,1 +1,49 @@
-<p>singleuser works!</p>
+<section class="user-profile section" *ngIf="isLoaded else elseBlock">
+  <div class="container">
+    <div>
+      <div class="image d-flex justify-content-center">
+        <img [src]="apiURL+user.profilePic" alt='user picture'>
+      </div>
+      <div class="widget personal-info">
+        <h3 class="widget-header user">User Information</h3>
+        <div class='d-flex justify-content-between'>
+          <p>User Name</p>
+          <p>{{user.name}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>Email</p>
+          <p>{{user.email}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>Country</p>
+          <p>{{user.adress.country}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>City</p>
+          <p>{{user.adress.city}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>Potal Code</p>
+          <p>{{user.adress.postalCode}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>Phone</p>
+          <p>{{user.adress.telephone}}</p>
+        </div>
+        <div class='d-flex justify-content-between'>
+          <p>creditCard Number</p>
+          <p>{{user.paymentDetails?.creditCard}}</p>
+        </div>
+      </div>
+      <div class="widget personal-info">
+        <h3 class="widget-header user">User Pending Orders</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #elseBlock>
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
+    </div>
+  </div>
+</ng-template>

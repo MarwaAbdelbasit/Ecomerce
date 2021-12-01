@@ -30,3 +30,10 @@
   text-align: center;
 }
 .delete{cursor: pointer;}
+.admin-image img{
+  width: 60px;
+  height: 60px;
+  border: 3px rgb(56, 1, 1) solid;
+  border-radius: 50%;
+  object-fit: cover;
+}

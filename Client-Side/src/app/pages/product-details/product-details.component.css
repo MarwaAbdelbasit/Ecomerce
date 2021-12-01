@@ -181,6 +181,7 @@
     margin: 0;
   }
   .cart-errors{
+    border:4px orange solid;
     position: fixed;
     background-color: #e0dede;
     padding: 20px;

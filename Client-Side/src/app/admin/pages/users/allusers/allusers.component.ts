@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AllusersComponent implements OnInit {
   isLoaded=false
+  clicked=false
   allUsers:any[]=[]
   apiURL = environment.apiURL;
   constructor(private _admin:AdminService) { }
@@ -39,5 +40,10 @@ export class AllusersComponent implements OnInit {
 
     )
   }
-  
+  showToast(){
+      this.clicked=true
+      setTimeout(
+        ()=>this.clicked=false 
+        , 5000);
+  }
 }

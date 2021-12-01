@@ -4,6 +4,7 @@
     height: 50px;
     background: linear-gradient(to right, #666666, #7a7a7a,rgb(59, 59, 59)); 
     top: 0;
+    z-index: 200;
     transition: ease all 0.3s;
     left: 240px;
 }

@@ -9,20 +9,19 @@
                       <th>Image</th>
                       <th>Admin Name</th>
                       <th>Admin Position</th>
-                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let admin of allAdmins"> 
-                      <td class="product-thumb">
-                        <img width="80px" height="auto" [src]="apiURL+admin.profilePic" alt="admin image"></td>
+                      <td class="admin-image">
+                        <img [src]="apiURL+admin.profilePic" alt="admin image"></td>
                       <td class="product-details">
-                        <h3>{{admin.name}}</h3>
+                        <h6>{{admin.name}}</h6>
                       </td>
                       <td class="product-details">
-                        <h3>{{admin.position}}</h3>
+                        <h6>{{admin.position}}</h6>
                       </td>
-                      <td class="action" data-title="Action">
+                      <!-- <td class="action" data-title="Action">
                         <div >
                           <ul class="list-inline d-flex justify-content-center">
                             <li class="list-inline-item">
@@ -30,14 +29,14 @@
                                 <i class="fa fa-eye"></i>
                               </a>
                             </li>
-                            <!-- <li class="list-inline-item" >
+                            <li class="list-inline-item" >
                               <a (click)="removeUser(user._id)" data-toggle="tooltip" data-placement="top" title="Delete" class='delete'>
                                 <i class="fa fa-trash"></i>
                               </a>
-                            </li> -->
+                            </li>
                           </ul>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
                   </tbody>
                 </table>

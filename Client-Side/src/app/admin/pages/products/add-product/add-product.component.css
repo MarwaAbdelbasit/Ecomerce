@@ -3,6 +3,10 @@
   }
   .section {
     padding: 100px 0;
+    width:calc(100% - 240px);
+    left: 240px;
+    position: relative;
+
   }
   .widget {
     background: rgb(247, 241, 241);
@@ -20,11 +24,22 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #dedede;
   }
-  .image img {
+  .widget.user {
+    padding-top: 50px;
+  }
+  
+  .widget.user .image img {
     width: 157px;
     height: 157px;
     border-radius: 100%;
     border: 7px solid #dedede;
+  }
+  
+  .widget.user h5 {
+    font-size: 20px;
+    margin-top: 23px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   .widget .welcome-message h2 {
     font-size: 30px;
@@ -41,9 +56,7 @@
   .widget.personal-info .form-group, .widget.change-password .form-group, .widget.change-email .form-group {
     margin-bottom: 25px;
   }
-  .personal-info{
-    font-size: 20px;
-  }
+  
   .widget.personal-info .form-group i, .widget.change-password .form-group i, .widget.change-email .form-group i {
     color: white;
     background: #5672f9;
@@ -77,8 +90,30 @@
     color:red;
     text-align:center;
   }
-  .gear{
-    font-weight: bold;
-    font-size:20px;
-    color:var(--colorR1)
+  .list-none{
+    list-style: none;
+    padding: 0;
   }
+  .products-errors{
+    border:4px orange solid;
+    position: fixed;
+    background-color: #e0dede;
+    padding: 20px;
+    z-index: 2;
+    border-radius: 20px;
+    top: -350px;
+    right: -250px;
+    transition: all 0.4s ease-in-out;
+    animation: move 1s ease-in-out forwards;
+  }
+  .products-errors div {
+    font-size:20px;
+    color:red
+  }
+  @keyframes move {
+    100%{
+      top: 200px;
+      right:200px
+    }
+  }
+  

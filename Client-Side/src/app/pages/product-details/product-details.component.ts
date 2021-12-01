@@ -15,7 +15,8 @@ export class ProductDetailsComponent implements OnInit {
   apiURL = environment.apiURL;
   isLoaded=false
   isFailed=false
-  clicked=false
+  clicked1=false
+  clicked2=false
   product:any={}
   // wishlistErr:string = ""
   constructor(
@@ -58,15 +59,24 @@ export class ProductDetailsComponent implements OnInit {
       )
     }
   }
-showToast(){
-  if(this._auth.isAuthed){
-    this.clicked=true
-    setTimeout(
-      ()=>this.clicked=false
-      , 5000);
-
+  showToast1(){
+    if(this._auth.isAuthed){
+      this.clicked1=true
+      setTimeout(
+        ()=>this.clicked1=false 
+        , 5000);
+      
+    }
   }
-}
+  showToast2(){
+    if(this._auth.isAuthed){
+      this.clicked2=true
+      setTimeout(
+        ()=>this.clicked2=false 
+        , 5000);
+      
+    }
+  }
   addToWishlist(productId:string) {
     this._wishlist.toggleWishList(productId).subscribe(
       (res)=>{

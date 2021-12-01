@@ -2,7 +2,7 @@
     padding: 100px 0;
     width:calc(100% - 240px);
     left: 240px;
-    position: absolute;
+    position: relative;
   }
   ul.pagination li {
     margin-right: 10px;

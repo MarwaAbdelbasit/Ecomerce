@@ -30,3 +30,6 @@
   background:url('/assets/images/cartempty.png') no-repeat center;
   height:500px;
 }
+.fa-edit,.fa-trash{
+  cursor:pointer
+}
