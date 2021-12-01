@@ -62,14 +62,17 @@ showToast(){
   if(this._auth.isAuthed){
     this.clicked=true
     setTimeout(
-      ()=>this.clicked=false 
+      ()=>this.clicked=false
       , 5000);
-    
+
   }
 }
   addToWishlist(productId:string) {
     this._wishlist.toggleWishList(productId).subscribe(
-      (res)=>{console.log(res)},
+      (res)=>{
+        console.log(res)
+        this._wishlist.wishlistCount++
+      },
       (err)=>{
         alert(err.error.message)
         console.log(err.error.message)

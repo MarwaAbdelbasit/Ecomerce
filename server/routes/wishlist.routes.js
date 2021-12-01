@@ -5,5 +5,6 @@ const auth = require("../middleware/auth")
 router.post('/toggleWishList/:productId', auth('User'), wishListController.toggleWishList);
 router.get('/getAllWishList', auth('User'),wishListController.getAllWishList)
 router.delete('/deleteAllWishList', auth('User'),wishListController.deleteAllWishList)
+router.delete('/delSingleWishlist/:itemId', auth('User'),wishListController.delSingleWishlist)
 
 module.exports = router
