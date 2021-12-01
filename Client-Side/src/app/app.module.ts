@@ -34,6 +34,7 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { SidebarComponent } from './pages/user/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProfileComponent,
     EditprofileComponent,
     SidebarComponent,
+    EditCartItemComponent,
     
   ],
   imports: [

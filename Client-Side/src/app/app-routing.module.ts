@@ -14,6 +14,8 @@ import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { CartComponent } from './pages/user/cart/cart.component';
+import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -22,7 +24,11 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"profile",component:ProfileComponent},
   {path:"editprofile",component:EditprofileComponent},
-  {path:"cart",component:CartComponent},
+  {path:"wishlist", component:WishlistComponent},
+  {path:"cart", children:[
+    {path:"", component:CartComponent},
+    // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
+  ]},
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[
