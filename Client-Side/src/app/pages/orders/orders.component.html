@@ -1,1 +1,58 @@
-<p>orders works!</p>
+<section class="container p-5">
+  <div>
+    <div class="container">
+      <div class="wiget">
+        <h3 class="widget-header">My Orders</h3>
+        <div class="table-responsive">
+          <table class="table product-dashboard-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Address</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let orderItem of ordersList">
+                <td class="product-thumb">
+                  <img width="80px" height="auto" [src]="apiURL+orderItem.productId.mainImage" alt="product image"></td>
+                <td class="product-details">
+                  <h6 >{{orderItem.productId.shortName}}</h6>
+                </td>
+                <td class="product-category">
+                  <p class="categories">{{orderItem.productId.price |currency}}</p>
+                </td>
+                <td class="product-category">
+                  <p class="categories">{{orderItem.amount}}</p>
+                </td>
+                <td class="product-category">
+                  <p class="categories">{{orderItem.shipping.adress}}</p>
+                </td>
+                <td class="action" data-title="Action">
+                  <div class="">
+                    <ul class="list-inline d-flex justify-content-center">
+                      <li class="list-inline-item">
+                        <a data-toggle="tooltip" data-placement="top" title="view" class="view" routerLink="/">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item" >
+                        <a class="delete" (click)="removeOrderItem(orderItem._id)" data-toggle="tooltip" data-placement="top" title="Delete">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-danger my-5" (click)="clearAllOrders()">Clear all orders</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

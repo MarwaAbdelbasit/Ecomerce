@@ -46,5 +46,12 @@ product:any={}
     )
   }
 
+  clearAllWishlist() {
+    this._wishlist.deleteAllWishList().subscribe(
+      (res)=>this.myWishlist = [],
+      (err)=>console.log(err),
+      ()=>console.log("all wishlist deleted")
+    )
+  }
 
 }
