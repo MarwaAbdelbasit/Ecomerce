@@ -18,5 +18,5 @@
 >
 >>admin login-register remove user /list users-admins
 >
->>admin view orders -add/edit/remove product & change photo
+>>admin view orders -add/edit/remove product & change product photo
 >
