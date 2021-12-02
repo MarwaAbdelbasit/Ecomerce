@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  admin=false
+  ngOnInit(): void {
+    if(window.location.href.includes('admin')){
+      this.admin=true
+    }
+  }
 }

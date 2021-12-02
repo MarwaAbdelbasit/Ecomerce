@@ -5,7 +5,6 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { SwiperModule } from "swiper/angular";
 import { RatingModule } from 'ng-starrating';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
@@ -14,8 +13,6 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { CartComponent } from './pages/user/cart/cart.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
 import { FooterTopComponent } from './components/layout/footer/footer-top/footer-top.component';
 import { FooterMiddleComponent } from './components/layout/footer/footer-middle/footer-middle.component';
 import { FooterBottomComponent } from './components/layout/footer/footer-bottom/footer-bottom.component';
@@ -35,7 +32,7 @@ import { EditprofileComponent } from './pages/user/editprofile/editprofile.compo
 import { SidebarComponent } from './pages/user/sidebar/sidebar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
-import { ToastComponent } from './components/toast/toast.component';
+import { ToastComponent } from './global/toast/toast.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 import { SidebarAdminComponent } from './admin/components/sidebar-admin/sidebar-admin.component';
 import { MainAdminComponent } from './admin/components/main-admin/main-admin.component';
@@ -59,8 +56,6 @@ import { ProductsAdminComponent } from './admin/pages/products/products.componen
     CartComponent,
     OrdersComponent,
     WishlistComponent,
-    AboutComponent,
-    ContactComponent,
     FooterTopComponent,
     FooterMiddleComponent,
     FooterBottomComponent,

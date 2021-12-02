@@ -30,6 +30,36 @@
               </div>
           </div>
       </div>
+                            <!-- pagination -->
+                            <div class="pagination justify-content-center">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" aria-label="Previous" (click)="prevPage()">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active" (click)="paging(1)">
+                                            <a class="page-link" >1</a>
+                                        </li>
+                                        <li class="page-item " (click)="paging(2)">
+                                            <a class="page-link" >2</a>
+                                        </li>
+                                        <li class="page-item" (click)="paging(3)">
+                                            <a class="page-link" >3</a>
+                                        </li>
+                                        <li class="page-item" (click)="nextPage()">
+                                            <a class="page-link"  aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                    <!-- pagination -->
+                    
   </div>
 </section>
 

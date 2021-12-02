@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/providers/services/admin/admin.service';
 import { ProductsService } from 'src/app/providers/services/products/products.service';
-import { UsersService } from 'src/app/providers/services/users/users.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,19 +9,18 @@ import { environment } from 'src/environments/environment';
 })
 export class AllProductsComponent implements OnInit {
   isLoaded=false
-  allProducts:any[]=[]
+  products:any[]=[]
   apiURL = environment.apiURL;
-
-  constructor(private _admin:AdminService,private _products:ProductsService) { }
-
+  page=1
+  constructor(private _products:ProductsService) { }
   ngOnInit(): void {
     this.getAllProducts()
   }
   getAllProducts(){
-    this._products.getProducts().subscribe(
+    this._products.getProducts(this.page).subscribe(
       data => {
         console.log(data)
-        this.allProducts=data.data
+        this.products=data.data
         this.isLoaded=true
       },
       error => console.log(error),
@@ -31,10 +28,10 @@ export class AllProductsComponent implements OnInit {
     )
   }
   removeProduct(id: any){
-    this._admin.removeProduct(id).subscribe(
+    this._products.removeProduct(id).subscribe(
       data => {
         console.log(data)
-        this.allProducts=this.allProducts.filter(p => p._id != id)
+        this.products=this.products.filter(p => p._id != id)
         this.isLoaded=true
       },
       error => console.log(error),
@@ -42,5 +39,25 @@ export class AllProductsComponent implements OnInit {
 
     )
   }
-
+  nextPage(){
+    this.page=this.page+1
+    this._products.getProducts(this.page).subscribe(
+      data =>this.products = data.data,
+      err=>console.log(err)
+      )
+    }
+  prevPage(){
+    this.page=this.page-1
+    this._products.getProducts(this.page).subscribe(
+      data =>this.products = data.data,
+      err=>console.log(err)
+      )
+    }
+    paging(page:number){
+      this.page=page
+      this._products.getProducts(this.page).subscribe(
+        data =>this.products = data.data,
+        err=>console.log(err)
+        )
+      }
 }

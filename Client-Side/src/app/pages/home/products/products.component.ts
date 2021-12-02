@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsComponent implements OnInit {
   apiURL = environment.apiURL;
+  page=1
   products:any[]=[]
   constructor(private _products: ProductsService,private _cart:CartService) { }
   serverErrMsg=''
@@ -17,7 +18,7 @@ export class ProductsComponent implements OnInit {
     this.getProducts()
   }
   getProducts(){
-    this._products.getProducts().subscribe(
+    this._products.getProducts(this.page).subscribe(
       data =>this.products = data.data,
       err=>console.log(err)
       )
@@ -34,4 +35,26 @@ export class ProductsComponent implements OnInit {
       ()=>console.log('done')
       )
   }
+  nextPage(){
+    this.page=this.page+1
+    this._products.getProducts(this.page).subscribe(
+      data =>this.products = data.data,
+      err=>console.log(err)
+      )
+    }
+  prevPage(){
+    this.page=this.page-1
+    this._products.getProducts(this.page).subscribe(
+      data =>this.products = data.data,
+      err=>console.log(err)
+      )
+    }
+    paging(page:number){
+      this.page=page
+      this._products.getProducts(this.page).subscribe(
+        data =>this.products = data.data,
+        err=>console.log(err)
+        )
+      }
+
 }

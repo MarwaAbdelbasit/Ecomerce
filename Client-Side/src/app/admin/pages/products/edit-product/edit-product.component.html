@@ -1,1 +1,103 @@
-<p>edit-product works!</p>
+<section class="user-profile section">
+  <div class="container">
+    <div class="widget welcome-message">
+      <h2 class='text-center'>Edit Product</h2>
+    </div>
+    <div>
+      <div class="widget personal-info">
+        <h3 class="widget-header user">Product Information</h3>
+        <form class='row' [formGroup]="myForm" (ngSubmit)="handleEdit()">
+          <div class='col-md-12 col-lg-6'>
+
+            <div class="form-group">
+              <label for="name">Product Short Name</label>
+              <input id='name' type="text" class="form-control" formControlName="shortName">
+            </div>
+            <div class="form-group">
+              <label for="name">Product Long Name</label>
+              <input id='name' type="text" class="form-control" formControlName="longName">
+            </div>
+            <div class="form-group">
+              <label for="price">Product price</label>
+              <input type="number" class="form-control" id="price" formControlName="price">
+            </div>
+            <div class="form-group">
+              <label for="stock">In Stock Quantity</label>
+              <input type="number" class="form-control" id="stock" formControlName="inventoryQuantity">
+            </div>
+            <!-- <div class="form-group">
+                    <label for="category">Category</label>
+                    <input (input)="class1='d-block'" type="text" class="form-control" id="category" formControlName="category">
+                  </div> -->
+          </div>
+          <div class='col-md-12 col-lg-6' formGroupName="discount">
+            <div class="form-group">
+              <label for="country">Discound Name</label>
+              <input type="text" class="form-control" id="country" formControlName="name">
+            </div>
+            <div class="form-group">
+              <label for="city">Discound Description</label>
+              <input type="text" class="form-control" id="city" formControlName="description">
+            </div>
+            <div class="form-group">
+              <label for="discound">Discound Percent</label>
+              <input type="text" class="form-control" id="discound" formControlName="percent">
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" formControlName="active">
+                  Discound status
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="desc">Product Description</label>
+            <textarea class="form-control" formControlName="description" id="desc" rows="3"></textarea>
+
+          </div>
+          <div class="form-group">
+            <label for="specs">Product Specifications</label>
+            <textarea class="form-control" formControlName="specifications" id="specs" rows="3"></textarea>
+          </div>
+          <button class="btn btn-success">Edit Product
+            <app-toast [clicked]="clicked" [message]="'product Edited successfully'"></app-toast>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class='widget'>
+    <form #img="ngForm" (ngSubmit)="uploadImage()">
+      <div class="form-group choose-file d-flex justify-content-center">
+        <label for="file-upload">
+          <div class='btn btn-success'>
+            <i class="fas fa-photo-video"></i>
+            <span class='text-white'>
+              Change Photo
+            </span>
+          </div>
+          <input id='file-upload' (change)="handleChange($event);" type="file"
+            class="form-control-file d-none" accept='.png,.jpg,.jpeg'>
+        </label>
+      </div>
+      <div class='d-flex justify-content-center' [ngClass]="choosing?'d-block':'d-none'">
+      <div class='preview-container' >
+          <img [src]="imageSrc" *ngIf="imageSrc" class='preview' >
+        </div>
+        <div >
+            <button class='btn btn-primary' >
+                Confirm</button>
+            </div>
+        </div>
+        <app-toast [clicked]="clicked2" [message]="'image uploaded successfully'"></app-toast>
+    </form>
+</div>
+
+    <div class="products-errors" [ngClass]="isFailed?'d-block':'d-none'">
+      <div>Failed To edit Product</div>
+    </div>
+
+  </div>
+</section>

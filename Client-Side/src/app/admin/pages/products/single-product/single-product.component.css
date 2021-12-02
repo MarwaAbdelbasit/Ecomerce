@@ -1,0 +1,127 @@
+.item-details {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+  }
+  
+  .item-details .top-area {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+  
+  .item-details .product-images img {
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 5px;
+  }
+    
+  .item-details .product-info {
+    padding-left: 30px;
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px),
+  (max-width: 767px) {
+    .item-details .product-info {
+      padding: 0;
+      margin-top: 30px;
+    }
+  }
+  
+  .item-details .product-info .title {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 767px) {
+    .item-details .product-info .title {
+      font-size: 25px;
+    }
+  }
+  
+  .item-details .product-info .category {
+    display: block;
+    margin-bottom: 15px;
+  }
+    
+  .item-details .product-info .price {
+    color: #081828;
+    display: block;
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 767px) {
+    .item-details .product-info .price {
+      font-size: 50px;
+    }
+  }
+    
+  @media (max-width: 767px) {
+    .item-details .product-info .price span {
+      font-size: 20px;
+    }
+  }
+  
+  .item-details .product-info .info-text {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+        
+  
+  /* Product Details Info */
+  .product-details-info .single-block {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-top: 30px;
+  }
+  .custom-responsive-margin p{
+    font-size: 20px;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 991px),
+  (max-width: 767px) {
+    .product-details-info .info-body.custom-responsive-margin {
+      margin-bottom: 30px;
+    }
+  }
+  
+  .product-details-info .info-body h4 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  
+  .product-details-info .info-body p {
+    margin: 20px 0;
+  }
+    
+  .product-details-info .info-body .normal-list {
+    margin-bottom: 30px;
+  }
+  
+  .product-details-info .info-body .normal-list:last-child {
+    margin-bottom: 0;
+  }
+  
+  .product-details-info .info-body .normal-list li {
+    display: block;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  
+  .product-details-info .info-body .normal-list li span {
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .product-details-info .info-body .normal-list li:last-child {
+    margin: 0;
+  }
