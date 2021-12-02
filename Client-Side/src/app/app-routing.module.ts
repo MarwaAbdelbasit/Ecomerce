@@ -22,19 +22,9 @@ import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.componen
 import { AuthGuard } from './providers/guards/auth.guard';
 import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { SingleProductComponent } from './admin/pages/products/single-product/single-product.component';
 import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
 import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
-=======
-import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
->>>>>>> 98beb339f236734281201940621e8b83a567f71c
-=======
-import { SingleProductComponent } from './admin/pages/products/single-product/single-product.component';
-import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
-import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
->>>>>>> 81d1a6db378c12e7afa2b0090d4b1a9d71bd3f17
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
