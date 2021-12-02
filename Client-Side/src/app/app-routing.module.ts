@@ -21,6 +21,7 @@ import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.componen
 import { AuthGuard } from './providers/guards/auth.guard';
 import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -51,7 +52,8 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"users",children:[
     {path:"singleUser/:userId",component:SingleuserComponent}
-  ]}
+  ]},
+  {path:"orders", component:AdminOrdersComponent}
 ]},
 {path:"**",component:Error404Component}
 ];

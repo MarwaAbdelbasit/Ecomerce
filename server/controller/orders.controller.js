@@ -88,11 +88,11 @@ class Order {
 //delete orders for specific user
     static delOrdersAdmin = async (req, res) => {
         try{
-            let user = await userModel.findById(req.params.userId)
-            user.orders = []
-            await user.save()
+            // let user = await userModel.findById(req.params.userId)
+            // user.orders = []
+            // await user.save()
             await ordersModel.deleteMany({userId:req.params.userId})
-            successHandler(user,res,'orders deleted successfully')
+            successHandler(null,res,'orders deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
@@ -101,11 +101,8 @@ class Order {
 //delete single order for specific user
     static delSingleOrderAdmin = async (req, res) => {
         try{
-            let user = await userModel.findById(req.params.userId)
-            user.orders =user.orders.filter(o => o.id !== req.params.orderId)
-            await user.save()
             await ordersModel.findByIdAndDelete(req.params.orderId)
-            successHandler(user,res,'orders deleted successfully')
+            successHandler(null,res,'orders deleted successfully')
         }
         catch(e) {
             errorHandler(e,res)
