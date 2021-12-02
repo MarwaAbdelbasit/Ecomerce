@@ -13,6 +13,6 @@ router.delete('/delOrder/:orderId', auth('User'), orderController.delOrder)
 //----------------admin options to control orders ----------------
 router.get('/allOrdersAdmin', auth("Admin"), orderController.allOrdersAdmin)
 router.delete('/delOrdersAdmin/:userId', auth("Admin"), orderController.delOrdersAdmin)
-router.delete('/delSingleOrderAdmin/:userId/:orderId', auth("Admin"), orderController.delSingleOrderAdmin)
+router.delete('/delSingleOrderAdmin/:orderId', auth("Admin"), orderController.delSingleOrderAdmin)
 
 module.exports=router
