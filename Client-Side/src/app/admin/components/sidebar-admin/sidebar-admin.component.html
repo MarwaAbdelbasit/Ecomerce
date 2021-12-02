@@ -1,13 +1,21 @@
-<nav id="sidebar" *ngIf="isLoaded else elseBlock">
+<nav id="sidebar">
     <div class="sidebar_part_1">
        <div class="sidebar_user_info">
-          <div class="user_profle_side">
+          <div class="user_profle_side"  *ngIf="isLoaded else elseBlock">
              <div class="user_img"><img class="img-responsive" [src]="apiURL+this._admin.adminData.profilePic" alt="#" /></div>
              <div class="user_info">
                 <h6>{{_admin.adminData.name}}</h6>
                 <h5 class="text-center">{{_admin.adminData.position}}</h5>
              </div>
           </div>
+          <ng-template #elseBlock>
+            <div class="d-flex justify-content-center my-2">
+              <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+              </div>
+            </div>
+            </ng-template>
+         
+         
        </div>
        <div class="form-group choose-file d-flex justify-content-center">
          <label for="file-upload">
@@ -25,15 +33,15 @@
     <div class="sidebar_part_2">
        <h4>Gear Up Conrol Panel</h4>
        <ul class="list-unstyled components">
-          <li><a routerLink="/">
+          <li><a routerLink="/admin/products">
             <i class="fas fa-box"></i>
                <span>Products Control</span>
             </a></li>
-          <li><a routerLink="/">
+          <li><a routerLink="/admin/admins">
             <i class="fas fa-user-shield"></i>
               <span>Admins Control</span>
             </a></li>
-          <li><a routerLink="/">
+          <li><a routerLink="/admin/users">
             <i class="fas fa-users"></i>
                <span>Users Control</span>
             </a></li>
@@ -47,10 +55,3 @@
        </ul>
     </div>
  </nav>
- <ng-template #elseBlock>
-	<div class="d-flex justify-content-center my-5">
-	  <div class="spinner-border" style="width: 15rem; height: 15rem;" role="status">
-	  </div>
-	</div>
-	</ng-template>
-

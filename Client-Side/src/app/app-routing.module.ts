@@ -1,3 +1,4 @@
+import { AlladminsComponent } from './admin/pages/admins/alladmins/alladmins.component';
 import { AdminAuthGuard } from './providers/guards/admin-auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,6 +26,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { SingleProductComponent } from './admin/pages/products/single-product/single-product.component';
 import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
 import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
+import { AllusersComponent } from './admin/pages/users/allusers/allusers.component';
+import { ProductsAdminComponent } from './admin/pages/products/products.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -54,15 +57,22 @@ const routes: Routes = [
   {path:"",component:HomeAdminComponent,canActivate:[AdminAuthGuard]},
   {path:"register",component:RegisterComponent},
   {path:"users",children:[
+    {path:"",component:AllusersComponent},
     {path:"singleUser/:userId",component:SingleuserComponent}
-  ]},
+  ],canActivate:[AdminAuthGuard]},
+  {path:"admins",children:[
+    {path:"",component:AlladminsComponent},
+  ],canActivate:[AdminAuthGuard]},
   {path:"products",children:[
+    {path:"",component:ProductsAdminComponent},
     {path:"singleProduct/:productId",component:SingleProductComponent},
     {path:"editProduct/:productId",component:EditProductComponent}
-  ]}
-  {path:"orders", component:AdminOrdersComponent}
+  ],canActivate:[AdminAuthGuard]},
+  {path:"orders",children:[
+    {path:"",component:AdminOrdersComponent},
+  ],canActivate:[AdminAuthGuard]},
+
 ]},
-{path:"orders", component:AdminOrdersComponent},
 {path:"**",component:Error404Component}
 ];
 

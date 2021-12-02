@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';  
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +36,6 @@ import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-car
 import { ToastComponent } from './global/toast/toast.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 import { SidebarAdminComponent } from './admin/components/sidebar-admin/sidebar-admin.component';
-import { MainAdminComponent } from './admin/components/main-admin/main-admin.component';
 import { TopbarComponent } from './admin/components/topbar/topbar.component';
 import { AllusersComponent } from './admin/pages/users/allusers/allusers.component';
 import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
@@ -76,7 +76,6 @@ import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.co
     ToastComponent,
     HomeAdminComponent,
     SidebarAdminComponent,
-    MainAdminComponent,
     TopbarComponent,
     AllusersComponent,
     SingleuserComponent,
@@ -97,6 +96,7 @@ import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.co
     ReactiveFormsModule,
     RatingModule,
     BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,
