@@ -5,7 +5,7 @@ class Product {
 
     static allProducts = async (req, res) => {
         try{
-            const allProducts = await productModel.find()
+            const allProducts = await productModel.find().limit(12).skip((req.params.page-1)*12)
             successHandler(allProducts,res,'all Products shown successfully')
         }
         catch(err) {

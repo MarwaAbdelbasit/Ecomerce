@@ -13,6 +13,7 @@ import { TermsComponent } from './pages/policy/terms/terms.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
+
 import { EditprofileComponent } from './pages/user/editprofile/editprofile.component';
 import { CartComponent } from './pages/user/cart/cart.component';
 import { EditCartItemComponent } from './pages/user/cart/edit-cart-item/edit-cart-item.component';
@@ -21,6 +22,8 @@ import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.componen
 import { AuthGuard } from './providers/guards/auth.guard';
 import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { SingleProductComponent } from './admin/pages/products/single-product/single-product.component';
+import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
 import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
 
 const routes: Routes = [
@@ -53,6 +56,10 @@ const routes: Routes = [
   {path:"users",children:[
     {path:"singleUser/:userId",component:SingleuserComponent}
   ]},
+  {path:"products",children:[
+    {path:"singleProduct/:productId",component:SingleProductComponent},
+    {path:"editProduct/:productId",component:EditProductComponent}
+  ]}
   {path:"orders", component:AdminOrdersComponent}
 ]},
 {path:"**",component:Error404Component}

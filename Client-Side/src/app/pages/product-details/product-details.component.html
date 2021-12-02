@@ -13,7 +13,8 @@
           <div class="product-info">
             <h2 class="title">{{product.longName}}</h2>
             <span *ngFor="let single of product.category">
-              <p class="category">{{single.name}} ,</p>
+              <span class="category">{{single.name}} ,</span>
+              <span class="category">{{single.name}} ,</span>
             </span>
             <h3 class="price">{{product.price |currency:' '}} L.E</h3>
             <p class="info-text"></p>

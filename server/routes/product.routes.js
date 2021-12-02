@@ -4,11 +4,11 @@ const auth= require("../middleware/auth")
 const upload = require("../middleware/fileUpload")
 
 //----------------public crud operations of product -----
-router.get("/allProducts", productController.allProducts)
+router.get("/allProducts/:page", productController.allProducts)
 router.get("/singleProduct/:productId", productController.singleProduct)
 
 //----------------crud operations of product controlled by admin-----
-router.post("/addProduct", auth('Admin'),productController.addProduct)
+router.post("/addProduct/", auth('Admin'),productController.addProduct)
 router.post("/addCategory/:productId",auth("Admin") ,productController.addCategory)
 router.patch("/editProduct/:productId",auth('Admin') ,productController.editProduct)
 router.patch("/uploadImage/:productId",auth('Admin'), upload.single('img'), productController.uploadImage)
