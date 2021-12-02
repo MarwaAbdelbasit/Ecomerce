@@ -20,6 +20,7 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HomeAdminComponent } from './admin/pages/home-admin/home-admin.component';
 import { AuthGuard } from './providers/guards/auth.guard';
 import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path:"cart", children:[
     {path:"", component:CartComponent},
     // {path:"editCartItem/:cartItemId", component:EditCartItemComponent}
-  ],canActivate:[AuthGuard]},
+  ]},
+  {path:"orders", component:OrdersComponent}
 ]},
 {path:"products/:productId",component:ProductDetailsComponent},
 {path:"policy",children:[

@@ -52,7 +52,6 @@ class Order {
     static delOrder = async (req, res) => {
         try{
             let order = await ordersModel.findByIdAndDelete(req.params.orderId)
-            req.user.orders = req.user.orders.filter(o=>o._id!=req.params.orderId)
             if(!order) throw new Error("no order to delete")
             await req.user.save()
             successHandler(order,res,'order deleted successfully')

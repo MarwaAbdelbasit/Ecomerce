@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/providers/services/cart/cart.service';
+import { OrdersService } from 'src/app/providers/services/orders/orders.service';
+// import { UsersService } from 'src/app/providers/services/users/users.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,10 +17,15 @@ export class CartComponent implements OnInit {
   public editButtonPressed:Boolean = false
   newAmount:any
 
-  constructor(private _cart: CartService, private _route:Router) { }
+  constructor(
+    private _cart: CartService,
+    private _orders:OrdersService,
+    // private _user:UsersService,
+    private _route:Router) { }
 
   ngOnInit(): void {
     this.getCart()
+    // this.getUserData()
   }
 getCart(){
   this._cart.getMyCart().subscribe(
@@ -31,6 +38,15 @@ getCart(){
     () => console.log('done')
   )
 }
+
+// getUserData() {
+//   this._user.showProfile().subscribe(
+//     (res)=>console.log(res.data),
+//     (err)=>console.log(err),
+//     ()=>console.log("ensan")
+//   )
+// }
+
 removeCartItem(id: any){
   this._cart.removeCartItem(id).subscribe(
     data => {
@@ -63,6 +79,26 @@ editItemAmount(cartItemId:string, event:any) {
       console.log("amount edited")
       this._route.navigateByUrl('/user/cart')
     }
+  )
+}
+
+placeOrder(productId:any) {
+  let product = this.myCart.find(item=>item.productId._id==productId).productId
+  let user = this.myCart.find(item=>item.productId._id==productId).userId
+  let amount = this.myCart.find(i=>i.productId._id==productId).amount
+  console.log(user);
+
+
+  this._orders.placeOrder(productId, {
+    amount:amount,
+    shipping: {
+      shippedTo:user.name,
+      adress:`${user.adress.city} - ${user.adress.country} - postal code: ${user.adress.postalCode}`
+    }
+  }).subscribe(
+    (res)=>{console.log(res.data)},
+    (err)=>{console.log(err)},
+    ()=>{console.log("oreder placed")}
   )
 }
 

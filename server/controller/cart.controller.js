@@ -28,7 +28,7 @@ class Cart{
     }
     static myCart=async(req,res)=>{
         try{
-            const myCart=await cartModel.find({userId:req.user._id}).populate("productId")
+            const myCart=await cartModel.find({userId:req.user._id}).populate("productId").populate("userId")
             successHandler(myCart,res,'cart shown successfully')        
         }
         catch(e){
