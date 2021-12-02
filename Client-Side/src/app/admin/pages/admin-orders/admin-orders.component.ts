@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./admin-orders.component.css']
 })
 export class AdminOrdersComponent implements OnInit {
-
+isLoaded=false
   constructor(private _orders:AdminService) { }
 
   ordersList:any[]=[]
@@ -19,6 +19,7 @@ export class AdminOrdersComponent implements OnInit {
       (res)=>{
         this.ordersList = res.data
         console.log(res)
+        this.isLoaded=true
       },
       (err)=>{
         console.log(err)
