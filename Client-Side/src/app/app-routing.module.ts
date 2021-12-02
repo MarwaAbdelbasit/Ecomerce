@@ -24,6 +24,7 @@ import { SingleuserComponent } from './admin/pages/users/singleuser/singleuser.c
 import { OrdersComponent } from './pages/orders/orders.component';
 import { SingleProductComponent } from './admin/pages/products/single-product/single-product.component';
 import { EditProductComponent } from './admin/pages/products/edit-product/edit-product.component';
+import { AdminOrdersComponent } from './admin/pages/admin-orders/admin-orders.component';
 
 const routes: Routes = [
 {path:"",component:HomeComponent},
@@ -59,6 +60,7 @@ const routes: Routes = [
     {path:"singleProduct/:productId",component:SingleProductComponent},
     {path:"editProduct/:productId",component:EditProductComponent}
   ]}
+  {path:"orders", component:AdminOrdersComponent}
 ]},
 {path:"**",component:Error404Component}
 ];
