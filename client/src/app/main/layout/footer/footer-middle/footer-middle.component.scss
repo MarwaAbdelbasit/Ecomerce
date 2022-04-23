@@ -1,0 +1,99 @@
+.footer-middle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  border-bottom: 1px solid #ffffff26;
+
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    padding-top: 30px;
+    padding-bottom: 70px;
+  }
+  @media (max-width: 767px) {
+    padding-top: 10px;
+    padding-bottom: 50px;
+  }
+  &-part {
+    margin-top: 40px;
+    @media (max-width: 767px) {
+      margin-top: 30px;
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      ul {
+        padding-left: 0;
+      }
+    }
+    h3 {
+      position: relative;
+      margin-bottom: 32px;
+      padding-bottom: 15px;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 24px;
+      &::before {
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background-color: #0167f3;
+        content: "";
+        transition: all 0.2s ease-in-out;
+        @media (max-width: 767px) {
+          left: 50%;
+          margin-left: -20px;
+        }
+      }
+      &:hover:before {
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background-color: #0167f3;
+        content: "";
+      }
+    }
+    &.f-contact {
+      ul li {
+        display: block;
+        margin-bottom: 10px;
+        color: #d6d6d6;
+        span {
+          display: block;
+          color: #d6d6d6;
+        }
+      }
+      .mail a {
+        color: #d6d6d6;
+        &:hover {
+          color: #0167f3;
+        }
+      }
+    }
+    &.f-link {
+      ul li {
+        display: block;
+        margin-bottom: 12px;
+        position: relative;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        a {
+          color: #d6d6d6;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          position: relative;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            padding-left: 5px;
+            color: #0167f3;
+          }
+        }
+      }
+    }
+  }
+}

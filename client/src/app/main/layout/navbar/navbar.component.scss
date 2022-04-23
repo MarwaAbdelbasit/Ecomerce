@@ -1,0 +1,44 @@
+.topbar-container {
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    background-color: #41404037;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+
+    backdrop-filter: blur(6px);
+    color: #fff;
+    height: 80px;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .navbar-logo {
+    img {
+      width: 100px;
+      height: 60px;
+      object-fit: contain;
+    }
+  }
+  .cart {
+    color: rgb(7, 55, 146);
+    font-size: 40px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    margin-left: 15px;
+    &:hover {
+      color: rgb(7, 47, 126);
+    }
+  }
+  .heart {
+    color: red;
+    font-size: 40px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    &:hover {
+      color: rgb(137, 10, 10);
+    }
+  }
+}

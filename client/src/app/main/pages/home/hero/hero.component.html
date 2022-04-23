@@ -1,0 +1,25 @@
+<swiper
+  [grabCursor]="true"
+  [loop]="true"
+  [autoplay]="{
+    delay: 2500,
+    disableOnInteraction: false
+  }"
+  class="mySwiper"
+>
+  <ng-template *ngFor="let slide of slides" swiperSlide class="mySlide">
+    <img src="{{ slide.image }}" />
+    <div class="caption">
+      <div>
+        <h1>{{ slide.title }}</h1>
+        <p>{{ slide.subtitle }}</p>
+      </div>
+      <div class="buttons">
+        <button mat-raised-button class="btn">Our Services</button>
+        <button mat-raised-button routerLink="/information/contact" class="btn">
+          Contact us
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</swiper>

@@ -1,0 +1,125 @@
+<div class="sign-up-container">
+  <form
+    *ngIf="adminLogin; else signupForm"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <h2 [style.textAlign]="'center'">Log in</h2>
+    <div class="form-group-1">
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput />
+        <span
+          *ngIf="email?.errors?.['email'] && !email?.errors?.['minlength']"
+          class="error"
+          >not a valid email</span
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-group-1">
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName="password" matInput />
+        <span *ngIf="isSubmittedLogin && !passwordMatch" class="error"
+          >password does not match</span
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="server-err">
+      {{ serverErrMsg.email }}
+      {{ serverErrMsg.password }}
+    </div>
+
+    <div class="submitButton-container">
+      <button mat-raised-button class="btn" type="submit">Login</button>
+    </div>
+    <div>new user ? <a routerLink="/user/register">signup</a></div>
+  </form>
+  <ng-template #signupForm>
+    <form [formGroup]="registerationForm" (ngSubmit)="signUp()">
+      <h2 [style.textAlign]="'center'">Sign Up</h2>
+      <div class="form-group-3">
+        <mat-form-field appearance="standard">
+          <mat-label>Name</mat-label>
+          <input type="text" formControlName="name" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" matInput />
+          <span
+            *ngIf="email?.errors?.['email'] && !email?.errors?.['minlength']"
+            class="error"
+            >not a valid email</span
+          >
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Phone</mat-label>
+          <span matPrefix>+2 &nbsp;</span>
+          <input type="tel" formControlName="phone" matInput />
+          <span *ngIf="phone?.errors?.['minlength']" class="error"
+            >not a valid phone</span
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-group-2">
+        <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input type="password" formControlName="password" matInput />
+          <span *ngIf="isSubmittedRegister && !passwordMatch" class="error"
+            >password does not match</span
+          >
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Confirm Password</mat-label>
+          <input type="password" formControlName="confirm_password" matInput />
+        </mat-form-field>
+      </div>
+      <ng-container formGroupName="security">
+        <div class="form-group-1">
+          <mat-form-field appearance="standard">
+            <mat-label>choose Security Question</mat-label>
+            <mat-select formControlName="securityQuestion" required>
+              <mat-option value="petName"
+                >what's your first pet name ?</mat-option
+              >
+              <mat-option value="uncleName"
+                >what's your uncle name ?</mat-option
+              >
+              <mat-option value="memory">what's your best memory ?</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-group-1">
+          <mat-form-field appearance="standard">
+            <mat-label>security Answer</mat-label>
+            <textarea
+              type="text"
+              formControlName="securityAnswer"
+              matInput
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <div class="form-group-2" formGroupName="adress">
+        <mat-form-field appearance="standard">
+          <mat-label>Country</mat-label>
+          <input type="text" formControlName="country" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>City</mat-label>
+          <input type="text" formControlName="city" matInput />
+        </mat-form-field>
+      </div>
+      <div class="server-err">
+        {{ serverErrMsg.email }}
+        {{ serverErrMsg.password }}
+      </div>
+
+      <div class="submitButton-container">
+        <button mat-raised-button class="btn" type="submit">Sign Up</button>
+      </div>
+      <div>already a member ? <a routerLink="/user/login">Login</a></div>
+    </form>
+  </ng-template>
+</div>

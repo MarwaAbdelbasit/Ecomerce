@@ -1,0 +1,90 @@
+.sign-up-container {
+  background: url("/assets/images/back1.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  form {
+    width: 60%;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+    border-radius: 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.31) 1px 1px 10px;
+    .mat-form-field {
+      position: relative;
+      .error {
+        bottom: -20px;
+        left: 0;
+        color: red;
+        font-size: 0.7rem;
+        position: absolute;
+      }
+    }
+    .form-group-1,
+    .form-group-2,
+    .form-group-3,
+    .submitButton-container {
+      display: flex;
+    }
+    .link a {
+      cursor: pointer;
+      text-decoration: underline;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: var(--button);
+      }
+    }
+    .submitButton-container {
+      justify-content: flex-end;
+      button {
+        width: 40%;
+      }
+    }
+    .server-err {
+      color: red;
+      text-align: center;
+    }
+  }
+  @media (min-width: 360px) {
+    padding: 0 1rem;
+    form {
+      width: 80%;
+      padding: 1rem;
+      .form-group-1 {
+        .mat-form-field {
+          width: 100%;
+        }
+      }
+      .form-group-2 {
+        flex-direction: column;
+      }
+      .form-group-3 {
+        flex-direction: column;
+      }
+    }
+  }
+  @media (min-width: 1024px) {
+    padding: 0 3rem;
+    form {
+      max-width: 800px;
+      padding: 1rem;
+      .form-group-1 {
+        .mat-form-field {
+          width: 80%;
+        }
+      }
+      .form-group-2,
+      .form-group-3 {
+        flex-direction: row;
+        .mat-form-field {
+          margin-right: 100px;
+        }
+      }
+      .form-group-3 {
+        flex-direction: row;
+      }
+    }
+  }
+}

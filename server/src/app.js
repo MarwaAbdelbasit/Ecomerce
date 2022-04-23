@@ -1,23 +1,21 @@
-require("dotenv").config()
-require('../db/dbconnection')
-const cors = require('cors')
-const usersRoutes = require('../routes/users.routes')
-const productRoutes = require("../routes/product.routes")
-const ordersRoutes = require("../routes/orders.routes")
-const cartRoutes = require("../routes/cart.routes")
-const wishlistRoutes = require("../routes/wishlist.routes")
-const citiesController = require("../controller/cities.controller")
-const express = require("express")
-const app = express()
+require("dotenv").config();
+require("../db/dbconnection");
+const cors = require("cors");
+const usersRoutes = require("../routes/users.routes");
+const productRoutes = require("../routes/product.routes");
+const ordersRoutes = require("../routes/orders.routes");
+const cartRoutes = require("../routes/cart.routes");
+const wishlistRoutes = require("../routes/wishlist.routes");
+const express = require("express");
+const app = express();
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended:true}))
-app.use('/uploads',express.static('uploads'))
-app.use('/users', usersRoutes)
-app.use('/products', productRoutes)
-app.use('/orders', ordersRoutes)
-app.use('/cart', cartRoutes)
-app.use('/wishlist', wishlistRoutes)
-app.get('/cities',citiesController.getCities)
-module.exports = app
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
+app.use("/users", usersRoutes);
+app.use("/products", productRoutes);
+app.use("/orders", ordersRoutes);
+app.use("/cart", cartRoutes);
+app.use("/wishlist", wishlistRoutes);
+module.exports = app;

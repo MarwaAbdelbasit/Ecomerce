@@ -1,0 +1,100 @@
+<div class="sign-up-container">
+  <form
+    *ngIf="adminLogin; else signupForm"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <h2 [style.textAlign]="'center'">Login</h2>
+    <div class="form-group-2">
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput />
+        <span
+          *ngIf="loginEmail?.errors?.['email'] && !loginEmail?.errors?.['minlength']"
+          class="error"
+          >not a valid email</span
+        >
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName="password" matInput />
+        <span *ngIf="isSubmittedRegister && !passwordMatch" class="error"
+          >password does not match</span
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="server-err">
+      {{ serverErrMsg.email }}
+      {{ serverErrMsg.password }}
+    </div>
+
+    <div class="submitButton-container">
+      <button mat-raised-button class="btn" type="submit">Login</button>
+    </div>
+    <div class="link">
+      New Admin ? <a routerLink="/admin/register">Signup</a>
+    </div>
+  </form>
+  <ng-template #signupForm>
+    <form [formGroup]="registerationForm" (ngSubmit)="signUp()">
+      <h2 [style.textAlign]="'center'">Sign Up</h2>
+      <div class="form-group-2">
+        <mat-form-field appearance="standard">
+          <mat-label>Admin Name</mat-label>
+          <input type="text" formControlName="name" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Email</mat-label>
+          <input type="email" formControlName="email" matInput />
+          <span
+            *ngIf="registerEmail?.errors?.['email'] && !registerEmail?.errors?.['minlength']"
+            class="error"
+            >not a valid email</span
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-group-3">
+        <mat-form-field appearance="standard">
+          <mat-label>Password</mat-label>
+          <input
+            (input)="this.passwordMatch = false"
+            type="password"
+            formControlName="password"
+            matInput
+          />
+          <span *ngIf="isSubmittedRegister && !passwordMatch" class="error"
+            >password does not match</span
+          >
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            (input)="this.passwordMatch = false"
+            type="password"
+            formControlName="confirm_password"
+            matInput
+          />
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Position</mat-label>
+          <mat-select formControlName="position" required>
+            <mat-option value="Manger"> Manger </mat-option>
+            <mat-option value="Assistant"> Assistant </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="server-err">
+        {{ serverErrMsg.email }}
+        {{ serverErrMsg.password }}
+      </div>
+
+      <div class="submitButton-container">
+        <button mat-raised-button class="btn" type="submit">Sign Up</button>
+      </div>
+      <div class="link">
+        already Existing Admin ? <a routerLink="/admin/login">Login</a>
+      </div>
+    </form>
+  </ng-template>
+</div>

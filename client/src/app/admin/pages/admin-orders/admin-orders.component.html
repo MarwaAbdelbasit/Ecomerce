@@ -1,0 +1,86 @@
+<app-sidebar-admin></app-sidebar-admin>
+<app-topbar></app-topbar>
+
+<section class="section" *ngIf="isLoaded; else elseBlock">
+  <div class="container">
+    <div class="widget">
+      <h1 class="widget-header">All Orders</h1>
+      <div class="table-responsive">
+        <table class="table product-dashboard-table">
+          <thead>
+            <tr>
+              <th>User name</th>
+              <th>Product Image</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">Address</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let orderItem of ordersList">
+              <td class="product-details">
+                <h6>{{ orderItem.userId.name }}</h6>
+              </td>
+              <td class="product-thumb">
+                <img
+                  width="80px"
+                  height="auto"
+                  [src]="apiURL + orderItem.productId.mainImage"
+                  alt="product image"
+                />
+              </td>
+              <td class="product-details">
+                <h6 class="text-center">
+                  {{ orderItem.productId.price | currency: " " }} L.E
+                </h6>
+              </td>
+              <td class="product-details">
+                <h6 class="text-center">{{ orderItem.amount }}</h6>
+              </td>
+              <td class="product-details">
+                <h6 class="text-center">{{ orderItem.shipping.adress }}</h6>
+              </td>
+              <td class="action" data-title="Action">
+                <div>
+                  <ul class="list-inline d-flex justify-content-center">
+                    <li class="list-inline-item">
+                      <a
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="view"
+                        routerLink="/products/singleProduct/{{orderItem.productId._id}"
+                      >
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Delete"
+                        class="delete"
+                        (click)="removeOrderItem(orderItem._id)"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #elseBlock>
+  <div class="d-flex justify-content-center my-5">
+    <div
+      class="spinner-border"
+      style="width: 15rem; height: 15rem"
+      role="status"
+    ></div>
+  </div>
+</ng-template>

@@ -1,0 +1,35 @@
+<div class="topbar-container">
+  <mat-toolbar>
+    <div class="navbar-logo" routerLink="/">
+      <img src="assets/images/logo.png" alt="logo" />
+    </div>
+    <span class="spacer"></span>
+    <span *ngIf="!_auth.isAuthed; else userNotAuthed">
+      <button routerLink="/user/login" mat-button aria-label="login">
+        Log In <mat-icon [style.color]="'var(--button)'">login</mat-icon>
+      </button>
+      <button routerLink="/user/register" mat-button aria-label="sign up">
+        SignUp
+        <mat-icon [style.color]="'var(--button)'">person_add</mat-icon>
+      </button>
+    </span>
+    <ng-template #userNotAuthed>
+      <button mat-button aria-label="sign up" (click)="handleLogOut()">
+        Logout
+      </button>
+      <span routerLink="/user/profile">{{ _auth.userData.name }}</span>
+      <button mat-icon-button aria-label=" icon-button with heart icon">
+        <mat-icon class="heart">favorite</mat-icon>
+      </button>
+      <button mat-icon-button aria-label=" icon-button with share icon">
+        <mat-icon
+          matBadge="{{ _cart.myCartCount }}"
+          matBadgePosition="before"
+          matBadgeColor="warn"
+          class="cart"
+          >shopping_basket</mat-icon
+        >
+      </button>
+    </ng-template>
+  </mat-toolbar>
+</div>
